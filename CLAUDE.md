@@ -4,8 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Co to za projekt
 
-Strona internetowa **Kancelarii PRS** (kancelaria prawna). Repo GitHub:
-`pczak333/kancelaria-prs-strona-www`.
+Strona internetowa marki **KRS Guard** — ochrona członków zarządu spółek
+(pozew z art. 299 KSH, decyzje US/ZUS, bezpieczne odejście z zarządu). Repo
+GitHub: `pczak333/kancelaria-prs-strona-www` (nazwa repo historyczna, sprzed
+zmiany marki — nie zmieniamy jej).
+
+**Profil i relacja do „Kancelarii PRS".** To osobna, samodzielna strona o
+profilu KRS Guard. Rejestracją spółek (KRS/PRS/S24) zajmuje się partnerska
+**Kancelaria PRS** — inna strona tej samej rodziny (syna właściciela),
+`https://kancelaria-prs.vercel.app/` (docelowo `kancelariaprs.com`). Nasza
+strona zwiększa zasięg KRS Guard; docelowo zapytania obsługuje Kancelaria
+PRS. Usług rejestrowych NIE powielamy — tylko krótko odsyłamy do niej
+(box „handoff" na stronie głównej, w cenniku, kontakcie i FAQ). Usługi
+prawne realizuje Kancelaria PRS (wzmianka w stopce). Zmiana marki
+z „Kancelaria PRS" na „KRS Guard" nastąpiła 22.07.2026.
 
 **Stack technologiczny (wybrany 22.07.2026): statyczna strona
 HTML/CSS/JS bez narzędzia budującego (no build).** Powód: najprostsze,
@@ -19,7 +31,7 @@ na dowolny hosting statyczny).
 **Struktura repo:**
 
 - `www/` — właściwa strona (deliverable). Podstrony: `index.html`,
-  `uslugi-cennik.html` (usługi w formie **kart**), `krs-guard.html`,
+  `uslugi-cennik.html` (Cennik — lejek + **pakiety** KRS Guard), `krs-guard.html`,
   `narzedzia.html` (intro kalkulatora → link do aplikacji Streamlit),
   `audyt-48h.html` + `audyt-48h-form.html` (wieloetapowy formularz,
   na razie makieta bez prawdziwego backendu), `kontakt.html`, `faq.html`,
@@ -30,12 +42,17 @@ na dowolny hosting statyczny).
 - `Dane_wejściowe/` — materiały źródłowe (m.in. stary prototyp
   `strona testowa_stara/`), tylko do odczytu, NIE część strony.
 
-**Nawigacja jest samodzielna** — menu prowadzi wyłącznie do własnych
-podstron w `www/`. Strona pod `kancelariaprs.com` to inny, równolegle
-rozwijany projekt tej samej kancelarii; nowa strona będzie pod innym
-adresem i **nie linkuje** do kancelariaprs.com. Nagłówek i stopkę trzymamy
-wpisane w każdej podstronie (mała objętość, działa bez serwera) —
-utrzymywać je spójnie między plikami.
+**Marka i nawigacja.** Znak w nagłówku to **KRS Guard** (logo-tarcza
+`assets/krs_guard_logo_transparent.png` + napis „KRS Guard" i podtytuł
+„Ochrona zarządu"). Menu (odchudzone): Strona główna · Jak pomagamy
+(`krs-guard.html`) · Cennik (`uslugi-cennik.html`) · Kalkulator ryzyka
+(`narzedzia.html`) · Audyt 48h (`audyt-48h.html`) · FAQ · Kontakt · Blog.
+Oferta ułożona jako lejek: **darmowy Kalkulator → Audyt 48h (od 900 zł) →
+pakiety** (art. 299 KSH, US/ZUS, Zarząd SAFE). Nagłówek i stopka są
+identyczne na każdej podstronie — przy zmianie podmieniać we wszystkich
+naraz (wygodnie skryptem, jak `scratchpad/rebrand.py` z sesji rebrandingu).
+Jedyne linki na zewnątrz: „handoff" do Kancelarii PRS oraz link do
+kalkulatora Streamlit.
 
 Kalkulator ryzyka NIE jest wbudowany w stronę — `narzedzia.html` linkuje do
 działającej aplikacji `https://kalkulatorryzyka.streamlit.app/` (patrz
@@ -160,15 +177,23 @@ globalnej CLI per komputer, patrz notatka w projekcie-bliźniaku).
 
 ## Stan prac i co jeszcze do ustalenia
 
-**Zrobione (22.07.2026):** pierwsza makieta strony w `www/` — wszystkie
-podstrony, wspólny `styles.css` i `main.js`, styl wizualny przeniesiony ze
-starego prototypu, nawigacja samodzielna, link do kalkulatora. Sprawdzone
-wizualnie w przeglądarce. Plan: `plany/nowa-strona-makieta.md`.
+**Zrobione (22.07.2026):**
+1. Pierwsza makieta strony w `www/` (wszystkie podstrony, wspólny
+   `styles.css` i `main.js`). Plan: `plany/nowa-strona-makieta.md`.
+2. **Rebranding na „KRS Guard" + odchudzenie treści** — zmiana marki
+   „Kancelaria PRS" → „KRS Guard" wszędzie, przeorientowanie na ochronę
+   zarządu (lejek Kalkulator → Audyt 48h → 3 pakiety), usunięcie części
+   rejestrowej (handoff do Kancelarii PRS), skrócenie tekstów. Teksty
+   przeredagowane przez subagentów. Plan: `plany/rebranding-krs-guard.md`.
+Sprawdzone w przeglądarce (podgląd `http://localhost:8765/`).
 
 **Rozstrzygnięte decyzje:**
 
 - Stack: statyczny HTML/CSS/JS bez build (patrz sekcja „Co to za projekt").
-- Cennik: w formie **kart usług** (nie rozwijanej tabeli).
+- Marka/profil: **KRS Guard**, ochrona członków zarządu; rejestracja →
+  odesłanie do partnerskiej Kancelarii PRS.
+- Cennik: lejek + **3 pakiety** (art. 299 KSH, US/ZUS, Zarząd SAFE);
+  Audyt 48h i Kalkulator to NIE pakiety, tylko wcześniejsze kroki lejka.
 - Kalkulator: osobna aplikacja, strona tylko linkuje (patrz sekcja niżej).
 - Dane kontaktowe: na razie **placeholdery** w `kontakt.html` (i w stopce)
   — wyraźnie oznaczone (klasa `.ph`), do podmiany przed publikacją.
@@ -186,10 +211,12 @@ wizualnie w przeglądarce. Plan: `plany/nowa-strona-makieta.md`.
 - **Treści do zatwierdzenia** — pytania i odpowiedzi w `faq.html` oraz
   przykładowe kafelki w `blog.html` to propozycje napisane od nowa; blog nie
   ma jeszcze realnych wpisów.
-- **Identyfikacja wizualna kancelarii** — obecnie logo „KANCELARIA / PRS"
-  (serif) przeniesione z prototypu; kalkulator ma celowo odrębny znak
-  (plakietka z literą K). Jeśli kancelaria zechce własne, docelowe logo —
-  osobny temat.
+- **Adres w handoffie do Kancelarii PRS** — obecnie link do
+  `https://kancelaria-prs.vercel.app/` (podgląd Vercel). Podmienić na
+  docelowy adres (np. `kancelariaprs.com`), gdy będzie ustalony.
+- **Identyfikacja wizualna** — marka KRS Guard używa gotowego logo-tarczy
+  (`assets/krs_guard_logo_transparent.png`) + napis „KRS Guard". Jeśli
+  pojawi się docelowe, dedykowane logo — osobny temat.
 
 Nie zgadywać nierozstrzygniętych decyzji — dopytać użytkownika, gdy nadejdzie
 ich kolej, w prosty, niejargonowy sposób (patrz sekcja o stylu współpracy
