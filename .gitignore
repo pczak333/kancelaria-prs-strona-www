@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Claude Code — lokalne ustawienia per komputer, nie commitować
+.claude/settings.local.json
