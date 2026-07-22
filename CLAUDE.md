@@ -105,6 +105,28 @@ Foldery `memory/` i `plany/` założone już teraz (patrz niżej) — nawet
 zanim jest tu jakikolwiek kod, żeby konwencja obowiązywała od pierwszej
 sesji, nie dopiero gdy ktoś sobie o niej przypomni.
 
+## Skille Claude Code (od startu projektu)
+
+Zainstalowane (`.agents/skills/` + `.claude/skills/` + `skills-lock.json`,
+ten sam mechanizm co w `Kalkulator_ryzyka_app` — patrz tamtejszy
+`memory/project_skills_setup.md` po pełną instrukcję instalowania/usuwania):
+
+- **`frontend-design`** (anthropics/skills) — wskazówki projektowania UI,
+  przydatne niezależnie od wybranego stacku.
+- **`find-skills`** (vercel-labs/skills) — meta-skill do wyszukiwania i
+  instalowania kolejnych skilli; użyć go, jak tylko wybierzemy technologię
+  strony, żeby poszukać skilla dedykowanego dla tej technologii (np. skill
+  do konkretnego frameworka).
+
+Świadomie NIE zainstalowano (na razie) skilli specyficznych dla kalkulatora
+KRS Guard (`developing-with-streamlit`, `regex-vs-llm-structured-text`,
+`prompt-engineering-patterns`) ani subagenta `record-manager` — wszystkie
+dotyczą wyłącznie logiki analizy dokumentów prawnych tamtego projektu, nie
+mają zastosowania do strony internetowej. `agent-browser` (automatyzacja
+przeglądarki, do testowania stron na żywo) też pominięty na razie — dodać,
+gdy będzie już co testować w przeglądarce (wymaga dodatkowej instalacji
+globalnej CLI per komputer, patrz notatka w projekcie-bliźniaku).
+
 ## Do ustalenia (pierwsze decyzje projektu)
 
 - Stack technologiczny strony (statyczny HTML/CSS/JS? generator stron
