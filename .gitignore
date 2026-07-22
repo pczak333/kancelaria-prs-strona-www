@@ -219,3 +219,6 @@ __marimo__/
 
 # Claude Code — lokalne ustawienia per komputer, nie commitować
 .claude/settings.local.json
+
+# Node — pozostałości po rozważanym (odrzuconym) podejściu Eleventy; nie commitować
+node_modules/

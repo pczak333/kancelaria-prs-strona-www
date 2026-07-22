@@ -7,11 +7,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Strona internetowa **Kancelarii PRS** (kancelaria prawna). Repo GitHub:
 `pczak333/kancelaria-prs-strona-www`.
 
-**Stack technologiczny: JESZCZE NIE WYBRANY.** To pierwsza rzecz do
-ustalenia, zanim zacznie się pisać kod — patrz sekcja "Do ustalenia" niżej.
-Jak tylko zapadnie decyzja (framework, hosting, struktura katalogów), **ten
-plik trzeba od razu zaktualizować** — reszta sekcji poniżej zakłada, że ta
-decyzja już zapadła.
+**Stack technologiczny (wybrany 22.07.2026): statyczna strona
+HTML/CSS/JS bez narzędzia budującego (no build).** Powód: najprostsze,
+najmniej awaryjne rozwiązanie — strona otwiera się przez zwykłe kliknięcie
+w plik, działa na obu komputerach bez instalowania czegokolwiek i da się ją
+postawić na dowolnym hostingu statycznym. To priorytet przy nietechnicznym
+właścicielu. Hosting: JESZCZE NIE WYBRANY (osobna decyzja na etapie
+publikacji — strona jest samowystarczalna w folderze `www/`, więc pójdzie
+na dowolny hosting statyczny).
+
+**Struktura repo:**
+
+- `www/` — właściwa strona (deliverable). Podstrony: `index.html`,
+  `uslugi-cennik.html` (usługi w formie **kart**), `krs-guard.html`,
+  `narzedzia.html` (intro kalkulatora → link do aplikacji Streamlit),
+  `audyt-48h.html` + `audyt-48h-form.html` (wieloetapowy formularz,
+  na razie makieta bez prawdziwego backendu), `kontakt.html`, `faq.html`,
+  `blog.html` (szkielet). Wspólny wygląd: **`www/styles.css`** (jedno
+  źródło prawdy dla CSS — koniec z duplikowaniem stylów w każdym pliku).
+  Wspólny skrypt: **`www/main.js`** (podświetlanie aktywnej pozycji menu +
+  rozwijanie FAQ). Grafiki/logotypy: `www/assets/`.
+- `Dane_wejściowe/` — materiały źródłowe (m.in. stary prototyp
+  `strona testowa_stara/`), tylko do odczytu, NIE część strony.
+
+**Nawigacja jest samodzielna** — menu prowadzi wyłącznie do własnych
+podstron w `www/`. Strona pod `kancelariaprs.com` to inny, równolegle
+rozwijany projekt tej samej kancelarii; nowa strona będzie pod innym
+adresem i **nie linkuje** do kancelariaprs.com. Nagłówek i stopkę trzymamy
+wpisane w każdej podstronie (mała objętość, działa bez serwera) —
+utrzymywać je spójnie między plikami.
+
+Kalkulator ryzyka NIE jest wbudowany w stronę — `narzedzia.html` linkuje do
+działającej aplikacji `https://kalkulatorryzyka.streamlit.app/` (patrz
+sekcja o kalkulatorze niżej).
+
+Podgląd lokalny (rozszerzenie Chrome blokuje `file://`): w folderze `www/`
+uruchom `python -m http.server 8765` i wejdź na `http://localhost:8765/`.
 
 ## Kim jest użytkownik (ważne dla stylu współpracy)
 
@@ -127,20 +158,39 @@ przeglądarki, do testowania stron na żywo) też pominięty na razie — dodać
 gdy będzie już co testować w przeglądarce (wymaga dodatkowej instalacji
 globalnej CLI per komputer, patrz notatka w projekcie-bliźniaku).
 
-## Do ustalenia (pierwsze decyzje projektu)
+## Stan prac i co jeszcze do ustalenia
 
-- Stack technologiczny strony (statyczny HTML/CSS/JS? generator stron
-  statycznych? WordPress? coś innego?) — zależnie m.in. od tego, kto
-  docelowo będzie tę stronę utrzymywał (sam użytkownik, czy zewnętrzna
-  firma/deweloper).
-- Hosting.
-- Struktura/zawartość strony (podstrony, treści kancelarii, gdzie dokładnie
-  ma się znaleźć przycisk/link do kalkulatora KRS Guard).
-- Branding strony vs branding kalkulatora — kalkulator ma już własny,
-  celowo odrębny znak graficzny (plakietka z literą K, patrz
-  `Kalkulator_ryzyka_app`); dla tej strony trzeba będzie osobno ustalić
-  identyfikację wizualną kancelarii.
+**Zrobione (22.07.2026):** pierwsza makieta strony w `www/` — wszystkie
+podstrony, wspólny `styles.css` i `main.js`, styl wizualny przeniesiony ze
+starego prototypu, nawigacja samodzielna, link do kalkulatora. Sprawdzone
+wizualnie w przeglądarce. Plan: `plany/nowa-strona-makieta.md`.
 
-Nie zgadywać żadnej z tych decyzji — dopytać użytkownika, gdy nadejdzie ich
-kolej, w prosty, niejargonowy sposób (patrz sekcja o stylu współpracy
+**Rozstrzygnięte decyzje:**
+
+- Stack: statyczny HTML/CSS/JS bez build (patrz sekcja „Co to za projekt").
+- Cennik: w formie **kart usług** (nie rozwijanej tabeli).
+- Kalkulator: osobna aplikacja, strona tylko linkuje (patrz sekcja niżej).
+- Dane kontaktowe: na razie **placeholdery** w `kontakt.html` (i w stopce)
+  — wyraźnie oznaczone (klasa `.ph`), do podmiany przed publikacją.
+
+**Wciąż do ustalenia:**
+
+- **Prawdziwe dane kontaktowe** — imię i nazwisko radcy prawnego, telefon,
+  e-mail, adres, NIP, godziny. Podmienić placeholdery w `www/kontakt.html`
+  i stopkach.
+- **Hosting** i **docelowy adres (domena)** strony — decyzja na etapie
+  publikacji.
+- **Realna obsługa formularza Audytu 48h** — obecnie makieta (tylko podgląd
+  maila / `mailto:`, bez wysyłki na serwer). Docelowo podłączyć bezpieczną
+  obsługę zgłoszeń.
+- **Treści do zatwierdzenia** — pytania i odpowiedzi w `faq.html` oraz
+  przykładowe kafelki w `blog.html` to propozycje napisane od nowa; blog nie
+  ma jeszcze realnych wpisów.
+- **Identyfikacja wizualna kancelarii** — obecnie logo „KANCELARIA / PRS"
+  (serif) przeniesione z prototypu; kalkulator ma celowo odrębny znak
+  (plakietka z literą K). Jeśli kancelaria zechce własne, docelowe logo —
+  osobny temat.
+
+Nie zgadywać nierozstrzygniętych decyzji — dopytać użytkownika, gdy nadejdzie
+ich kolej, w prosty, niejargonowy sposób (patrz sekcja o stylu współpracy
 wyżej).
