@@ -1,3 +1,11 @@
+> **⚠️ PLAN NIEAKTUALNY (superseded 22.07.2026).** Ten plan proponował stack
+> Eleventy + Netlify. Użytkownik świadomie wybrał **prostsze** podejście:
+> statyczny HTML/CSS/JS bez narzędzia budującego. Aktualny plan i stan prac:
+> **`plany/nowa-strona-makieta.md`**. Plik zostaje jako zapis rozważanej
+> alternatywy — działające formularze i publikację (Netlify Forms działa też
+> ze zwykłym HTML) można dołożyć później, ale BEZ Eleventy. Nie realizować
+> tego planu bez ponownej decyzji użytkownika.
+
 # Plan: Nowa strona Kancelarii PRS (makieta od podstaw)
 
 ## Kontekst
