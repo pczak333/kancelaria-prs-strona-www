@@ -3,6 +3,7 @@
    1) Podświetla aktywną pozycję w menu (wg nazwy bieżącego pliku).
    2) Obsługuje rozwijanie pytań w sekcji FAQ.
    3) Obsługuje rozwijanie szczegółów pakietów na Cenniku.
+   4) Obsługuje menu „hamburger” na telefonie.
    Formularz Audytu 48h ma własny, osobny skrypt na swojej podstronie.
    ========================================================================= */
 (function () {
@@ -66,9 +67,22 @@
     }
   }
 
+  // 4) Menu „hamburger” na telefonie
+  function initNavToggle() {
+    var btn = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('mainnav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     markActiveNav();
     initFaq();
     initPackages();
+    initNavToggle();
   });
 })();
