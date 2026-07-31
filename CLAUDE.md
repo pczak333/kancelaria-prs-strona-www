@@ -225,6 +225,17 @@ Sprawdzone w przeglądarce.
    wskazany pakiet. Plan: `plany/pakiety-rozwijane-na-cenniku.md`.
 4. **`podglad-strony.bat`** — dwuklik otwiera stronę w Edge (patrz
    „Podgląd lokalny").
+5. **Poprawki po przeglądzie strony przez właściciela** (seria drobnych
+   poprawek, każda osobnym commitem): usunięty mylący krok 3 „Pakiety
+   obrony" z paska „Jak pomagamy — krok po kroku" na stronie głównej (dublował
+   sekcję „Nasze pakiety" poniżej); poprawiony mylący opis na
+   `krs-guard.html` sugerujący, że to kancelaria dobiera pakiet po Audycie
+   48h (w rzeczywistości klient wybiera pakiet sam, dopasowany do swojej
+   sytuacji); grafika na `narzedzia.html` zmieniona na wierną replikę
+   nagłówka prawdziwej aplikacji kalkulatora (sześciokątny znak „K", ten sam
+   granat); mała ikonka na dużym białym tle na `audyt-48h.html` zastąpiona
+   kolorowym banerem w barwach marki. **Opisy pakietów na Cenniku
+   zaakceptowane przez właściciela** — nie są już „do potwierdzenia".
 
 **Rozstrzygnięte decyzje:**
 
