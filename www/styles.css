@@ -451,9 +451,37 @@ button.tile-btn{cursor:pointer;font:inherit;width:100%}
   background:rgba(255,255,255,.86);
   box-shadow:0 8px 24px rgba(7,39,55,.06);
 }
+.icon-cta{flex-wrap:wrap}
 .icon-cta .p{margin:0 0 10px; color:var(--ink); font-weight:600}
-.calc-logo-main{display:block; width:320px; max-width:100%; height:auto}
 .audyt-logo-main{display:block; width:120px; max-width:100%; height:auto}
+
+/* Baner kalkulatora — replika nagłówka prawdziwej aplikacji (ta sama plakietka
+   "K" i granat #1a3a5c), żeby grafika na stronie zgadzała się z tym, co widać
+   po otwarciu kalkulatora. */
+.calc-banner{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  background:#1a3a5c;
+  border-radius:14px;
+  padding:22px 28px;
+  box-shadow:0 8px 24px rgba(15,27,45,.18);
+  max-width:420px;
+}
+.calc-banner svg{flex:none}
+.calc-banner h2{
+  color:#fff;
+  margin:0 0 4px;
+  font-size:1.25rem;
+  line-height:1.25;
+  font-family:Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua',serif;
+}
+.calc-banner p{
+  color:#f0f4f8;
+  margin:0;
+  font-size:.88rem;
+  opacity:.85;
+}
 .callout{
   padding:18px;
   border-radius:18px;
