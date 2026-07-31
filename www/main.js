@@ -2,6 +2,7 @@
    Kancelaria PRS — wspólny skrypt strony.
    1) Podświetla aktywną pozycję w menu (wg nazwy bieżącego pliku).
    2) Obsługuje rozwijanie pytań w sekcji FAQ.
+   3) Obsługuje rozwijanie szczegółów pakietów na Cenniku.
    Formularz Audytu 48h ma własny, osobny skrypt na swojej podstronie.
    ========================================================================= */
 (function () {
@@ -33,8 +34,41 @@
     });
   }
 
+  // 3) Rozwijane szczegóły pakietów na Cenniku
+  function setTileOpen(tile, open) {
+    var btn = tile.querySelector('.tile-btn');
+    tile.classList.toggle('open', open);
+    if (btn) {
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Zwiń' : 'Szczegóły';
+    }
+  }
+
+  function initPackages() {
+    var tiles = document.querySelectorAll('.service-tile');
+    tiles.forEach(function (tile) {
+      var btn = tile.querySelector('.tile-btn');
+      // Reaguj tylko na przyciski (rozwijanie), nie na linki <a>.
+      if (!btn || btn.tagName !== 'BUTTON') return;
+      btn.addEventListener('click', function () {
+        setTileOpen(tile, !tile.classList.contains('open'));
+      });
+    });
+
+    // Wejście z linku typu ...#pakiet-299 (np. ze strony głównej):
+    // rozwiń wskazany pakiet i przewiń go do widoku.
+    var hash = window.location.hash.replace('#', '');
+    if (!hash) return;
+    var target = document.getElementById(hash);
+    if (target && target.classList.contains('service-tile')) {
+      setTileOpen(target, true);
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     markActiveNav();
     initFaq();
+    initPackages();
   });
 })();

@@ -370,6 +370,19 @@ a{color:inherit}
   border:1px solid rgba(11,37,53,.25);
 }
 .tile-btn:hover{background:#091f2c}
+button.tile-btn{cursor:pointer;font:inherit;width:100%}
+.pkg-details{
+  display:none;
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid rgba(11,37,53,.14);
+  color:var(--ink2);
+  font-size:14px;
+  line-height:1.55;
+  text-align:left;
+}
+.pkg-details p{margin:0 0 8px}
+.service-tile.open .pkg-details{display:block}
 .service-tile.small{min-height:300px}
 .service-tile.special{
   background:rgba(255,255,255,.95);
