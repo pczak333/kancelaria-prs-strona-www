@@ -11,11 +11,25 @@ Bieżący punkt zapisu — **31.07.2026**. Zastępuje wcześniejszy
 (repo wygrywa), patrz [[ciaglosc-sprawdzac-repo-na-starcie]].
 
 **Stan:** makieta strony **KRS Guard** w `www/`, dopracowywana.
-Podgląd lokalny (dla właściciela): **dwuklik `podglad-strony.bat`** →
-otwiera stronę wprost w **Edge** (nie Chrome — Chrome ma rozszerzenie
-blokujące `file://`; strona jest statyczna, więc w Edge działa z pliku bez
-serwera). Do własnych testów działa też `python -m http.server 8765` w
-`www/` → `http://localhost:8765/`.
+
+**Podgląd lokalny — UWAGA, sposób zależy od komputera:**
+- **Komputer właściciela: pliki `.bat` są ZABLOKOWANE** — dwuklik w `.bat`
+  nic nie robi (potwierdzone 31.07: plik testowy nie zostawił nawet logu
+  uruchomienia; najpewniej antywirus/system). Podgląd odpalamy przez
+  **skrót na pulpicie „Podglad strony KRS Guard"** (ikona Edge → otwiera
+  `www/index.html` w Edge). Skrót jest lokalny (ścieżki bezwzględne, poza
+  repo) — na drugim komputerze utworzyć od nowa PowerShellem:
+  `WScript.Shell` → TargetPath = `...\msedge.exe`,
+  Arguments = `--new-window "file:///…/www/index.html"`.
+- `podglad-strony.bat` (w repo, ścieżki względne `%~dp0`) zostawiony na
+  wypadek, gdyby na drugim komputerze `.bat` NIE były blokowane.
+- Do własnych testów: `python -m http.server 8765` w `www/`.
+
+**Pułapka przy testach agenta:** Edge odpalony przez narzędzia Claude Code
+działa w innej (niewidocznej) sesji Windows i przez „singleton" przechwytuje
+otwarcia — wtedy dwuklik właściciela nie pokazuje okna. Po testach zamknąć
+wszystkie `msedge` i NIE uruchamiać Edge samemu, prosząc właściciela o klik.
+Edge blokuje też schodzenie zrzutów poniżej ~492px CSS (min. viewport).
 
 **Zrobione 31.07.2026:**
 1. Sprzątanie repo: usunięto resztki po porzuconym podejściu build

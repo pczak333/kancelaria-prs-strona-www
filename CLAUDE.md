@@ -61,14 +61,33 @@ Kalkulator ryzyka NIE jest wbudowany w stronę — `narzedzia.html` linkuje do
 działającej aplikacji `https://kalkulatorryzyka.streamlit.app/` (patrz
 sekcja o kalkulatorze niżej).
 
-Podgląd lokalny: najprościej **dwuklik w `podglad-strony.bat`** (w katalogu
-głównym repo) — otwiera stronę wprost w **Edge**. Świadomie Edge, nie
-Chrome: Chrome właściciela ma rozszerzenie blokujące otwieranie stron z
-pliku (`file://`), a strona jest w pełni statyczna, więc w Edge działa
-z pliku bez żadnego serwera. Podejście z lokalnym serwerem
-(`python -m http.server 8765` → `http://localhost:8765/`) też działa i
-przydaje się do własnych testów, ale dla właściciela `.bat` jest pewniejszy
-(brak drugiego okna, brak problemu z „wychodzeniem okna na wierzch").
+Podgląd lokalny — otwieramy stronę wprost w **Edge** (nie w Chrome: Chrome
+właściciela ma rozszerzenie blokujące otwieranie stron z pliku `file://`;
+strona jest w pełni statyczna, więc w Edge działa z pliku bez serwera).
+
+**WAŻNE — sposób zależy od komputera:**
+
+- **Komputer właściciela (ten, na którym to piszemy): pliki `.bat` są
+  zablokowane** — dwuklik w `.bat` NIC nie robi (najpewniej antywirus/
+  ustawienia systemu; potwierdzone testem 31.07.2026 — plik `.bat` nie
+  zostawił nawet logu, że się uruchomił). Dlatego na tym komputerze
+  podgląd odpalamy przez **skrót na pulpicie „Podglad strony KRS Guard"**
+  (ikona Edge). Skrót utworzony PowerShellem (`WScript.Shell`), celuje w
+  `msedge.exe` z argumentem `--new-window "file:///…/www/index.html"`. Skrót
+  jest lokalny (ścieżki bezwzględne, poza repo) — na innym komputerze trzeba
+  go utworzyć od nowa (patrz `memory/stan-pracy-2026-07-31.md`).
+- **Drugi komputer:** jeśli tam `.bat` NIE są blokowane, może zadziałać
+  `podglad-strony.bat` (w katalogu głównym repo, ścieżki względne
+  `%~dp0` — przenośny). Zostawiony właśnie na tę okazję.
+- **Do własnych testów** (dowolny komputer) działa też lokalny serwer:
+  w `www/` `python -m http.server 8765` → `http://localhost:8765/`.
+
+**Pułapka przy testowaniu przez agenta:** Edge uruchomiony przez narzędzia
+Claude Code startuje w innej sesji Windows (niewidocznej dla właściciela) i
+przez mechanizm „jednej kopii Edge" (singleton) potrafi przechwycić kolejne
+otwarcia — wtedy dwuklik właściciela nie pokazuje okna. Po testach
+**pozamykać wszystkie procesy `msedge` i NIE uruchamiać Edge samemu**, gdy
+prosimy właściciela, żeby kliknął — inaczej u niego „nic się nie otwiera".
 
 ## Kim jest użytkownik (ważne dla stylu współpracy)
 
