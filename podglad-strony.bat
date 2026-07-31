@@ -13,6 +13,6 @@ set "STRONA=%~dp0www\index.html"
 set "EDGE=%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"
 if not exist "%EDGE%" set "EDGE=%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"
 
-if exist "%EDGE%" start "" "%EDGE%" "%STRONA%"
-if not exist "%EDGE%" start msedge "%STRONA%"
+if exist "%EDGE%" start "" "%EDGE%" --new-window "%STRONA%"
+if not exist "%EDGE%" start msedge --new-window "%STRONA%"
 endlocal
