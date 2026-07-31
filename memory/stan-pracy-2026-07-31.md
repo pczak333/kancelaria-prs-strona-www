@@ -11,14 +11,19 @@ Bieżący punkt zapisu — **31.07.2026**. Zastępuje wcześniejszy
 (repo wygrywa), patrz [[ciaglosc-sprawdzac-repo-na-starcie]].
 
 **Stan:** makieta strony **KRS Guard** w `www/`, dopracowywana.
-Podgląd lokalny: `podglad-strony.bat` (dwuklik) albo w `www/`
-`python -m http.server 8765` → `http://localhost:8765/`.
+Podgląd lokalny (dla właściciela): **dwuklik `podglad-strony.bat`** →
+otwiera stronę wprost w **Edge** (nie Chrome — Chrome ma rozszerzenie
+blokujące `file://`; strona jest statyczna, więc w Edge działa z pliku bez
+serwera). Do własnych testów działa też `python -m http.server 8765` w
+`www/` → `http://localhost:8765/`.
 
 **Zrobione 31.07.2026:**
 1. Sprzątanie repo: usunięto resztki po porzuconym podejściu build
    (`package.json`, `package-lock.json`, `node_modules`); przywrócono
    brakujące pliki skilli z repo.
-2. Dodano `podglad-strony.bat` — podgląd strony jednym kliknięciem.
+2. Dodano `podglad-strony.bat` — dwuklik otwiera stronę w **Edge**
+   (bez serwera, bez dodatkowych okien). Wcześniejsze wersje z lokalnym
+   serwerem gubiły fokus (przeglądarka pod oknem serwera) — porzucone.
 3. **Pakiety — opisy przeniesione na Cennik jako rozwijane** (commit
    `c16587b`):
    - `krs-guard.html` („Jak pomagamy") odchudzone — usunięto trzy długie

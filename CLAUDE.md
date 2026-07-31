@@ -38,7 +38,10 @@ na dowolny hosting statyczny).
   `blog.html` (szkielet). Wspólny wygląd: **`www/styles.css`** (jedno
   źródło prawdy dla CSS — koniec z duplikowaniem stylów w każdym pliku).
   Wspólny skrypt: **`www/main.js`** (podświetlanie aktywnej pozycji menu +
-  rozwijanie FAQ). Grafiki/logotypy: `www/assets/`.
+  rozwijanie FAQ + rozwijanie szczegółów pakietów na Cenniku). Grafiki/
+  logotypy: `www/assets/`.
+- `podglad-strony.bat` — w katalogu głównym repo; dwuklik otwiera stronę
+  w Edge (patrz „Podgląd lokalny" niżej).
 - `Dane_wejściowe/` — materiały źródłowe (m.in. stary prototyp
   `strona testowa_stara/`), tylko do odczytu, NIE część strony.
 
@@ -58,8 +61,14 @@ Kalkulator ryzyka NIE jest wbudowany w stronę — `narzedzia.html` linkuje do
 działającej aplikacji `https://kalkulatorryzyka.streamlit.app/` (patrz
 sekcja o kalkulatorze niżej).
 
-Podgląd lokalny (rozszerzenie Chrome blokuje `file://`): w folderze `www/`
-uruchom `python -m http.server 8765` i wejdź na `http://localhost:8765/`.
+Podgląd lokalny: najprościej **dwuklik w `podglad-strony.bat`** (w katalogu
+głównym repo) — otwiera stronę wprost w **Edge**. Świadomie Edge, nie
+Chrome: Chrome właściciela ma rozszerzenie blokujące otwieranie stron z
+pliku (`file://`), a strona jest w pełni statyczna, więc w Edge działa
+z pliku bez żadnego serwera. Podejście z lokalnym serwerem
+(`python -m http.server 8765` → `http://localhost:8765/`) też działa i
+przydaje się do własnych testów, ale dla właściciela `.bat` jest pewniejszy
+(brak drugiego okna, brak problemu z „wychodzeniem okna na wierzch").
 
 ## Kim jest użytkownik (ważne dla stylu współpracy)
 
@@ -185,7 +194,18 @@ globalnej CLI per komputer, patrz notatka w projekcie-bliźniaku).
    zarządu (lejek Kalkulator → Audyt 48h → 3 pakiety), usunięcie części
    rejestrowej (handoff do Kancelarii PRS), skrócenie tekstów. Teksty
    przeredagowane przez subagentów. Plan: `plany/rebranding-krs-guard.md`.
-Sprawdzone w przeglądarce (podgląd `http://localhost:8765/`).
+Sprawdzone w przeglądarce.
+
+**Zrobione (31.07.2026):**
+3. **Opisy pakietów przeniesione na Cennik jako rozwijane.** Podstrona
+   „Jak pomagamy" (`krs-guard.html`) była przeładowana — usunięto z niej
+   trzy długie opisy pakietów, zostawiając krótki blok z przyciskiem
+   „Zobacz nasze pakiety" → Cennik. Na Cenniku każdy pakiet ma przycisk
+   „Szczegóły", który rozwija opis w miejscu (bez przechodzenia na inną
+   podstronę); linki `...#pakiet-...` (np. ze strony głównej) auto-otwierają
+   wskazany pakiet. Plan: `plany/pakiety-rozwijane-na-cenniku.md`.
+4. **`podglad-strony.bat`** — dwuklik otwiera stronę w Edge (patrz
+   „Podgląd lokalny").
 
 **Rozstrzygnięte decyzje:**
 
