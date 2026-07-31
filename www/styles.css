@@ -453,7 +453,23 @@ button.tile-btn{cursor:pointer;font:inherit;width:100%}
 }
 .icon-cta{flex-wrap:wrap}
 .icon-cta .p{margin:0 0 10px; color:var(--ink); font-weight:600}
-.audyt-logo-main{display:block; width:120px; max-width:100%; height:auto}
+/* Baner Audytu 48h — kolorowy blok (kolory marki), wypełnia kartę zamiast
+   małej ikonki na dużym białym tle. */
+.audyt-banner{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex:1;
+  min-width:220px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  color:#fff;
+  border-radius:14px;
+  padding:20px 24px;
+  box-shadow:0 8px 24px rgba(11,37,53,.16);
+}
+.audyt-banner svg{flex:none}
+.audyt-banner h2{color:#fff; margin:0 0 4px; font-size:1.15rem}
+.audyt-banner p{color:rgba(255,255,255,.88); margin:0; font-size:.85rem; line-height:1.4}
 
 /* Baner kalkulatora — replika nagłówka prawdziwej aplikacji (ta sama plakietka
    "K" i granat #1a3a5c), żeby grafika na stronie zgadzała się z tym, co widać
