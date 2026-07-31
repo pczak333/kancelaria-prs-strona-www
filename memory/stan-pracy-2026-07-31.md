@@ -38,6 +38,14 @@ serwera). Do własnych testów działa też `python -m http.server 8765` w
    - `index.html` — przyciski „Szczegóły" prowadzą teraz na
      `uslugi-cennik.html#pakiet-...` (rozwijają wybrany pakiet po wejściu).
    Plan: `plany/pakiety-rozwijane-na-cenniku.md`.
+4. **Menu „hamburger" na telefonie** (commit `94e4bb9`). Na ekranach
+   ≤980px menu chowa się pod przyciskiem z trzema kreskami i rozwija po
+   kliknięciu (pionowa lista); na komputerze bez zmian. Przycisk
+   `.nav-toggle` + `id="mainnav"` dodane do wszystkich 8 podstron ze
+   wspólnym nagłówkiem; obsługa `initNavToggle()` w `main.js`; style w
+   `styles.css` (`.nav-toggle` + reguły w `@media (max-width:980px)`).
+   UWAGA: `audyt-48h-form.html` jest samodzielna (własne style, własna
+   klasa `.nav` = nawigacja kroków formularza) — celowo pominięta.
 
 **Uwaga o kalkulatorze (osobny projekt):** na tym komputerze brakowało
 pakietu Pythona `reportlab` — doinstalowany 31.07, kalkulator uruchamia się.
