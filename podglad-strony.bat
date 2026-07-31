@@ -1,20 +1,18 @@
 @echo off
-rem Podglad strony KRS Guard: kliknij dwa razy ten plik.
+rem ============================================================
+rem  Podglad strony KRS Guard.
+rem  Kliknij dwa razy ten plik - strona otworzy sie w przegladarce Edge.
+rem  Bez serwera, bez dodatkowych czarnych okien - po prostu strona.
 rem
-rem Otworzy sie:
-rem  1) male okno "serwer podgladu" (czarne) - to silnik podgladu,
-rem     zostaw je otwarte, poki ogladasz strone. Zamkniecie = koniec podgladu.
-rem  2) przegladarka z adresem http://localhost:8765/ (na wierzchu).
+rem  (Uzywamy Edge, bo Chrome ma na tym komputerze rozszerzenie,
+rem   ktore blokuje otwieranie strony wprost z pliku.)
+rem ============================================================
 
-cd /d "%~dp0www"
+setlocal
+set "STRONA=%~dp0www\index.html"
+set "EDGE=%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"
+if not exist "%EDGE%" set "EDGE=%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"
 
-rem Serwer w osobnym oknie (nie blokuje otwarcia przegladarki):
-start "KRS Guard - serwer podgladu (nie zamykaj)" cmd /k python -m http.server 8765
-
-rem Chwila na uruchomienie serwera, zeby strona od razu sie zaladowala:
-timeout /t 2 /nobreak >nul
-
-rem Przegladarka jako ostatnia - dzieki temu wychodzi na wierzch:
-start "" http://localhost:8765/
-
-exit
+if exist "%EDGE%" start "" "%EDGE%" "%STRONA%"
+if not exist "%EDGE%" start msedge "%STRONA%"
+endlocal
