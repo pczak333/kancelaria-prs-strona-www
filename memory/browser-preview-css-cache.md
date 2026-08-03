@@ -1,11 +1,11 @@
 ---
 name: browser-preview-css-cache
-description: Wewnętrzny podgląd (Browser pane) narzędzi Claude Code potrafi trzymać stary styles.css w cache mimo nowej karty/odświeżenia
+description: Wewnętrzny podgląd (Browser pane) narzędzi Claude Code bywa zawodny w tym środowisku - stary CSS w cache i/lub błąd renderowania screenshotów; mierzyć layout przez JS zamiast zrzutu ekranu
 metadata: 
   node_type: memory
   type: feedback
   originSessionId: 7e6b4554-eb29-4587-a046-c1568a1cc5b1
-  modified: 2026-07-31T16:23:22.053Z
+  modified: 2026-08-03T21:03:33.826Z
 ---
 
 Podgląd strony w Browser pane (narzędzia `mcp__Claude_Browser__*`) w tym
@@ -33,3 +33,15 @@ Zamiast tego:
    (skrót na pulpicie, patrz [[stan-pracy-2026-07-31]]).
 3. Nie tracić czasu na kolejne próby wymuszenia świeżego CSS w tym samym
    podglądzie — to nie jest naprawialne od strony kodu strony.
+
+**Dodatek (03.08.2026):** w tej sesji `computer{action:"screenshot"}` w Browser
+pane regularnie zwracał błąd „the Browser pane is not displayed, so the page
+is not compositing frames" — czyli nawet obejście przez zrzut ekranu bywa
+niedostępne, nie tylko cache CSS bywa nieaktualny. **Skuteczne obejście:**
+zamiast zrzutu ekranu, użyć `javascript_tool` do zmierzenia realnego układu
+(`element.getBoundingClientRect()`, `getComputedStyle(...).flexDirection`
+itp.) — to działa niezależnie od tego, czy pane się renderuje wizualnie, i
+pozwala policzyć np. rzeczywistą szerokość elementu w pikselach, żeby
+potwierdzić naprawę layoutu bez polegania na zrzucie ekranu. Przydatne, gdy
+właściciel zgłasza problem wizualny (np. „element wygląda na pionowy") —
+zamiast zgadywać z opisu, zmierzyć realne wymiary w DOM.

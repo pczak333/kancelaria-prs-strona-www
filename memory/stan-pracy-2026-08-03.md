@@ -1,22 +1,24 @@
 ---
 name: stan-pracy-2026-08-03
-description: "Aktualny stan prac nad stroną KRS Guard (03.08.2026) — cały plan audytu (Etapy 1-5) zrobiony"
+description: "Aktualny stan prac nad stroną KRS Guard (03.08.2026) — cały plan audytu zrobiony + doprecyzowanie Audyt/pakiety, naprawa layoutu banerów, poprawki formularza"
 metadata: 
   node_type: memory
   type: project
   originSessionId: 7e6b4554-eb29-4587-a046-c1568a1cc5b1
-  modified: 2026-08-03T19:56:46.570Z
+  modified: 2026-08-03T21:04:49.907Z
 ---
 
-Bieżący punkt zapisu — **03.08.2026, po drugiej przerwie w sesji tego samego
-dnia**. Zastępuje `stan-pracy-2026-07-31` (tamten opisuje stan sprzed tej
-sesji; podgląd lokalny i pułapki testowe nadal aktualne — patrz tamten plik).
-Na starcie sesji zsynchronizować się z repo (repo wygrywa), patrz
+Bieżący punkt zapisu — **03.08.2026, koniec sesji (po trzeciej przerwie tego
+samego dnia)**. Zastępuje `stan-pracy-2026-07-31` (tamten opisuje stan sprzed
+tej sesji; podgląd lokalny i pułapki testowe nadal aktualne — patrz tamten
+plik). Na starcie sesji zsynchronizować się z repo (repo wygrywa), patrz
 [[ciaglosc-sprawdzac-repo-na-starcie]].
 
 **Stan:** makieta strony **KRS Guard** w `www/` — **wszystkie 19 spraw
-z Etapów 1–5 audytu (03.08.2026) wprowadzone i wypchnięte na GitHub.** Cały
-plan `plany/poprawki-po-audycie-2026-08-03.md` zamknięty.
+z Etapów 1–5 audytu (03.08.2026) wprowadzone i wypchnięte na GitHub**, plus
+4 dodatkowe poprawki znalezione przez właściciela po ponownym przejrzeniu
+strony (patrz punkty 18–20 niżej). Plan `plany/poprawki-po-audycie-2026-08-03.md`
+zamknięty w całości.
 
 ## NASTĘPNY KROK (to jest to, po co wracamy)
 
@@ -117,6 +119,40 @@ AUDYTU ZAMKNIĘTY:**
     Sprawdzone: `.calc-actions`/`.audyt-actions`/`.foot-left` NIE
     potrzebowały żadnej reguły — działają poprawnie z domyślnych wartości
     CSS (są w kontenerach `display:flex`). Commit `a43e262`.
+
+**Po trzeciej przerwie tego samego dnia — poprawki spoza listy audytu,
+zgłoszone przez właściciela po ponownym przejrzeniu strony:**
+
+18. **Doprecyzowana różnica: Audyt 48h vs pakiety obrony** (`40c5710`).
+    Właściciel zauważył, że po zapłaceniu za Audyt (900 zł) i otrzymaniu
+    rekomendacji nie było jasne, po co płacić jeszcze za pakiet (od 2500 zł).
+    Na Cenniku dodane zdanie-most nad kafelkami pakietów: „Audyt 48h mówi
+    Ci, co robić... Pakiet to już samo wykonanie tego: pisma procesowe
+    i reprezentacja". Krótkie opisy pod kafelkami Art. 299 i US/ZUS
+    przerobione, żeby od razu (bez klikania „Szczegóły") pokazywały
+    konkretny efekt: „pełne prowadzenie sprawy, nie tylko diagnoza".
+    **Ta sama commit:** dopisane „— zdalnie, Ty nie musisz się nigdzie
+    stawiać" przy każdej wzmiance o reprezentacji w sądzie (Cennik x2,
+    `krs-guard.html`) — właściciel zauważył sprzeczność między obietnicą
+    „wszystko zdalnie" a wzmianką o reprezentacji w sądzie.
+19. **Naprawiony układ banerów kalkulatora/audytu** (`3f071d2`) — realna
+    przyczyna „pionowego" wyglądu bannera Audytu: przycisk obok bannera
+    w `.icon-cta` (flex row + flex-wrap) ściskał baner do ~288px przy
+    typowej szerokości ekranu, przez co tekst zawijał się wąsko i wysoko.
+    Naprawa: `.icon-cta` zmienione na `flex-direction:column` — baner
+    i przycisk stoją teraz jeden pod drugim, każdy na pełną szerokość.
+    Zmierzone w przeglądarce (JS, bo Browser pane w tej sesji miał
+    problem z renderowaniem screenshotów): baner urósł z 288px do 521px.
+20. **Formularz Audytu — pole opisu i tekst przy e-mailu** (`731afae`).
+    Pole „Opisz krótko sytuację" zmienione z obowiązkowego na opcjonalne
+    (usunięta walidacja wymagalności w JS) — podpowiedzi w polu dublowały
+    pytania z wcześniejszych kroków formularza, co mogło irytować klienta.
+    Nowe podpowiedzi celują w informacje NIEZEBRANE gdzie indziej: inni
+    członkowie zarządu w sprawie, majątek spółki, wcześniejsza
+    korespondencja z wierzycielem/urzędem, obawy klienta. Zdanie przy
+    e-mailu „wyślemy potwierdzenie i dalsze instrukcje" (niejasne, można
+    było odebrać jak groźbę) zmienione na konkretne: „potwierdzenie, że
+    dostaliśmy zgłoszenie, oraz wycenę Twojej sprawy do akceptacji".
 
 ## Najważniejsze do zapamiętania na przyszłość
 

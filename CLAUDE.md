@@ -274,9 +274,18 @@ Sprawdzone w przeglądarce.
     pytanie, co się dzieje z dokumentami przy odrzuceniu wyceny), usunięty
     przedwczesny przycisk „Zamów Audyt 48h" z hero strony głównej. **Etap 5
     (drobiazgi + porządki w CSS) też zrobiony** — szczegóły w
-    `plany/poprawki-po-audycie-2026-08-03.md`. Jedyna otwarta rzecz: czy
-    pole „potwierdzenie doręczenia" w formularzu powinno pozostać
-    obowiązkowe w świetle dwuetapowego procesu wyceny.
+    `plany/poprawki-po-audycie-2026-08-03.md`.
+11. **Poprawki po ponownym przeglądzie strony (spoza listy audytu).**
+    Doprecyzowana różnica Audyt 48h vs pakiety obrony (zdanie-most na
+    Cenniku + konkretne korzyści w opisach pakietów) i wyjaśnione, że
+    reprezentacja w sądzie odbywa się zdalnie. Naprawiony układ banerów
+    kalkulatora/audytu — przycisk obok banera ściskał go do wąskiej
+    szerokości (baner i przycisk stoją teraz jeden pod drugim, każdy na
+    pełną szerokość). W formularzu Audytu: pole „opisz sytuację" zrobione
+    opcjonalnym z nowymi podpowiedziami (nie duplikują już pytań z
+    formularza), doprecyzowane niejasne zdanie przy e-mailu. Jedyna
+    otwarta rzecz: czy pole „potwierdzenie doręczenia" w formularzu
+    powinno pozostać obowiązkowe w świetle dwuetapowego procesu wyceny.
 
 **Rozstrzygnięte decyzje:**
 
