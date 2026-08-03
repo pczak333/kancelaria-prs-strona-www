@@ -163,55 +163,45 @@ a{color:inherit}
   border:1px solid rgba(11,37,53,.12);
 }
 .hero-panel{
-  padding:28px;
-  background:rgba(255,255,255,.70);
+  padding:32px;
+  background:rgba(255,255,255,.82);
   backdrop-filter: blur(10px) saturate(1.2);
   -webkit-backdrop-filter: blur(10px) saturate(1.2);
 }
-.hero-grid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap:18px;
-  align-items:stretch;
+.hero-title{
+  display:block;
+  font-size:22px;
+  line-height:1.25;
+  margin-bottom:10px;
+  color:var(--ink);
+  font-weight:700;
 }
-.hero-left, .hero-right{
-  border-radius:22px;
-  padding:18px;
-  background:rgba(255,255,255,.74);
-  border:1px solid rgba(11,37,53,.18);
-}
-.copy-box{
-  border:2px solid rgba(0,0,0,.55);
-  border-radius:14px;
-  padding:18px;
-  background:rgba(255,255,255,.65);
+.hero-lead{
+  margin:0;
   color:var(--ink);
   font-size:16px;
   line-height:1.5;
 }
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
 
-/* Lejek: Kalkulator -> Audyt 48h -> pakiety */
-.funnel{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px auto 0;max-width:640px}
-.funnel-step{
-  position:relative;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:20px 18px;
-  display:flex;flex-direction:column;
-  box-shadow:0 12px 30px rgba(11,37,53,.08);
+/* Pasek szybkich odnośników do lejka: Kalkulator -> Audyt 48h -> pakiety
+   (zamiast pełnego powielania podstron "Jak pomagamy" i Cennika na stronie
+   głównej — link prowadzi do pełnej treści na właściwej podstronie). */
+.quicklinks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.quicklink{
+  display:flex;flex-direction:column;gap:4px;
+  text-decoration:none;
+  background:var(--brand);
+  color:#fff;
+  border-radius:16px;
+  padding:18px 20px;
+  box-shadow:0 10px 26px rgba(11,37,53,.14);
+  transition:transform .15s ease;
 }
-.funnel-step .step-no{
-  width:30px;height:30px;border-radius:999px;
-  display:grid;place-items:center;
-  background:var(--brand);color:#fff;font-weight:900;font-size:14px;margin-bottom:12px;
-}
-.funnel-step h3{margin:0 0 6px;font-size:18px;color:var(--ink)}
-.funnel-step .tagfree{color:var(--brand);font-weight:800;font-size:13px}
-.funnel-step p{margin:8px 0 14px;color:var(--ink2);font-size:14px;line-height:1.5;flex:1}
-.funnel-step .btn{width:100%}
-@media (max-width:900px){.funnel{grid-template-columns:1fr}}
+.quicklink:hover{transform:translateY(-2px)}
+.quicklink-label{font-size:16px;font-weight:700}
+.quicklink-note{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.82)}
+@media (max-width:900px){.quicklinks{grid-template-columns:1fr}}
 
 /* Box-odesłanie do Kancelarii PRS */
 .handoff{
@@ -629,7 +619,6 @@ button.tile-btn{cursor:pointer;font:inherit;width:100%}
     padding-bottom:12px;
   }
   .krs-logo{margin-left:auto}
-  .hero-grid{grid-template-columns:1fr}
   .service-grid{grid-template-columns:1fr}
   .grid-2{grid-template-columns:1fr}
   .blog-grid{grid-template-columns:1fr}
@@ -640,10 +629,8 @@ button.tile-btn{cursor:pointer;font:inherit;width:100%}
 }
 @media (max-width:560px){
   .tab{font-size:18px}
-  .copy-box{font-size:16px}
   .stats{grid-template-columns:1fr}
   .hero-panel{padding:18px}
-  .hero-left,.hero-right{padding:14px}
   .h1{font-size:28px}
 }
 @media (max-width:900px){
