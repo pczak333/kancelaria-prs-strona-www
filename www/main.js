@@ -32,7 +32,8 @@
       var q = item.querySelector('.faq-q');
       if (!q) return;
       q.addEventListener('click', function () {
-        item.classList.toggle('open');
+        var open = item.classList.toggle('open');
+        q.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
     });
   }
