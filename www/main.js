@@ -13,6 +13,8 @@
   function markActiveNav() {
     var path = window.location.pathname.split('/').pop() || 'index.html';
     if (path === '') path = 'index.html';
+    // Artykuły bloga (blog-*.html) podświetlają pozycję "Blog".
+    if (path.indexOf('blog-') === 0) path = 'blog.html';
     var links = document.querySelectorAll('.nav a[href]');
     links.forEach(function (a) {
       var href = a.getAttribute('href').split('/').pop();
