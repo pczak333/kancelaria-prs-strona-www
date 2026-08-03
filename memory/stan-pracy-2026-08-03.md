@@ -1,40 +1,38 @@
 ---
 name: stan-pracy-2026-08-03
-description: "Aktualny stan prac nad stroną KRS Guard (03.08.2026) — Etapy 1-4 audytu zrobione, Etap 5 (drobiazgi) czeka"
+description: "Aktualny stan prac nad stroną KRS Guard (03.08.2026) — cały plan audytu (Etapy 1-5) zrobiony"
 metadata: 
   node_type: memory
   type: project
   originSessionId: 7e6b4554-eb29-4587-a046-c1568a1cc5b1
-  modified: 2026-08-03T16:36:20.419Z
+  modified: 2026-08-03T19:56:46.570Z
 ---
 
-Bieżący punkt zapisu — **03.08.2026, po przerwie w sesji (kontynuacja tego
-samego dnia)**. Zastępuje `stan-pracy-2026-07-31` (tamten opisuje stan
-sprzed tej sesji; podgląd lokalny i pułapki testowe nadal aktualne — patrz
-tamten plik). Na starcie sesji zsynchronizować się z repo (repo wygrywa),
-patrz [[ciaglosc-sprawdzac-repo-na-starcie]].
+Bieżący punkt zapisu — **03.08.2026, po drugiej przerwie w sesji tego samego
+dnia**. Zastępuje `stan-pracy-2026-07-31` (tamten opisuje stan sprzed tej
+sesji; podgląd lokalny i pułapki testowe nadal aktualne — patrz tamten plik).
+Na starcie sesji zsynchronizować się z repo (repo wygrywa), patrz
+[[ciaglosc-sprawdzac-repo-na-starcie]].
 
-**Stan:** makieta strony **KRS Guard** w `www/` — **wszystkie 16 poprawek
-z Etapów 1–4 audytu (03.08.2026) wprowadzone i wypchnięte na GitHub.**
-Etap 5 (drobiazgi) jeszcze nie zrobiony.
+**Stan:** makieta strony **KRS Guard** w `www/` — **wszystkie 19 spraw
+z Etapów 1–5 audytu (03.08.2026) wprowadzone i wypchnięte na GitHub.** Cały
+plan `plany/poprawki-po-audycie-2026-08-03.md` zamknięty.
 
 ## NASTĘPNY KROK (to jest to, po co wracamy)
 
-Właściciel podziękował za sesję i **przerwał na 3 godziny**, prosząc o
-zapisanie wszystkiego. Po powrocie, w kolejności:
+Nie ma pilnych otwartych pytań. Jedyna rzecz do zweryfikowania przy okazji
+(nie blokuje niczego, nie była częścią listy 19):
 
-1. **Zapytać, czy kontynuować z Etapem 5** (drobiazgi z audytu — lista niżej
-   i w `plany/poprawki-po-audycie-2026-08-03.md`) — to jedyna niezrobiona
-   część oryginalnego planu.
-2. **Do zweryfikowania przy okazji:** pole „potwierdzenie doręczenia" w
-   formularzu Audytu 48h jest nadal `required` w walidacji JS
-   (`audyt-48h-form.html:964-970`) — sprawdzić, czy to nadal spójne z nowym
-   dwuetapowym procesem wyceny (patrz punkt 10 niżej). Nie zakładać, że to
-   już naprawione — nie było w tym jawnie dotykane.
-3. Poza tym — brak pilnych otwartych pytań do właściciela. Można normalnie
-   zapytać, czym się dziś zajmujemy.
+- **Pole „potwierdzenie doręczenia" w formularzu Audytu 48h** jest nadal
+  `required` w walidacji JS (`audyt-48h-form.html:964-970`) — sprawdzić,
+  czy to nadal spójne z dwuetapowym procesem wyceny (patrz punkt 10 niżej).
+  Nie zakładać, że to już naprawione — nie było w tym jawnie dotykane
+  (formularz to wciąż makieta bez backendu, więc to głównie do decyzji na
+  etapie podłączania prawdziwej obsługi zgłoszeń).
 
-## Zrobione 03.08.2026 (cała sesja, oba bloki przed i po przerwie)
+Poza tym można normalnie zapytać, czym się dziś zajmujemy.
+
+## Zrobione 03.08.2026 (cała sesja, trzy bloki: przed przerwą 1, po przerwie 1, po przerwie 2)
 
 **Przed przerwą — przygotowanie do audytu i przegląd strony:**
 1. Odchudzenie strony głównej (`17e667c`) — baner do jednej karty, sekcja
@@ -98,6 +96,28 @@ zapisanie wszystkiego. Po powrocie, w kolejności:
       (świadomy wyjątek — replika kolorów prawdziwej appki kalkulatora, NIE
       pomyłka, nie ujednolicać go z resztą). Martwe CSS `.tabs`/`.tab` usunięte.
 
+**Po drugiej przerwie tego samego dnia — Etap 5 (drobiazgi), CAŁY PLAN
+AUDYTU ZAMKNIĘTY:**
+
+13. Dopisane info o algorytmie/24h na `narzedzia.html` + poprawiony mylący
+    przycisk „Wróć do KRS Guard" → „Zobacz, jak pomagamy" — `0244b7f`.
+14. FAQ: „Audyt to zwykle drugi krok, po bezpłatnym Kalkulatorze" (było:
+    sugerowało pierwszy krok) + ujednolicona grubość kreski ikony stopera
+    (1.6 → 2) — `3f4bec3`.
+15. Polskie cudzysłowy zamykające („…") w 10 miejscach w 6 artykułach
+    blogowych (były zwykłe proste ASCII) — `d5a1b01`.
+16. `aria-expanded` dodane do 13 pytań FAQ + przełączanie w `main.js` —
+    `b82e5c9`.
+17. **Sprzątanie martwego CSS** — usunięte nieużywane reguły po starym
+    prototypie (`.tagline`+`--tagline-left`, `.krs-logo`/`.krs-logo-img`,
+    `.service-card`, `.card-stack`, `.service-tile.special`/`.special-inner`/
+    `.spacer`, `.footnote`, `.badge`, `.section-title`, `.hl`). Kolory
+    linków w tekście (9 ręcznych powtórzeń `style="color:var(--link)..."`)
+    zastąpione jedną regułą `.p a, .list a, .faq-a a, .lead a{...}`.
+    Sprawdzone: `.calc-actions`/`.audyt-actions`/`.foot-left` NIE
+    potrzebowały żadnej reguły — działają poprawnie z domyślnych wartości
+    CSS (są w kontenerach `display:flex`). Commit `a43e262`.
+
 ## Najważniejsze do zapamiętania na przyszłość
 
 - **`--calc-navy` (#1a3a5c) to świadomy wyjątek** — kolor repliki prawdziwej
@@ -114,11 +134,8 @@ zapisanie wszystkiego. Po powrocie, w kolejności:
 
 ## Otwarte punkty (bez zmian — NIE ruszać bez prośby właściciela)
 
-- **ETAP 5 z audytu — 7 drobiazgów, jeszcze nie zrobione** (pełna lista w
-  `plany/poprawki-po-audycie-2026-08-03.md`): brak info o algorytmie/24h na
-  stronie kalkulatora, FAQ sugerujące start od Audytu, mylący przycisk
-  „Wróć do KRS Guard", cieńsza ikona stopera, angielskie cudzysłowy na
-  blogu, brak `aria-expanded` w FAQ, ogólne porządki w martwym CSS.
+- Pole „potwierdzenie doręczenia" w formularzu Audytu 48h (`required`) —
+  do zweryfikowania w świetle dwuetapowego procesu wyceny, patrz wyżej.
 - Prawdziwe dane kontaktowe (placeholdery `.ph` w `kontakt.html`,
   `polityka-prywatnosci.html`, `audyt-48h-form.html`). **Powiązane:**
   uzupełnienie polityki prywatności — do zrobienia razem, przed publikacją.

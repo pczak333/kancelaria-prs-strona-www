@@ -12,14 +12,18 @@ się w oczy błąd na stronie).
 Raport i pełne uzasadnienia: run `wf_8c657a31-c80`, journal w
 `~/.claude/projects/.../subagents/workflows/wf_8c657a31-c80/journal.jsonl`.
 
-## STATUS: ETAPY 1–4 WYKONANE (03.08.2026, w tej samej sesji co audyt)
+## STATUS: WSZYSTKIE 5 ETAPÓW WYKONANE (03.08.2026)
 
-**Właściciel potwierdził oba błędy prawne i podjął decyzje co do sposobu
-poprawki** (zawężenie do sp. z o.o.; rozdzielenie US/ZUS bez podawania
-konkretnych terminów, odesłanie do pouczenia w decyzji). Wszystkie 16 spraw
-z Etapów 1–4 zostało wprowadzonych i wypchniętych na GitHub. **Etap 5
-(drobiazgi) NIE został jeszcze zrobiony** — to zadanie na następną sesję,
-patrz na dole pliku.
+**Cały plan zamknięty.** Właściciel potwierdził oba błędy prawne i podjął
+decyzje co do sposobu poprawki (zawężenie do sp. z o.o.; rozdzielenie
+US/ZUS bez podawania konkretnych terminów, odesłanie do pouczenia w
+decyzji). Wszystkie 19 spraw z Etapów 1–5 zostało wprowadzonych i
+wypchniętych na GitHub, w osobnych commitach.
+
+**Wciąż otwarte (nie z listy 19, zauważone przy okazji):** czy pole
+„potwierdzenie doręczenia" w formularzu Audytu 48h powinno pozostać
+`required` w świetle dwuetapowego procesu wyceny — patrz sekcja przy
+punkcie 7 niżej.
 
 ---
 
@@ -172,33 +176,31 @@ z inicjatywy właściciela w trakcie sesji):**
 
 ---
 
-## ETAP 5 — drobiazgi ⬜ NIE ZROBIONE (zadanie na następną sesję)
+## ETAP 5 — drobiazgi ✅ ZROBIONE
 
-17. **Strona kalkulatora nie mówi tego, co Cennik** (`www/narzedzia.html`) —
-    brakuje dwóch zdań: że wynik liczy algorytm, nie prawnik, i że odpowiedzi
-    znikają po 24 h.
-18. **FAQ sugeruje start od Audytu** (`www/faq.html:84`), reszta serwisu mówi,
-    że pierwszy krok to bezpłatny Kalkulator. Poprawka jednozdaniowa.
-19. **Mylący przycisk „Wróć do KRS Guard"** (`www/narzedzia.html`) prowadzi
-    na „Jak pomagamy" → zmienić napis na „Zobacz, jak pomagamy".
-20. **Ikona stopera cieńszą kreską** (`stroke-width="1.6"` zamiast `"2"`) —
-    `www/audyt-48h.html`, `www/uslugi-cennik.html` (ikona zegara przy
-    Audycie 48h).
-21. **Angielskie cudzysłowy zamykające w artykułach blogowych** — 10 miejsc,
-    m.in. `www/blog-bezskuteczna-egzekucja.html:51`.
-22. **FAQ nie informuje czytników ekranu o stanie rozwinięcia**
-    (`www/faq.html`) — brak `aria-expanded`. Identyczny mechanizm działa
-    już poprawnie przy pakietach na Cenniku, jest z czego skopiować.
-23. **Porządki pod maską** (niewidoczne dla klienta, osobnym commitem):
-    - martwe reguły w `styles.css` po starych wersjach: `.tagline`,
-      `.krs-logo`/`.krs-logo-img`, `.service-card`, `.card-stack`,
-      `.service-tile.special`/`.special-inner`/`.spacer`, `.footnote`,
-      `.badge`, `.section-title`, `.hl` + zmienna `--tagline-left`
-      (`.tabs`/`.tab` już usunięte przy okazji Etapu 4).
-    - odwrotnie: klasy `.calc-actions`, `.audyt-actions`, `.foot-left` są
-      w HTML, ale nie mają żadnej reguły w CSS.
-    - kolory linków wpisywane ręcznie `style="color:var(--link);font-weight:800"`
-      w ~8 miejscach zamiast raz regułą `.p a, .list a, .faq-a a, .lead a{...}`.
+17. **Strona kalkulatora nie mówiła tego, co Cennik** ✅ — dopisane zdanie
+    o algorytmie i 24h w `narzedzia.html`. Commit `0244b7f`.
+18. **FAQ sugerowało start od Audytu** ✅ — poprawione na „to zwykle drugi
+    krok, po bezpłatnym Kalkulatorze ryzyka". Commit `3f4bec3`.
+19. **Mylący przycisk „Wróć do KRS Guard"** ✅ — zmieniony na „Zobacz, jak
+    pomagamy". Commit `0244b7f`.
+20. **Ikona stopera cieńszą kreską** ✅ — `stroke-width` ujednolicone na
+    `"2"` w `audyt-48h.html` i `uslugi-cennik.html`. Commit `3f4bec3`.
+21. **Angielskie cudzysłowy zamykające w artykułach blogowych** ✅ —
+    poprawione we wszystkich 10 miejscach w 6 plikach na polskie „…".
+    Commit `d5a1b01`.
+22. **FAQ nie informowało czytników ekranu o stanie rozwinięcia** ✅ —
+    dodane `aria-expanded` do 13 pytań + obsługa przełączania w `main.js`.
+    Commit `b82e5c9`.
+23. **Porządki pod maską** ✅ — usunięte martwe reguły CSS (`.tagline`,
+    `.krs-logo`/`.krs-logo-img`, `.service-card`, `.card-stack`,
+    `.service-tile.special`/`.special-inner`/`.spacer`, `.footnote`,
+    `.badge`, `.section-title`, `.hl`, zmienna `--tagline-left`); kolory
+    linków wpisywane ręcznie w 9 miejscach zastąpione jedną regułą
+    `.p a, .list a, .faq-a a, .lead a{...}`. `.calc-actions`/`.audyt-actions`/
+    `.foot-left` sprawdzone — działają poprawnie z domyślnych wartości CSS
+    (są w kontenerach `display:flex`), nie wymagały żadnej reguły. Commit
+    `a43e262`.
 
 ---
 

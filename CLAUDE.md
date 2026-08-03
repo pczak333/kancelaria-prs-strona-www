@@ -255,7 +255,8 @@ Sprawdzone w przeglądarce.
    weryfikacja, 11 agentów): 40 zgłoszeń → 30 potwierdzonych → **19 spraw
    do poprawy**. Lista z numerami linii i kolejnością prac:
    `plany/poprawki-po-audycie-2026-08-03.md`.
-10. **Etapy 1–4 audytu wprowadzone (16 z 19 spraw).** Oba błędy prawne
+10. **Wszystkie 19 spraw z audytu wprowadzone (Etapy 1–5, plan zamknięty).**
+    Oba błędy prawne
     poprawione po potwierdzeniu właściciela jako radcy: art. 299 KSH
     zawężony do sp. z o.o.; droga odwoławcza US/ZUS rozdzielona bez podawania
     konkretnych terminów. Sprzeczności w ofercie usunięte (kafelki na
@@ -271,9 +272,11 @@ Sprawdzone w przeglądarce.
     właściciela:** dwuetapowy proces wyceny Audytu 48h (sprawdzenie
     kompletności i potwierdzenie ceny PRZED płatną analizą — rozwiązuje
     pytanie, co się dzieje z dokumentami przy odrzuceniu wyceny), usunięty
-    przedwczesny przycisk „Zamów Audyt 48h" z hero strony głównej.
-    **Etap 5 (7 drobiazgów) jeszcze nie zrobiony** — lista w tym samym pliku
-    planu.
+    przedwczesny przycisk „Zamów Audyt 48h" z hero strony głównej. **Etap 5
+    (drobiazgi + porządki w CSS) też zrobiony** — szczegóły w
+    `plany/poprawki-po-audycie-2026-08-03.md`. Jedyna otwarta rzecz: czy
+    pole „potwierdzenie doręczenia" w formularzu powinno pozostać
+    obowiązkowe w świetle dwuetapowego procesu wyceny.
 
 **Rozstrzygnięte decyzje:**
 
