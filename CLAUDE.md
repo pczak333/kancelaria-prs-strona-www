@@ -254,10 +254,26 @@ Sprawdzone w przeglądarce.
 9. **AUDYT CAŁEJ STRONY** (5 niezależnych recenzji + adwersaryjna
    weryfikacja, 11 agentów): 40 zgłoszeń → 30 potwierdzonych → **19 spraw
    do poprawy**. Lista z numerami linii i kolejnością prac:
-   `plany/poprawki-po-audycie-2026-08-03.md`. **Nic jeszcze nie poprawione —
-   to zadanie na następną sesję.** Dwa punkty (błędy prawne: art. 299 KSH
-   przy S.A./PSA oraz droga odwoławcza przy ZUS) czekają na potwierdzenie
-   właściciela jako radcy.
+   `plany/poprawki-po-audycie-2026-08-03.md`.
+10. **Etapy 1–4 audytu wprowadzone (16 z 19 spraw).** Oba błędy prawne
+    poprawione po potwierdzeniu właściciela jako radcy: art. 299 KSH
+    zawężony do sp. z o.o.; droga odwoławcza US/ZUS rozdzielona bez podawania
+    konkretnych terminów. Sprzeczności w ofercie usunięte (kafelki na
+    stronie głównej, pakiet Zarząd SAFE, jeden termin Audytu, cena na stronie
+    Audytu). Formularz poprawiony (kontakt pilny, literówka, czas
+    wypełniania, przedwczesny pakiet) + **nowa podstrona polityki
+    prywatności** (szkielet, do uzupełnienia) linkowana wszędzie. Wygląd
+    ujednolicony: zdjęcie/czcionka pobrane lokalnie (nie zależą już od
+    serwerów Google/Unsplash), logo w linii z treścią, `<h1>` na stronie
+    głównej, banery kalkulatora/audytu spójne i responsywne na telefonie,
+    kolory ujednolicone na granat (`--calc-navy` jako świadomy, nazwany
+    wyjątek dla brandingu kalkulatora). **Dodatkowo z inicjatywy
+    właściciela:** dwuetapowy proces wyceny Audytu 48h (sprawdzenie
+    kompletności i potwierdzenie ceny PRZED płatną analizą — rozwiązuje
+    pytanie, co się dzieje z dokumentami przy odrzuceniu wyceny), usunięty
+    przedwczesny przycisk „Zamów Audyt 48h" z hero strony głównej.
+    **Etap 5 (7 drobiazgów) jeszcze nie zrobiony** — lista w tym samym pliku
+    planu.
 
 **Rozstrzygnięte decyzje:**
 
@@ -283,9 +299,10 @@ Sprawdzone w przeglądarce.
 - **Treści do zatwierdzenia** — pytania i odpowiedzi w `faq.html` oraz
   sześć artykułów `blog-*.html` to propozycje napisane od nowa; mają widoczne
   notki „wersja robocza / do akceptacji radcy", do usunięcia po zatwierdzeniu.
-- **Polityka prywatności** — nie istnieje, a formularz Audytu zbiera skany
-  pozwów i decyzji. Do napisania razem z prawdziwymi danymi kontaktowymi,
-  przed publikacją (pkt 12 planu poprawek).
+- **Polityka prywatności** — podstrona `www/polityka-prywatnosci.html` już
+  istnieje (szkielet napisany 03.08.2026), ale ma placeholdery zamiast
+  danych administratora/NIP. Uzupełnić razem z prawdziwymi danymi
+  kontaktowymi, przed publikacją.
 - **Adres w handoffie do Kancelarii PRS** — obecnie link do
   `https://kancelaria-prs.vercel.app/` (podgląd Vercel). Podmienić na
   docelowy adres (np. `kancelariaprs.com`), gdy będzie ustalony.

@@ -1,94 +1,129 @@
 ---
 name: stan-pracy-2026-08-03
-description: Aktualny stan prac nad stroną KRS Guard (03.08.2026) — po audycie; lista poprawek czeka w plany/
+description: "Aktualny stan prac nad stroną KRS Guard (03.08.2026) — Etapy 1-4 audytu zrobione, Etap 5 (drobiazgi) czeka"
 metadata: 
   node_type: memory
   type: project
   originSessionId: 7e6b4554-eb29-4587-a046-c1568a1cc5b1
-  modified: 2026-08-03T11:32:36.046Z
+  modified: 2026-08-03T16:36:20.419Z
 ---
 
-Bieżący punkt zapisu — **03.08.2026**. Zastępuje `stan-pracy-2026-07-31`
-(tamten opisuje stan sprzed tej sesji; podgląd lokalny i pułapki testowe
-nadal aktualne — patrz tamten plik). Na starcie sesji zsynchronizować się
-z repo (repo wygrywa), patrz [[ciaglosc-sprawdzac-repo-na-starcie]].
+Bieżący punkt zapisu — **03.08.2026, po przerwie w sesji (kontynuacja tego
+samego dnia)**. Zastępuje `stan-pracy-2026-07-31` (tamten opisuje stan
+sprzed tej sesji; podgląd lokalny i pułapki testowe nadal aktualne — patrz
+tamten plik). Na starcie sesji zsynchronizować się z repo (repo wygrywa),
+patrz [[ciaglosc-sprawdzac-repo-na-starcie]].
 
-**Stan:** makieta strony **KRS Guard** w `www/` — po przeglądzie treści
-i grafiki, przed wprowadzeniem poprawek z audytu.
+**Stan:** makieta strony **KRS Guard** w `www/` — **wszystkie 16 poprawek
+z Etapów 1–4 audytu (03.08.2026) wprowadzone i wypchnięte na GitHub.**
+Etap 5 (drobiazgi) jeszcze nie zrobiony.
 
 ## NASTĘPNY KROK (to jest to, po co wracamy)
 
-Właściciel zaakceptował listę poprawek z audytu i **przerwał sesję na 3
-godziny, prosząc o zapisanie wszystkiego**. Po powrocie: wprowadzać
-poprawki wg `plany/poprawki-po-audycie-2026-08-03.md` (19 spraw w 5 etapach,
-z numerami linii).
+Właściciel podziękował za sesję i **przerwał na 3 godziny**, prosząc o
+zapisanie wszystkiego. Po powrocie, w kolejności:
 
-**Zacząć od ETAPU 1 — ale najpierw zadać pytanie, które zostało bez
-odpowiedzi:** dwa błędy prawne (art. 299 KSH przypisany S.A./PSA; zła droga
-odwoławcza przy ZUS) wymagają potwierdzenia właściciela **jako radcy
-prawnego**, zanim je wprowadzimy. Pytanie było zadane na końcu poprzedniej
-sesji, odpowiedź nie padła.
+1. **Zapytać, czy kontynuować z Etapem 5** (drobiazgi z audytu — lista niżej
+   i w `plany/poprawki-po-audycie-2026-08-03.md`) — to jedyna niezrobiona
+   część oryginalnego planu.
+2. **Do zweryfikowania przy okazji:** pole „potwierdzenie doręczenia" w
+   formularzu Audytu 48h jest nadal `required` w walidacji JS
+   (`audyt-48h-form.html:964-970`) — sprawdzić, czy to nadal spójne z nowym
+   dwuetapowym procesem wyceny (patrz punkt 10 niżej). Nie zakładać, że to
+   już naprawione — nie było w tym jawnie dotykane.
+3. Poza tym — brak pilnych otwartych pytań do właściciela. Można normalnie
+   zapytać, czym się dziś zajmujemy.
 
-## Zrobione 03.08.2026
+## Zrobione 03.08.2026 (cała sesja, oba bloki przed i po przerwie)
 
-1. **Odchudzenie strony głównej** (commit `17e667c`). Baner spłaszczony
-   z 4 zagnieżdżonych ramek do jednej karty (usunięte `.hero-grid`,
-   `.hero-left/right`, `.copy-box` z ciemną obwódką; nowe `.hero-title`,
-   `.hero-lead`). Sekcja „Jak pomagamy" + pełne powielenie 3 pakietów
-   zastąpione paskiem 3 przycisków `.quicklinks` → podstrony. Powód:
-   właściciel zgłosił, że strona główna jest przeładowana i powiela podstrony.
-2. **Uporządkowanie „Jak pomagamy"** (`25765c5`). Usunięta myląca metafora
-   „Twoja tarcza" i wątek rejestracji spółek (to nie nasza usługa). Cztery
-   rozrzucone, powtarzające się karty CTA na dole zastąpione jedną sekcją
-   „Jak zacząć" z 3 ponumerowanymi krokami (ten sam wzór `.quicklinks` co na
-   stronie głównej).
-3. **Cennik — rozróżnienie Kalkulator vs Audyt** (`0b9f432`, ikony `16336df`).
-   Dopisane notki: Kalkulator = algorytm, dane nigdzie nieprzesyłane, kasowane
-   po 24 h; Audyt 48h = ocena radcy prawnego. Do obu kart dodane te same
-   ikony/kolory co na ich podstronach.
-4. **Kalkulator — poprawka w OSOBNYM repo** (`Kalkulator_ryzyka_app`,
-   commit `5be2b71`): notka o ochronie danych zmieniona z 48h na **24h** +
-   doprecyzowane, że dokumenty analizuje automatyczny algorytm, nikt z zespołu
-   ich nie czyta. **Właściciel potwierdził: dane nigdzie nie są przesyłane.**
-5. **FAQ rozbudowane** (`611095e`) — 6 nowych pytań: różnica kalkulator/audyt,
-   bezpieczeństwo danych, kto wybiera pakiet + 3 „chwytliwe" (utrata majątku,
-   skutki zignorowania pisma, brak dokumentów).
-6. **6 pełnych artykułów na blogu** (`7adb607`) jako osobne podstrony
-   `blog-*.html`: bezskuteczna egzekucja, pozew 299 KSH (pierwsze 7 dni),
-   art. 116 US/ZUS, zmiana zarządu w KRS, bezpieczne odejście, dokumenty do
-   Audytu. Każdy ma notkę „wersja robocza do akceptacji radcy" + stałe
-   zastrzeżenie „nie stanowi porady prawnej". `main.js` podświetla „Blog"
-   także wewnątrz artykułów (`path.indexOf('blog-') === 0`).
-7. **Ujednolicenie czcionek + większe logo** (`8225eaf`). Nagłówek i wstęp
-   na stronie głównej były mniejsze niż na podstronach (22px/16px zamiast
-   34px/18px) — skutek uboczny przebudowy banera w pkt 1. Logo 80→104 px
-   (mobile 60→74), napis „KRS Guard" 32→36 px.
-8. **AUDYT CAŁEJ STRONY** (workflow `wf_8c657a31-c80`, 11 agentów, 5 recenzji
-   + adwersaryjna weryfikacja). 40 zgłoszeń → 30 potwierdzonych → 19 spraw
-   po deduplikacji. Wyniki w `plany/poprawki-po-audycie-2026-08-03.md`.
-   Nic jeszcze NIE poprawione — to jest lista na następną sesję.
+**Przed przerwą — przygotowanie do audytu i przegląd strony:**
+1. Odchudzenie strony głównej (`17e667c`) — baner do jednej karty, sekcja
+   „Jak pomagamy" do paska 3 przycisków `.quicklinks`.
+2. Uporządkowanie „Jak pomagamy" (`25765c5`) — usunięta metafora „Twoja
+   tarcza", 4 karty CTA → 1 sekcja „Jak zacząć" z 3 krokami.
+3. Cennik — rozróżnienie Kalkulator (algorytm, 24h, nieprzesyłane) vs Audyt
+   (radca prawny) — `0b9f432`, ikony `16336df`.
+4. Poprawka w OSOBNYM repo `Kalkulator_ryzyka_app` (`5be2b71`) — notka o
+   danych: 48h→24h, dopisane „automatyczny algorytm, nikt z zespołu nie czyta".
+5. FAQ +6 pytań (`611095e`).
+6. 6 pełnych artykułów na blogu jako `blog-*.html` (`7adb607`).
+7. Ujednolicenie czcionek + logo na stronie głównej (`8225eaf`).
+8. **AUDYT CAŁEJ STRONY** (workflow `wf_8c657a31-c80`) — 40 zgłoszeń → 30
+   potwierdzonych → 19 spraw. Plan: `plany/poprawki-po-audycie-2026-08-03.md`.
 
-## Najważniejsze ustalenia z audytu (skrót)
+**Po przerwie — wprowadzenie poprawek z audytu (Etapy 1–4, WSZYSTKIE zrobione):**
 
-- **2 błędy prawne**: art. 299 KSH dotyczy tylko sp. z o.o. (my piszemy
-  „sp. z o.o., PSA lub S.A."); przy ZUS podajemy złą drogę odwoławczą
-  (sąd administracyjny/14 dni zamiast sądu okręgowego/miesiąc).
-- **`www/index.html:109`** — kafelek „Specjalizacja" wciąż obiecuje KRS
-  i obsługę biznesową (pozostałość po starej marce). **Znalazły to 4 z 5
-  recenzji** — najbardziej widoczny błąd na stronie.
-- **Audyt 48h ma 3 różne terminy** w 4 plikach („48 godzin" / „dwa dni
-  robocze" / „dwa dni").
-- **Formularz wymaga zwrotki**, choć FAQ i blog obiecują, że braki nie blokują.
-- **Zdjęcie w banerze (Unsplash) i czcionka Poppins ładują się z obcych
-  serwerów** — to tłumaczy, czemu podgląd bez internetu wygląda inaczej
-  niż docelowo (osobna sprawa od [[browser-preview-css-cache]]).
+9. **Etap 1 — błędy prawne.** Właściciel potwierdził oba jako radca:
+   - Art. 299 KSH zawężony do sp. z o.o. (usunięte PSA/S.A.) — `3d0710c`.
+   - Droga odwoławcza US/ZUS rozdzielona, BEZ konkretnych terminów
+     (odesłanie do pouczenia w decyzji, na życzenie właściciela) — `1be46a1`.
+   - Przesłanki uwalniające (art. 299 vs art. 116) rozbite na dwa punkty,
+     ujednolicone „w znacznej części" — `70f151e`.
+10. **Etap 2 — sprzeczności w ofercie.**
+    - Kafelki atutów na stronie głównej przestały obiecywać KRS/obsługę
+      biznesową — `3101cc4`.
+    - Pakiet Zarząd SAFE doprecyzowany (dokumenty przygotowujemy MY, wniosek
+      do KRS składa Kancelaria PRS) — `5c534be`.
+    - Termin Audytu ujednolicony w 5 miejscach — `5a71a17` (patrz też pkt 12,
+      podstawa czasu zmieniła się jeszcze raz przy okazji dwuetapowego procesu).
+    - Cena „od 900 zł netto" dodana na stronie Audytu 48h — `f012488`.
+11. **Etap 3 — formularz.**
+    - Klikalny telefon/e-mail (placeholder `.ph`) w komunikacie pilnym — `afcc49c`.
+    - **Dwuetapowy proces Audytu 48h — NOWOŚĆ spoza pierwotnej listy 19,
+      z inicjatywy właściciela** (`c3de8df`): (1) klient wysyła dokumenty →
+      (2) sprawdzamy kompletność i potwierdzamy cenę, właściwa analiza
+      JESZCZE się nie zaczyna → (3) klient akceptuje i płaci → (4) w 2 dni
+      robocze OD AKCEPTACJI dostaje rekomendację. Brak akceptacji = brak
+      opłaty + dokumenty usuwamy. To odpowiedź na realny problem
+      biznesowy: co robić z przesłanymi dokumentami, gdy klient nie
+      zaakceptuje wyceny. Spójnie w 5 plikach.
+    - Polityka prywatności — nowa podstrona (szkielet z placeholderami),
+      link w stopce wszystkich 14 podstron + przy formularzu — `16b5e29`.
+      **Ta sama commit** zawiera też: literówkę w CSS formularza (brakujący
+      średnik), ujednolicony czas wypełniania („3–6 min"), usunięcie
+      przedwczesnej etykiety pakietu z pierwszego pytania formularza.
+12. **Etap 4 — wygląd.** Wszystko w commicie `8d088b6`:
+    - Zdjęcie z Unsplash usunięte z tła hero; czcionka Poppins pobrana i
+      wgrana lokalnie (`www/assets/fonts/`, 8 plików woff2 latin+latin-ext).
+    - Logo w nagłówku — naprawiony podwójny margines (`.header{padding:14px 0 10px}`).
+    - Główny nagłówek `<h1>` dodany na stronie głównej (był `<strong>`).
+    - Banery kalkulatora i audytu ujednolicone (krój, wielkość, `flex:1`) +
+      responsywność na telefonie (ikona nad tekstem ≤560px).
+    - **Dodatkowo z inicjatywy właściciela:** usunięty przycisk „Zamów Audyt
+      48h" z hero na stronie głównej (zostało tylko „Sprawdź swoje ryzyko" —
+      darmowe, nie wymaga wcześniejszego tłumaczenia). Kolory ujednolicone:
+      `.quicklinks` i baner Audytu zmienione z turkusu (`var(--brand)`) na
+      granat (`var(--ink)`), zgodny z przyciskami „Szczegóły" na Cenniku.
+      Granat kalkulatora `#1a3a5c` sformalizowany jako zmienna `--calc-navy`
+      (świadomy wyjątek — replika kolorów prawdziwej appki kalkulatora, NIE
+      pomyłka, nie ujednolicać go z resztą). Martwe CSS `.tabs`/`.tab` usunięte.
+
+## Najważniejsze do zapamiętania na przyszłość
+
+- **`--calc-navy` (#1a3a5c) to świadomy wyjątek** — kolor repliki prawdziwej
+  aplikacji kalkulatora (Streamlit), nie błąd niespójności. Nie „poprawiać"
+  go na granat reszty strony.
+- **Dwuetapowy proces wyceny Audytu 48h** to teraz oficjalny model
+  biznesowy opisany na stronie — jeśli w przyszłości podłączymy prawdziwy
+  backend formularza, będzie potrzebny dodatkowy krok „akceptacja
+  wyceny" (np. link w mailu) między przesłaniem dokumentów a rozpoczęciem
+  płatnej pracy. To nie jest jeszcze zaimplementowane technicznie (formularz
+  to wciąż makieta) — tylko opisane w treści strony.
+- Workflow audytu (`wf_8c657a31-c80`) użył customowego scenariusza, nie
+  gotowego skilla — 5 recenzentów + 5 adwokatów diabła + 1 synteza = 11 agentów.
 
 ## Otwarte punkty (bez zmian — NIE ruszać bez prośby właściciela)
 
-- Prawdziwe dane kontaktowe (placeholdery `.ph` w `www/kontakt.html`).
-  **Powiązane:** polityka prywatności i klauzula przy formularzu (pkt 12
-  planu) — do zrobienia razem, przed publikacją.
+- **ETAP 5 z audytu — 7 drobiazgów, jeszcze nie zrobione** (pełna lista w
+  `plany/poprawki-po-audycie-2026-08-03.md`): brak info o algorytmie/24h na
+  stronie kalkulatora, FAQ sugerujące start od Audytu, mylący przycisk
+  „Wróć do KRS Guard", cieńsza ikona stopera, angielskie cudzysłowy na
+  blogu, brak `aria-expanded` w FAQ, ogólne porządki w martwym CSS.
+- Prawdziwe dane kontaktowe (placeholdery `.ph` w `kontakt.html`,
+  `polityka-prywatnosci.html`, `audyt-48h-form.html`). **Powiązane:**
+  uzupełnienie polityki prywatności — do zrobienia razem, przed publikacją.
 - Adres odesłania do Kancelarii PRS — `kancelaria-prs.vercel.app` → docelowy.
 - Statystyki na stronie głównej (100+ / 4+ / 24h) — do decyzji.
-- Hosting/domena oraz realna obsługa formularza Audytu 48h (dziś makieta).
+- Hosting/domena oraz realna obsługa formularza Audytu 48h (dziś makieta;
+  patrz uwaga o dwuetapowym procesie wyżej — wpłynie na kształt backendu).
 - Treści blogowe i FAQ — do akceptacji radcy (mają widoczne notki robocze).
