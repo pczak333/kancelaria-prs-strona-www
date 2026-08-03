@@ -32,7 +32,7 @@
     .tab{border:none;background:transparent;padding:10px 12px;border-radius:10px;font-weight:700;color:var(--muted);cursor:pointer;font-size:13px}
     .tab.active{background:var(--navy);color:white}
     .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 18px 14px 18px;box-shadow:0 1px 0 rgba(15,23,42,.02)}
-    .header{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap
+    .header{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;
       padding:14px 22px 10px;
     }
     .title{margin:0;font-size:18px;font-weight:800}
@@ -211,7 +211,7 @@
 <div class="header">
 <div>
 <h2 class="title">Audyt 48h (Diagnoza) – formularz kwalifikacyjny</h2>
-<p class="sub">Zajmie 2–3 min. Przygotuj: <b>pismo + potwierdzenie doręczenia</b>.</p>
+<p class="sub">7 kroków, ok. 3–6 min. Przygotuj: <b>pismo + potwierdzenie doręczenia</b>.</p>
 <p class="fine">W Audycie 48h ustalamy priorytet: realna obrona, minimalizacja ryzyka albo uporządkowanie sytuacji w czasie.</p>
 </div>
 <div class="progress">
@@ -225,7 +225,7 @@
 <p class="q">Jakiego rodzaju pismo dotyczy sprawa? <span class="req">*</span></p>
 <p class="help">Wybierz to, co najbardziej pasuje. Jeśli nie masz pewności — wybierz „nie wiem”.</p>
 <div class="radio" role="radiogroup">
-<label class="opt"><input name="audit_case_type" type="radio" value="ART299"/> <span>Pozew / nakaz – <b>Pakiet Art. 299 KSH</b></span></label>
+<label class="opt"><input name="audit_case_type" type="radio" value="ART299"/> <span>Pozew lub nakaz zapłaty od wierzyciela spółki</span></label>
 <label class="opt"><input name="audit_case_type" type="radio" value="US"/> <span>Decyzja <b>US</b> (podatki)</span></label>
 <label class="opt"><input name="audit_case_type" type="radio" value="ZUS"/> <span>Decyzja <b>ZUS</b> (składki)</span></label>
 <label class="opt"><input name="audit_case_type" type="radio" value="UNKNOWN"/> <span>Wezwanie do wyjaśnień / inne pismo (<b>nie wiem</b>)</span></label>
@@ -489,7 +489,7 @@ Jeśli nie zaakceptujesz wyceny, nie naliczamy żadnej opłaty, a przesłane dok
 </div>
 <div class="field">
 <label style="font-weight:700;font-size:12.5px;display:flex;gap:8px;align-items:center">
-<input id="audit_consent" type="checkbox"/> Wyrażam zgodę na kontakt w sprawie odpowiedzi na zapytanie. <span class="req">*</span>
+<input id="audit_consent" type="checkbox"/> Wyrażam zgodę na kontakt w sprawie odpowiedzi na zapytanie i zapoznałem/-am się z <a href="polityka-prywatnosci.html" target="_blank" style="font-weight:800">Polityką prywatności</a>. <span class="req">*</span>
 </label>
 <div class="error" data-error-for="audit_consent">Zaznacz zgodę, aby wysłać formularz.</div>
 </div>
