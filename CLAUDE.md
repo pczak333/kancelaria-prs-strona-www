@@ -237,6 +237,28 @@ Sprawdzone w przeglądarce.
    kolorowym banerem w barwach marki. **Opisy pakietów na Cenniku
    zaakceptowane przez właściciela** — nie są już „do potwierdzenia".
 
+**Zrobione (03.08.2026):**
+6. **Odchudzenie strony głównej i „Jak pomagamy"** — właściciel zgłosił
+   przeładowanie treścią. Baner spłaszczony z czterech zagnieżdżonych ramek
+   do jednej karty; sekcja powielająca podstrony zastąpiona paskiem trzech
+   przycisków (`.quicklinks`). Na „Jak pomagamy" usunięta myląca metafora
+   „Twoja tarcza" i wątek rejestracji spółek; cztery rozrzucone karty CTA
+   zastąpione jedną sekcją „Jak zacząć" z 3 krokami.
+7. **Rozróżnienie Kalkulator vs Audyt 48h** na Cenniku — Kalkulator liczy
+   ALGORYTM (dane nigdzie nieprzesyłane, kasowane po 24 h), Audyt to ocena
+   RADCY PRAWNEGO. Ta sama poprawka (48h→24h + „analizuje algorytm, nikt
+   z zespołu nie czyta") wprowadzona też w OSOBNYM repo kalkulatora.
+8. **FAQ rozbudowane** o 6 pytań, **6 pełnych artykułów na blogu**
+   (`blog-*.html`, każdy z notką roboczą i zastrzeżeniem „nie stanowi porady
+   prawnej"), ujednolicone czcionki i powiększone logo.
+9. **AUDYT CAŁEJ STRONY** (5 niezależnych recenzji + adwersaryjna
+   weryfikacja, 11 agentów): 40 zgłoszeń → 30 potwierdzonych → **19 spraw
+   do poprawy**. Lista z numerami linii i kolejnością prac:
+   `plany/poprawki-po-audycie-2026-08-03.md`. **Nic jeszcze nie poprawione —
+   to zadanie na następną sesję.** Dwa punkty (błędy prawne: art. 299 KSH
+   przy S.A./PSA oraz droga odwoławcza przy ZUS) czekają na potwierdzenie
+   właściciela jako radcy.
+
 **Rozstrzygnięte decyzje:**
 
 - Stack: statyczny HTML/CSS/JS bez build (patrz sekcja „Co to za projekt").
@@ -259,8 +281,11 @@ Sprawdzone w przeglądarce.
   maila / `mailto:`, bez wysyłki na serwer). Docelowo podłączyć bezpieczną
   obsługę zgłoszeń.
 - **Treści do zatwierdzenia** — pytania i odpowiedzi w `faq.html` oraz
-  przykładowe kafelki w `blog.html` to propozycje napisane od nowa; blog nie
-  ma jeszcze realnych wpisów.
+  sześć artykułów `blog-*.html` to propozycje napisane od nowa; mają widoczne
+  notki „wersja robocza / do akceptacji radcy", do usunięcia po zatwierdzeniu.
+- **Polityka prywatności** — nie istnieje, a formularz Audytu zbiera skany
+  pozwów i decyzji. Do napisania razem z prawdziwymi danymi kontaktowymi,
+  przed publikacją (pkt 12 planu poprawek).
 - **Adres w handoffie do Kancelarii PRS** — obecnie link do
   `https://kancelaria-prs.vercel.app/` (podgląd Vercel). Podmienić na
   docelowy adres (np. `kancelariaprs.com`), gdy będzie ustalony.
