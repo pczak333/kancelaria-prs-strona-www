@@ -334,19 +334,22 @@ button.tile-btn{cursor:pointer;font:inherit;width:100%}
 .btn.ghost{background:transparent; color:var(--ink2); border:1px solid var(--line)}
 .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
 
-/* Strony wprowadzające (kalkulator / audyt) — kafel CTA + boks „callout” */
+/* Strony wprowadzające (kalkulator / audyt) — kafel CTA + boks „callout”.
+   Baner i przycisk stoją jeden pod drugim (nie obok), każdy na pełną
+   szerokość karty — dzięki temu baner zawsze ma dość miejsca na tekst
+   w jednej linii (poziomy układ: ikona z lewej, tekst z prawej) i nie
+   zawija się wąsko, niezależnie od tego, ile miejsca zajmuje przycisk obok. */
 .icon-cta{
   display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  gap:22px;
+  flex-direction:column;
+  align-items:stretch;
+  gap:16px;
   padding:18px 20px;
   border-radius:18px;
   border:1px solid var(--line);
   background:rgba(255,255,255,.86);
   box-shadow:0 8px 24px rgba(7,39,55,.06);
 }
-.icon-cta{flex-wrap:wrap}
 .icon-cta .p{margin:0 0 10px; color:var(--ink); font-weight:600}
 /* Baner Audytu 48h — kolorowy blok (ten sam granat co reszta przycisków na
    stronie), wypełnia kartę zamiast małej ikonki na dużym białym tle. */
