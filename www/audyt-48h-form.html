@@ -425,17 +425,16 @@
 <label class="opt"><input name="audit_success_metric" type="radio" value="SETTLE"/> <span>Porozumienie/ugoda na akceptowalnych warunkach</span></label>
 </div>
 <div class="divider"></div>
-<p class="q">Opisz krótko sytuację (maks. 8 zdań). <span class="req">*</span></p>
-<p class="help">Najlepiej: kto napisał → czego chce → kwota → daty mandatu → co już się wydarzyło.</p>
+<p class="q">Coś jeszcze, o czym powinniśmy wiedzieć? (maks. 8 zdań) <span style="color:var(--muted);font-weight:700;font-size:12px">(opcjonalnie)</span></p>
+<p class="help">To, co już podałeś wyżej, mamy — nie musisz tego powtarzać. Warto dopisać np.: czy sprawa dotyczy też innych członków zarządu, czy spółka ma jeszcze jakiś majątek, czy była wcześniejsza korespondencja z wierzycielem lub urzędem (i co odpowiedzieli), albo czego najbardziej się obawiasz.</p>
 <div class="field">
-<textarea id="audit_description" placeholder="Otrzymałem pismo dnia … / dotyczy … / kwota … / pełniłem funkcję od … do … / rezygnacja … / egzekucja wobec spółki … / najważniejsze fakty …"></textarea>
+<textarea id="audit_description" placeholder="Np.: w zarządzie było jeszcze dwóch wspólników / spółka nie ma już żadnego majątku / wcześniej pisałem do wierzyciela, ale nie odpowiedział / najbardziej obawiam się zajęcia mojego mieszkania …"></textarea>
 <div class="sentcount"><span id="audit_sent_count">0/8 zdań</span><span class="navhint">Maks. 8 zdań</span></div>
-<div class="error" data-error-for="audit_description">Wpisz krótki opis (maks. 8 zdań).</div>
 <div class="error" data-error-for="audit_description_too_long">Skróć opis do 8 zdań — wystarczy chronologia i najważniejsze fakty.</div>
 </div>
 <div class="why">
 <button data-why="audit_why6b" type="button">Dlaczego pytamy?</button>
-<div class="whytext" id="audit_why6b">Krótka chronologia pozwala szybciej dobrać strategię.</div>
+<div class="whytext" id="audit_why6b">Im więcej kontekstu, tym trafniejsza rekomendacja — ale bez tego pola też ruszamy z Audytem.</div>
 </div>
 </div>
 <!-- Step 7 -->
@@ -473,7 +472,7 @@
 <div class="field">
 <label>Adres e-mail <span class="req">*</span></label>
 <input id="audit_email" placeholder="np. jan.kowalski@…" type="email"/>
-<div class="help" style="margin-top:6px">Na ten adres wyślemy potwierdzenie i dalsze instrukcje.</div>
+<div class="help" style="margin-top:6px">Na ten adres wyślemy potwierdzenie, że dostaliśmy zgłoszenie, oraz wycenę Twojej sprawy do akceptacji.</div>
 <div class="error" data-error-for="audit_email">Podaj poprawny adres e-mail.</div>
 </div>
 <div class="field">
@@ -956,8 +955,7 @@ function auditValidateStep(step){
     if(!auditGetRadio('audit_priority')) err('audit_priority','Wybierz priorytet.');
     const desc = $('#audit_description').value.trim();
     const sc = countSentences(desc);
-    if(!desc) err('audit_description','Wpisz krótki opis.');
-    else if(sc > 8){ ok=false; msgs.push('Skróć opis do 8 zdań.'); showError(moduleAudit,'audit_description_too_long'); }
+    if(desc && sc > 8){ ok=false; msgs.push('Skróć opis do 8 zdań.'); showError(moduleAudit,'audit_description_too_long'); }
   }
   if(step === 7){
     const f1 = $('#audit_file_main').files[0];
