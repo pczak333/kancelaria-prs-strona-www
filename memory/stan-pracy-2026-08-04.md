@@ -1,6 +1,6 @@
 ---
 name: stan-pracy-2026-08-04
-description: "Aktualny stan prac (04.08.2026) — audyt kalkulatora ryzyka, Wariant A (uczciwe oświadczenia o danych), 7 błędów kalkulatora naprawionych"
+description: "Aktualny stan prac (04.08.2026) — audyt kalkulatora ryzyka, Wariant A (uczciwe oświadczenia o danych), 9 błędów kalkulatora naprawionych"
 metadata: 
   node_type: memory
   type: project
@@ -19,7 +19,12 @@ bo właściciel uznał go za kluczowy dla wiarygodności całej oferty.
 
 ## NASTĘPNY KROK
 
-Brak pilnych zadań technicznych. Do publikacji strony brakuje wyłącznie rzeczy
+**Najpierw zapytać, czy „Wyczyść kalkulator" działa już poprawnie na produkcji** —
+druga poprawka (`c904ba3`) wypchnięta na sam koniec sesji, właściciel jeszcze
+jej nie sprawdził. Jeśli któryś krok nadal zostaje zaznaczony, przyczyną będzie
+znowu obsługa stanu widżetu (patrz sekcja „Po zamknięciu sesji" niżej).
+
+Poza tym brak pilnych zadań technicznych. Do publikacji strony brakuje wyłącznie rzeczy
 **po stronie właściciela** (patrz „Otwarte punkty" niżej) — przede wszystkim
 prawdziwych danych kontaktowych i usunięcia notek „makieta / wersja robocza".
 
@@ -102,6 +107,36 @@ Wniosek: przy podmianach tekstu opartych na dopasowaniu frazy **nie wystarczy
 sprawdzić jednego przykładu** — trzeba przejść wszystkie osiągalne kombinacje
 przez prawdziwy łańcuch obliczeń (poziom ryzyka nie jest dowolny, wyznacza go
 punktacja i twarde reguły).
+
+## Po zamknięciu sesji: dwa błędy „Wyczyść kalkulator" (zgłoszone przez właściciela)
+
+Właściciel przeklikał kalkulator na produkcji i zgłosił dwa błędy — oba
+naprawione, oba w repo kalkulatora.
+
+**1. Aplikacja wywalała się czerwoną ramką** (`360d1dd`). Przycisk „Wyczyść
+kalkulator" stoi na dole strony, więc pola formularza już istniały — a Streamlit
+zabrania wtedy modyfikacji ich stanu. **Błąd istniał od czerwca 2026**, nie
+wprowadziły go zmiany z tej sesji; przeżył, bo ujawnia się dopiero przy przejściu
+pełnej ścieżki (wypełnij → oblicz → wyczyść). Naprawa: przycisk ustawia tylko
+znacznik, właściwe czyszczenie dzieje się na początku następnego przebiegu.
+
+**2. Czyściła się tylko część pól** (`c904ba3`). Kroki 4–6 czyściły się, a 1, 3
+i 7 zostawały zaznaczone. Przyczyna: te pierwsze były **nadpisywane**, te drugie
+**usuwane** — a usunięcie nie działa, bo przeglądarka nadal trzyma wartość pola
+i odsyła ją przy przeładowaniu. Teraz wszystkie pola traktowane tak samo.
+
+**Powstało `tools/smoke_test_ui.py`** — test przechodzący całą ścieżkę
+formularza bez przeglądarki (Streamlit `AppTest`). Łapie błędy wywalające
+aplikację: zweryfikowany dwukierunkowo (pada na starej wersji, przechodzi na
+poprawionej). **ALE nie łapie błędów typu „pole się nie wyczyściło"** — sprawdzone
+empirycznie, przechodzi mimo błędu, bo nie ma prawdziwego frontendu. Ograniczenie
+opisane wprost w teście. Zmiany w czyszczeniu kalkulatora **wymagają przeklikania
+w przeglądarce**.
+
+**Lekcja:** dwa razy z rzędu poprawka wyglądała na skończoną, a nie była — i oba
+razy wykryło to zgłoszenie właściciela, nie mój test. Przy zmianach w interfejsie
+Streamlita mówić wprost, CZEGO test nie sprawdza, zamiast raportować
+„naprawione i zweryfikowane".
 
 ## Otwarte punkty
 
