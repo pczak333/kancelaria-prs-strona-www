@@ -69,12 +69,28 @@ Dokumenty przekazane w związku ze świadczeniem pomocy prawnej są objęte <b>t
 
 <h3 class="h2" style="font-size:17px">Kalkulator ryzyka</h3>
 <p class="p">
-Kalkulator ryzyka to osobne, samodzielne narzędzie (nie jest częścią tej strony) — odpowiedzi ocenia automatyczny algorytm, nikt z zespołu ich nie czyta. Dane nie są nigdzie przesyłane i są automatycznie usuwane po 24 godzinach. Szczegóły: podstrona <a href="narzedzia.html">Kalkulator ryzyka</a>.
+Kalkulator ryzyka to osobne, samodzielne narzędzie (nie jest częścią tej strony), dostępne pod adresem <a href="https://kalkulatorryzyka.streamlit.app/" target="_blank" rel="noopener">kalkulatorryzyka.streamlit.app</a>. Ocenę wykonuje automatyczny algorytm — nikt z zespołu nie czyta Twoich odpowiedzi. Narzędzie działa w dwóch trybach:
+</p>
+<ul class="list">
+<li><b>Samodzielne wypełnienie formularza.</b> Twoje odpowiedzi są przetwarzane wyłącznie po to, by wyliczyć wynik. Nie zapisujemy ich w żadnej bazie ani na dysku — istnieją tylko przez czas trwania Twojej sesji w przeglądarce i znikają po jej zamknięciu. Nie są przekazywane do usług sztucznej inteligencji.</li>
+<li><b>Wgranie dokumentu (opcjonalne).</b> Jeśli zdecydujesz się wgrać pismo, jego treść jest przekazywana do zewnętrznych usług automatycznego odczytu tekstu: <b>Microsoft</b> (Azure Document Intelligence — odczyt skanów i zdjęć) oraz <b>Anthropic</b> (rozpoznanie rodzaju pisma i wyłuskanie danych, np. sygnatury, kwoty, stron postępowania). Z podmiotami tymi łączą nas umowy powierzenia przetwarzania danych. Przetwarzanie może odbywać się <b>poza Europejskim Obszarem Gospodarczym</b>, na podstawie standardowych klauzul umownych. Wgranie dokumentu nie jest konieczne — możesz uzyskać ten sam wynik, odpowiadając na pytania samodzielnie.</li>
+</ul>
+<p class="p">
+Sama aplikacja kalkulatora działa na platformie <b>Streamlit Community Cloud</b> (Snowflake Inc.), która jako dostawca infrastruktury przetwarza dane niezbędne do jej uruchomienia.
 </p>
 
 <h2 class="h2">3. Komu udostępniamy dane</h2>
 <p class="p">
-Danych nie sprzedajemy ani nie udostępniamy w celach marketingowych osobom trzecim. Dostęp do nich mogą mieć wyłącznie podmioty niezbędne do prowadzenia kancelarii i utrzymania strony (np. dostawca hostingu, poczty e-mail) — na podstawie umów powierzenia przetwarzania danych i wyłącznie w zakresie niezbędnym do świadczenia tych usług.
+Danych nie sprzedajemy ani nie udostępniamy w celach marketingowych osobom trzecim. Dostęp do nich mogą mieć wyłącznie podmioty niezbędne do prowadzenia kancelarii i utrzymania strony — na podstawie umów powierzenia przetwarzania danych i wyłącznie w zakresie niezbędnym do świadczenia tych usług. Są to:
+</p>
+<ul class="list">
+<li>dostawca hostingu strony i poczty e-mail;</li>
+<li><b>Snowflake Inc. (Streamlit Community Cloud)</b> — platforma, na której działa Kalkulator ryzyka;</li>
+<li><b>Microsoft</b> (Azure Document Intelligence) — automatyczny odczyt tekstu ze skanów i zdjęć wgranych do Kalkulatora ryzyka;</li>
+<li><b>Anthropic</b> — automatyczne rozpoznanie rodzaju pisma i wyłuskanie z niego danych (np. sygnatury, kwoty, stron postępowania) w Kalkulatorze ryzyka.</li>
+</ul>
+<p class="p">
+Trzy ostatnie podmioty mogą przetwarzać dane <b>poza Europejskim Obszarem Gospodarczym</b> — odbywa się to na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską. Dotyczy to wyłącznie sytuacji, w której samodzielnie zdecydujesz się wgrać dokument do Kalkulatora ryzyka; korzystając z Kalkulatora bez wgrywania pliku, nie przekazujesz danych do usług Microsoft ani Anthropic.
 </p>
 <p class="p" style="margin-top:10px">
 Strona wczytuje krój pisma z serwerów Google Fonts, co wiąże się z przesłaniem adresu IP odwiedzającego do Google przy każdym wejściu na stronę.
@@ -82,6 +98,7 @@ Strona wczytuje krój pisma z serwerów Google Fonts, co wiąże się z przesła
 
 <h2 class="h2">4. Jak długo przechowujemy dane</h2>
 <ul class="list">
+<li><b>Kalkulator ryzyka</b> — nie przechowujemy w ogóle. Odpowiedzi i wgrane dokumenty istnieją wyłącznie w pamięci przez czas trwania Twojej sesji i znikają po jej zakończeniu (zamknięcie karty przeglądarki). Nie zapisujemy ich w żadnej bazie danych ani na dysku, nie tworzymy też z nich żadnych kopii ani statystyk. Okresy przechowywania po stronie dostawców wymienionych w punkcie 3 wynikają z ich własnych regulaminów.</li>
 <li>Zapytania przez formularz kontaktowy — do czasu załatwienia sprawy, nie dłużej niż <span class="ph">[12 miesięcy]</span> od ostatniego kontaktu.</li>
 <li>Dokumenty z Audytu 48h przy nieprzyjęciu wyceny — usuwane niezwłocznie po decyzji o niekontynuowaniu.</li>
 <li>Dokumenty i dane spraw prowadzonych — przez okres wynikający z przepisów o wykonywaniu zawodu radcy prawnego oraz przepisów o przedawnieniu roszczeń.</li>
