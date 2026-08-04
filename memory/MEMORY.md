@@ -6,7 +6,8 @@ między komputerami" w `CLAUDE.md`.
 
 - [Stack strony — statyczny HTML](stack-decyzja-statyczny-html.md) — wybrano zwykły HTML/CSS/JS w `www/`, odrzucono wcześniejszy plan Eleventy+Netlify
 - [Marka KRS Guard i profil](marka-krs-guard-profil.md) — strona to „KRS Guard" (ochrona zarządu); rejestracja → odesłanie do partnerskiej Kancelarii PRS
-- [Stan pracy 03.08.2026](stan-pracy-2026-08-03.md) — AKTUALNY punkt zapisu: cały plan audytu ZROBIONY + kilka dodatkowych poprawek po nim — czytać na starcie sesji
+- [Stan pracy 04.08.2026](stan-pracy-2026-08-04.md) — AKTUALNY punkt zapisu: audyt KALKULATORA, Wariant A (uczciwe oświadczenia o danych), 7 błędów naprawionych — czytać na starcie sesji
+- [Stan pracy 03.08.2026](stan-pracy-2026-08-03.md) — poprzedni: audyt STRONY, wszystkie 19 poprawek zrobione
 - [Stan pracy 31.07.2026](stan-pracy-2026-07-31.md) — poprzedni punkt zapisu; wciąż aktualne: podgląd lokalny i pułapki przy testach agenta
 - [Ciągłość: sprawdzać repo na starcie](ciaglosc-sprawdzac-repo-na-starcie.md) — najpierw zajrzeć do plany/ i memory/ w repo (mogą być z drugiego komputera)
 - [Browser pane bywa zawodny](browser-preview-css-cache.md) — stary CSS w cache i/lub błąd renderowania screenshotów; mierzyć layout przez JS (getBoundingClientRect), nie walczyć w kółko z odświeżaniem

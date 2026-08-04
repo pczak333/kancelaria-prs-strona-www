@@ -287,6 +287,27 @@ Sprawdzone w przeglądarce.
     otwarta rzecz: czy pole „potwierdzenie doręczenia" w formularzu
     powinno pozostać obowiązkowe w świetle dwuetapowego procesu wyceny.
 
+**Zrobione (04.08.2026):**
+12. **AUDYT KALKULATORA RYZYKA** (osobne repo `Kalkulator_ryzyka_app`, workflow
+    13 agentów): 43 zgłoszenia → 19 potwierdzonych. Naprawiono 7 błędów, m.in.
+    wynik nie przeliczał się po zmianie odpowiedzi (klient mógł pobrać
+    nieaktualny PDF), wyrok zaoczny dawał poradę o nakazie zapłaty, ostrzeżenie
+    o niepewnym odczycie nie docierało do klienta. Szczegóły w repo kalkulatora:
+    `memory/project_audyt_przed_publikacja_2026-08-04.md`.
+13. **WARIANT A — uczciwe oświadczenia o danych (WAŻNE).** Audyt wykazał, że
+    strona obiecywała nieprawdę: kalkulator **wysyła wgrane dokumenty** do
+    Microsoft Azure i Anthropic (imiona, sygnatury, kwoty), a mechanizmu
+    „usuwanie po 24 godzinach" **nie ma w kodzie w ogóle**. Właściciel wybrał
+    opisanie tego uczciwie zamiast wyłączania wgrywania. Przepisane teksty
+    w `narzedzia.html`, `uslugi-cennik.html`, `faq.html`,
+    `polityka-prywatnosci.html`: rozdzielone dwa tryby (formularz ręcznie = nic
+    nie idzie do usług AI; wgranie pliku = treść czytają firmy zewnętrzne),
+    Microsoft/Anthropic/Snowflake wymienieni z nazwy, informacja o przekazaniu
+    poza EOG. **Nie zmieniać tych tekstów bez sprawdzenia, co realnie robi kod
+    kalkulatora** — to oświadczenie o danych osobowych pod nazwiskiem radcy.
+    Do potwierdzenia przez właściciela: umowy powierzenia z Microsoftem
+    i Anthropic, podstawa przekazania poza EOG.
+
 **Rozstrzygnięte decyzje:**
 
 - Stack: statyczny HTML/CSS/JS bez build (patrz sekcja „Co to za projekt").
