@@ -10,6 +10,22 @@ znalazły łącznie ok. **115 unikalnych podmiotów** po usunięciu duplikatów
 pokrycie jest solidne, nie przypadkowe).
 ---
 
+**Aktualizacja 05.08.2026 (po południu):** właściciel osobiście sprawdził wpis o Kancelarii
+Skarbiec i nie znalazł na jej stronie treści opisanej w pierwszej wersji zestawienia — słuszna
+wątpliwość co do rzetelności całego badania. W odpowiedzi wszystkie 21 firm z Tier 1 zostało
+**ponownie zweryfikowanych z pierwszej ręki** (bezpośrednie odwiedzenie stron WWW, nie odczyt
+z pamięci), a plik Excel (`lista-konkurencji-KRS-Guard-2026-08-05.xlsx`, arkusz „Tier 1") został
+rozbudowany o: skorygowane opisy oferty (z cytatami i adresami URL źródłowymi), opinie klientów,
+status „firmowana przez radcę prawnego" (dokładny tytuł zawodowy prowadzącego), ciekawe pomysły
+do adaptacji przez KRS Guard oraz **pełną analizę SWOT** (mocne/słabe strony konkurenta, szanse/
+zagrożenia dla KRS Guard) dla każdej z 21 firm. Wynik: część opisów (np. Kłodziński Kancelaria,
+Kancelaria Tyrka, KPR Restrukturyzacja) okazała się przesadzona tym samym wzorem co u Skarbca —
+treść blogowa przedstawiona jako pełnoprawna usługa — ale sam wpis o Skarbcu po ponownym,
+dogłębnym sprawdzeniu okazał się w rzeczywistości SZERSZY niż zgłosił właściciel (możliwe, że
+trafił na inną podstronę). Szczegóły per firma — w Excelu, nie w tym pliku.
+
+---
+
 # Pełna lista konkurencji — 05.08.2026
 
 **Zastrzeżenie metodologiczne:** wszystkie firmy niżej zostały sprawdzone
