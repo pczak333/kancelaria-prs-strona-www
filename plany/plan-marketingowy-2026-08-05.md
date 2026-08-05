@@ -15,43 +15,69 @@ czy warto w nie zainwestować na dalszym etapie.
 
 ## 1. Co pokazało badanie konkurencji
 
-Sprawdzono ok. 10 kancelarii realnie obecnych w polskim internecie w tym
-temacie (m.in. Sieńko i Pięta, Bladowski.Legal, Kłodziński Kancelaria, Rynas,
-M.D. Legal Solutions, RPMS, PZ Adwokaci) oraz 3 brokerów ubezpieczeniowych
-sprzedających polisy D&O (ochrona zarządu, ale jako polisa opłacana z góry,
-nie jako obrona po fakcie).
+**Aktualizacja 05.08.2026:** pierwsze badanie (10 kancelarii) było celowo
+węższe, żeby szybko dać pierwszy obraz rynku. Właściciel słusznie zauważył,
+że to za mało jak na skalę kraju — dociekliwe pytanie, nie niedowierzanie
+bez podstaw. Zrobiono więc znacznie szersze badanie (4 równoległe metody
+wyszukiwania + dogłębna weryfikacja 3 dodatkowych cech dla 21 najbliższych
+konkurentów) — **pełne wyniki w osobnym pliku:
+[`lista-konkurencji-2026-08-05.md`](lista-konkurencji-2026-08-05.md)**.
+Tu jest tylko streszczenie i wnioski.
 
-**Wzorzec, który się powtarza u niemal wszystkich:**
-- Temat „ochrona zarządu przed art. 299 KSH" to u nich JEDNA z kilkunastu
-  usług dużej kancelarii ogólnej (prawo rodzinne, nieruchomości, karne...),
-  nie główna specjalizacja.
-- Brak jawnych cen — wszędzie „skontaktuj się, ocenimy Twoją sytuację".
-  Jedyny wyjątek to sklep z gotowymi wzorami pism (49–299 zł), co to zupełnie
-  inna usługa niż doradztwo.
-- Brak jakiegokolwiek narzędzia do samodzielnej, wstępnej oceny sytuacji —
-  najwyżej PDF do pobrania.
-- Brak liczb (lat doświadczenia, liczby spraw) — prawie nikt się tym nie
-  chwali, mimo że to buduje zaufanie.
-- Jeden konkurent (M.D. Legal Solutions, „odpowiedzialnoscczlonkazarzadu.com")
-  jest wąsko wyspecjalizowany podobnie do KRS Guard, ale miesza to z płatnymi
-  szkoleniami i abonamentem, bez zdefiniowanych pakietów usługowych.
+**Skala rynku po pełnym badaniu:** znaleziono i zweryfikowano **ok. 110
+podmiotów** łącznie — **21 najbliższych bezpośrednich konkurentów**
+(wyspecjalizowane butiki z dedykowaną usługą ochrony zarządu, nie tylko
+artykuł blogowy), **ok. 65 kancelarii ogólnych** z tematem jako elementem
+szerszej oferty, **5 dużych kancelarii korporacyjnych/międzynarodowych**
+(inny segment rynku — obsługują głównie ubezpieczycieli, nie pozwanych
+członków zarządu), i **15 brokerów/ubezpieczycieli D&O** (konkurencja
+pośrednia — sprzedają polisę zamiast obrony prawnej).
 
-**Wniosek: te przewagi KRS Guard są potwierdzone realnym badaniem, nie
-domysłem — można ich śmiało używać w komunikacji:**
+**Wzorzec, który się powtarza nawet wśród 21 najbliższych konkurentów:**
+- Nikt nie łączy WSZYSTKICH trzech elementów (art. 299 + ZUS/US +
+  bezpieczna rezygnacja) w jednym, spójnym produkcie z pakietami tak jak
+  KRS Guard — Skarbiec i Kancelaria MW są najbliżej tematycznie, ale bez
+  kalkulatora i bez pełnego cennika pakietów.
+- **Model obsługi:** na 21 firm tylko **1 działa wyłącznie zdalnie**
+  (UpStart Legal — i nawet ona ma adres biura), 9 to model hybrydowy
+  (biuro + wzmianka o kontakcie online), 11 to czysto stacjonarne kancelarie.
+  Model KRS Guard (w pełni zdalny, bez żadnego biura, jako jedyny sposób
+  działania) nie ma odpowiednika wśród sprawdzonych firm.
+- **Ceny:** tylko 7 z 21 podaje jakąkolwiek cenę (zwykle tylko stawka za
+  pojedynczą poradę, 150–750 zł), 6 z 21 ma jawnie darmowy pierwszy kontakt,
+  a 11 z 21 milczy w obu sprawach. Nikt nie ma dwuetapowego procesu z
+  potwierdzeniem ceny przed analizą jak Audyt 48h.
+- **Liczby (lata/sprawy):** wśród firm, które w ogóle podają staż, mediana
+  to 20 lat (4 lata KRS Guard to poniżej tego — nie da się tego ukryć).
+  Ale liczbę spraw specyficzną dla TEGO tematu nie podaje NIKT poza KRS
+  Guard — konkurencja chwali się tylko ogólnym dorobkiem całej kancelarii
+  (50 do 27 000+ spraw ze wszystkich dziedzin naraz). 45 spraw KRS Guard to
+  jedyna liczba na rynku policzona "1:1" z realną specjalizacją firmy.
+
+**Wniosek: te przewagi KRS Guard są potwierdzone realnym, dogłębnym
+badaniem, nie domysłem — można ich śmiało używać w komunikacji:**
 
 1. **Darmowy kalkulator ryzyka jako pierwszy krok** — nie znaleziono
    żadnego odpowiednika u konkurencji. To najmocniejszy, unikalny argument.
-2. **Jawna cena wejścia** („Audyt 48h od 900 zł netto") — realna rzadkość
-   w tej branży. Dla klienta w kryzysie (świeże wezwanie do zapłaty) brak
-   niepewności co do ceny to duża przewaga.
+2. **Jawna cena wejścia** („Audyt 48h od 900 zł netto") — potwierdzona
+   rzadkość: tylko 7 z 21 najbliższych konkurentów w ogóle podaje jakąkolwiek
+   cenę, i to zwykle tylko za pojedynczą poradę, nie za pełny proces.
 3. **Przewidywalny, wieloetapowy proces** (kalkulator → audyt z potwierdzeniem
    ceny przed analizą → jeden z 3 konkretnych pakietów) — nikt inny nie ma
    tak jasno opisanej ścieżki.
-4. **Wąska, jednotematyczna specjalizacja** — tylko jeden konkurent jest
-   podobnie wąski, i on nie ma zdefiniowanych pakietów.
-5. **Konkretne liczby na stronie głównej** (45 spraw, 4 lata) — prawie nikt
-   z konkurencji tego nie pokazuje. To już zrobione na stronie — dobrze, bo
-   to rzadkość, która buduje zaufanie.
+4. **Wąska, jednotematyczna specjalizacja łącząca wszystkie 3 zagrożenia**
+   (art. 299 + ZUS/US + bezpieczna rezygnacja) — żadna z 21 firm nie robi
+   tego w jednym, spójnym produkcie z pakietami.
+5. **Konkretna liczba spraw dla TEJ specjalizacji** (45 spraw) — jedyna taka
+   liczba na całym sprawdzonym rynku; reszta albo milczy, albo pokazuje
+   niepowiązany dorobek całej kancelarii. **Uwaga:** samo "4 lata
+   doświadczenia" wypada słabiej niż mediana konkurencji (20 lat) — nie
+   ukrywać tego, tylko przesunąć nacisk komunikacji na precyzję liczby
+   spraw, nie na długość stażu.
+6. **Praca w pełni zdalna, bez żadnego biura, w całej Polsce** — potwierdzona
+   rzadkość: tylko 1 z 21 konkurentów działa podobnie, i nawet ta jedna firma
+   ma adres biura. Warto to komunikować wprost jako udogodnienie, nie ukrywać
+   jako "brak prawdziwej siedziby".
 
 ## 2. Co pokazało badanie słów kluczowych
 
