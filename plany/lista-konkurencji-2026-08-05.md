@@ -2,10 +2,12 @@
 Załącznik do `plan-marketingowy-2026-08-05.md`. Powstał po tym, jak
 właściciel słusznie zauważył, że pierwsze badanie (10 kancelarii) wyglądało
 na zbyt małe jak na skalę kraju. Cztery równoległe wyszukiwania (frazy
-ogólnokrajowe, miasto po mieście, katalogi/rankingi, LinkedIn/frazy
-angielskie) znalazły łącznie ok. **110 unikalnych podmiotów** po usunięciu
-duplikatów (te same firmy wychodziły w kilku wyszukiwaniach na raz — dobry
-znak, że pokrycie jest solidne, nie przypadkowe).
+ogólnokrajowe, miasto po mieście w 15 największych miastach, katalogi/
+rankingi, LinkedIn/frazy angielskie) + dodatkowe sprawdzenie 30 miast
+średniej wielkości (na kolejne pytanie właściciela o lukę geograficzną)
+znalazły łącznie ok. **115 unikalnych podmiotów** po usunięciu duplikatów
+(te same firmy wychodziły w kilku wyszukiwaniach na raz — dobry znak, że
+pokrycie jest solidne, nie przypadkowe).
 ---
 
 # Pełna lista konkurencji — 05.08.2026
@@ -92,6 +94,41 @@ Guard jako jedyna firma na liście pokazuje liczbę "1:1" z tym, czym się
 faktycznie zajmuje (45 spraw z tej konkretnej specjalizacji) — to można
 komunikować jako przewagę uczciwości/precyzji, żeby zrównoważyć krótszy staż.
 
+### Sprawdzenie luki: miasta średniej wielkości (05.08.2026, na pytanie właściciela)
+
+Właściciel słusznie zapytał, czy ograniczenie badania "miasto po mieście" do
+15 największych miast Polski nie jest istotną luką. Sprawdzono dodatkowo
+**30 miast średniej wielkości** (Gdynia, Częstochowa, Radom, Sosnowiec,
+Gliwice, Zabrze, Bytom, Bielsko-Biała, Ruda Śląska, Rybnik, Tychy, Opole,
+Gorzów Wielkopolski, Dąbrowa Górnicza, Płock, Elbląg, Wałbrzych, Włocławek,
+Tarnów, Chorzów, Koszalin, Kalisz, Legnica, Grudziądz, Słupsk, Jaworzno,
+Nowy Sącz, Jelenia Góra, Siedlce, Konin).
+
+**Wynik: tylko 10 nowych firm (po odjęciu 5 duplikatów już znanych z
+wcześniejszego badania), a dla 15 z 30 miast NIE znaleziono żadnej lokalnej
+kancelarii z wyodrębnioną ofertą w tym temacie** (Sosnowiec, Rybnik, Opole,
+Gorzów Wielkopolski, Płock, Elbląg, Włocławek, Tarnów, Chorzów, Kalisz,
+Grudziądz, Jaworzno, Jelenia Góra, Siedlce, Konin) — mimo że w tych miastach
+oczywiście istnieją kancelarie prawne, żadna nie komunikuje wprost usługi
+ochrony zarządu, tylko ogólną obsługę spółek.
+
+**Wniosek potwierdza wcześniejszą ocenę:** temat koncentruje się tam, gdzie
+jest silny ośrodek gospodarczy (Śląsk, Trójmiasto) albo gdzie pojedynczy
+prawnik zbudował sobie niszę SEO wokół tego tematu — nie jest równomiernie
+rozproszony po całej Polsce. Rozszerzenie badania na kolejne 30 miast dodało
+relatywnie mało (10 firm, wszystkie do Tier 2 — żadna nie ma w pełni
+dedykowanego produktu jak firmy z Tier 1) — co sugeruje, że badanie już
+wcześniej (przez frazy ogólnokrajowe + katalogi) złapało większość realnie
+istotnych graczy, a dalsze rozszerzanie geograficzne miałoby malejące zwroty.
+
+**Nowe firmy z tego sprawdzenia (dodane do Tier 2 niżej):** Tomasz Diduch
+(Gliwice), Gatner & Gatner (Bielsko-Biała), STERRN — oddziały Zabrze/Ruda
+Śląska (ta sama firma co już znana z Warszawy, sieć kancelarii), Mikołaj
+Jarosiński (Tychy, obsługuje też Katowice/Gliwice/Żory/Rybnik), Seweryn
+Pytlewski (Dąbrowa Górnicza), KRP Wałbrzych, Andrzej Turczyn (Koszalin),
+Kancelaria ILT (Legnica), Łukasz Pryzwan (Słupsk — niepewne, oferta wygląda
+bardziej na obsługę wierzycieli niż obronę zarządu, do zweryfikowania).
+
 ## Tier 2 — Kancelarie ogólne z tematem jako elementem oferty
 
 Mają realny, konkretny materiał/artykuł o art. 299 KSH lub odpowiedzialności
@@ -128,7 +165,17 @@ Viggen, GGK Kancelaria, BKT Kancelaria, Dudkowiak & Putyra, Kieltyka
 Gładkowski, Linke i Partnerzy, Kaczmarek, KZ Legal, Sobczyńscy i Partnerzy,
 CDD Legal, RPR Legal.
 
-**Ok. 65 firm w tym tierze** (nazwy bez pełnych URL — do doprecyzowania,
+Miasta średniej wielkości (dodane 05.08.2026 po sprawdzeniu luki — patrz
+sekcja wyżej): Tomasz Diduch (Gliwice, adwokatdiduch.pl), Gatner & Gatner
+(Bielsko-Biała, kancelaria-gatner.pl), STERRN — oddziały Zabrze i Ruda
+Śląska (sterrn.pl, ta sama sieć co wpis "Sterrn" przy Warszawie wyżej),
+Mikołaj Jarosiński (Tychy, adwokatjarosinski.pl), Seweryn Pytlewski
+(Dąbrowa Górnicza, adwokatpytlewski.pl), KRP Wałbrzych (krp-walbrzych.pl),
+Andrzej Turczyn (Koszalin, turczyn.net.pl), Kancelaria ILT (Legnica,
+kancelariailt.pl), Łukasz Pryzwan (Słupsk, slupskiprawnik.pl — niepewne,
+oferta wygląda bardziej na stronę wierzyciela niż obronę zarządu).
+
+**Ok. 74 firmy w tym tierze** (nazwy bez pełnych URL — do doprecyzowania,
 jeśli w przyszłości potrzebny będzie kontakt do konkretnej z nich; pełne
 adresy są w surowych transkryptach badania, dostępne na żądanie).
 
@@ -162,9 +209,13 @@ powołuje się na art. 299 KSH w swojej komunikacji marketingowej — pokazuje,
 ## Co się zmienia we wnioskach z tego powodu
 
 Rynek jest **gęstszy niż sugerowało pierwsze badanie** — nie 10, a raczej
-**~40 realnych konkurentów o zbliżonym profilu** (Tier 1 + Tier 2), plus
-szersze tło (Tier 3 + Tier 4). To ważna korekta, ale **nie zmienia głównego
-wniosku planu marketingowego** — wręcz go potwierdza precyzyjniej:
+**~95 realnych konkurentów o zbliżonym profilu** (21 Tier 1 + 74 Tier 2),
+plus szersze tło (Tier 3 + Tier 4). To ważna korekta, ale **nie zmienia
+głównego wniosku planu marketingowego** — wręcz go potwierdza precyzyjniej.
+Dodatkowe sprawdzenie 30 miast średniej wielkości (poza pierwotną piętnastką
+największych) dodało tylko 10 nowych firm i dla połowy tych miast nie
+znalazło żadnego dopasowania — dalsze rozszerzanie geograficzne miałoby już
+malejące zwroty, więc badanie można uznać za praktycznie wyczerpujące.
 
 - Nawet wśród 21 firm z Tier 1 (najbliżsi konkurenci) **żadna nie ma w
   pełni złożonego lejka z darmowym kalkulatorem + jawną ceną audytu +

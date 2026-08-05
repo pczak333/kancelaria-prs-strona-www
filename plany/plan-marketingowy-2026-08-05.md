@@ -19,15 +19,18 @@ czy warto w nie zainwestować na dalszym etapie.
 węższe, żeby szybko dać pierwszy obraz rynku. Właściciel słusznie zauważył,
 że to za mało jak na skalę kraju — dociekliwe pytanie, nie niedowierzanie
 bez podstaw. Zrobiono więc znacznie szersze badanie (4 równoległe metody
-wyszukiwania + dogłębna weryfikacja 3 dodatkowych cech dla 21 najbliższych
-konkurentów) — **pełne wyniki w osobnym pliku:
-[`lista-konkurencji-2026-08-05.md`](lista-konkurencji-2026-08-05.md)**.
+wyszukiwania w 15 największych miastach + dogłębna weryfikacja 3 dodatkowych
+cech dla 21 najbliższych konkurentów + dodatkowe sprawdzenie 30 miast
+średniej wielkości na kolejne pytanie właściciela o lukę geograficzną) —
+**pełne wyniki w osobnym pliku:
+[`lista-konkurencji-2026-08-05.md`](lista-konkurencji-2026-08-05.md)** oraz
+w Excelu [`lista-konkurencji-KRS-Guard-2026-08-05.xlsx`](lista-konkurencji-KRS-Guard-2026-08-05.xlsx).
 Tu jest tylko streszczenie i wnioski.
 
-**Skala rynku po pełnym badaniu:** znaleziono i zweryfikowano **ok. 110
+**Skala rynku po pełnym badaniu:** znaleziono i zweryfikowano **ok. 115
 podmiotów** łącznie — **21 najbliższych bezpośrednich konkurentów**
 (wyspecjalizowane butiki z dedykowaną usługą ochrony zarządu, nie tylko
-artykuł blogowy), **ok. 65 kancelarii ogólnych** z tematem jako elementem
+artykuł blogowy), **ok. 74 kancelarie ogólne** z tematem jako elementem
 szerszej oferty, **5 dużych kancelarii korporacyjnych/międzynarodowych**
 (inny segment rynku — obsługują głównie ubezpieczycieli, nie pozwanych
 członków zarządu), i **15 brokerów/ubezpieczycieli D&O** (konkurencja
