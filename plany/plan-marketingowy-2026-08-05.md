@@ -1,0 +1,123 @@
+# Plan marketingowy KRS Guard — 05.08.2026
+
+Powstał na bazie dwóch niezależnych badań internetowych (agenty Claude Code,
+05.08.2026): analiza konkurencji (10 kancelarii + 3 brokerów D&O) oraz
+analiza słów kluczowych i kanałów promocji. Surowe raporty badawcze w
+historii sesji — tu jest już gotowa synteza i plan działania.
+
+**Ważne zastrzeżenie metodologiczne:** to badanie opiera się na wyszukiwaniu
+i czytaniu stron internetowych (Google, strony kancelarii), NIE na
+profesjonalnych narzędziach SEO z twardymi danymi (Ahrefs, Senuto, Google
+Keyword Planner). Oceny „duża/mała konkurencja" są szacunkowe, na podstawie
+tego, kto faktycznie pojawia się w wynikach wyszukiwania. Do precyzyjnych
+wolumenów wyszukiwań potrzebne byłoby osobne, płatne narzędzie — do decyzji,
+czy warto w nie zainwestować na dalszym etapie.
+
+## 1. Co pokazało badanie konkurencji
+
+Sprawdzono ok. 10 kancelarii realnie obecnych w polskim internecie w tym
+temacie (m.in. Sieńko i Pięta, Bladowski.Legal, Kłodziński Kancelaria, Rynas,
+M.D. Legal Solutions, RPMS, PZ Adwokaci) oraz 3 brokerów ubezpieczeniowych
+sprzedających polisy D&O (ochrona zarządu, ale jako polisa opłacana z góry,
+nie jako obrona po fakcie).
+
+**Wzorzec, który się powtarza u niemal wszystkich:**
+- Temat „ochrona zarządu przed art. 299 KSH" to u nich JEDNA z kilkunastu
+  usług dużej kancelarii ogólnej (prawo rodzinne, nieruchomości, karne...),
+  nie główna specjalizacja.
+- Brak jawnych cen — wszędzie „skontaktuj się, ocenimy Twoją sytuację".
+  Jedyny wyjątek to sklep z gotowymi wzorami pism (49–299 zł), co to zupełnie
+  inna usługa niż doradztwo.
+- Brak jakiegokolwiek narzędzia do samodzielnej, wstępnej oceny sytuacji —
+  najwyżej PDF do pobrania.
+- Brak liczb (lat doświadczenia, liczby spraw) — prawie nikt się tym nie
+  chwali, mimo że to buduje zaufanie.
+- Jeden konkurent (M.D. Legal Solutions, „odpowiedzialnoscczlonkazarzadu.com")
+  jest wąsko wyspecjalizowany podobnie do KRS Guard, ale miesza to z płatnymi
+  szkoleniami i abonamentem, bez zdefiniowanych pakietów usługowych.
+
+**Wniosek: te przewagi KRS Guard są potwierdzone realnym badaniem, nie
+domysłem — można ich śmiało używać w komunikacji:**
+
+1. **Darmowy kalkulator ryzyka jako pierwszy krok** — nie znaleziono
+   żadnego odpowiednika u konkurencji. To najmocniejszy, unikalny argument.
+2. **Jawna cena wejścia** („Audyt 48h od 900 zł netto") — realna rzadkość
+   w tej branży. Dla klienta w kryzysie (świeże wezwanie do zapłaty) brak
+   niepewności co do ceny to duża przewaga.
+3. **Przewidywalny, wieloetapowy proces** (kalkulator → audyt z potwierdzeniem
+   ceny przed analizą → jeden z 3 konkretnych pakietów) — nikt inny nie ma
+   tak jasno opisanej ścieżki.
+4. **Wąska, jednotematyczna specjalizacja** — tylko jeden konkurent jest
+   podobnie wąski, i on nie ma zdefiniowanych pakietów.
+5. **Konkretne liczby na stronie głównej** (45 spraw, 4 lata) — prawie nikt
+   z konkurencji tego nie pokazuje. To już zrobione na stronie — dobrze, bo
+   to rzadkość, która buduje zaufanie.
+
+## 2. Co pokazało badanie słów kluczowych
+
+**Temat główny („art. 299 KSH", „odpowiedzialność członka zarządu") jest już
+mocno obsadzony** — kilkanaście kancelarii ma na ten temat artykuły. Szybkie
+wejście do czołówki Google na te frazy będzie trudne.
+
+**Ale są dwie realne szanse:**
+
+- **Frazy o ZUS i Urzędzie Skarbowym** (np. „ZUS chce ode mnie zapłaty za
+  spółkę", „decyzja US o odpowiedzialności członka zarządu odwołanie") —
+  wyraźnie słabiej obsadzone niż sam art. 299. Warto pisać o nich osobno
+  i wprost, nie tylko przy okazji.
+- **Frazy związane z kalkulatorem** („kalkulator ryzyka członka zarządu",
+  „sprawdź ryzyko odpowiedzialności zarząd") — praktycznie PUSTE miejsce w
+  Google, nikt tam nie startuje. Haczyk: skoro nikt jeszcze tego nie
+  promował, to i ludzie jeszcze nie wpisują tego hasła masowo w wyszukiwarkę
+  — trzeba samemu „nauczyć" rynek, że taki kalkulator istnieje (przez inne
+  kanały, nie tylko liczyć na to, że Google sam przyśle ruch).
+
+## 3. Kanały promocji — ocena
+
+| Kanał | Ocena | Dlaczego |
+|---|---|---|
+| **Polecenia od księgowych i doradców restrukturyzacyjnych** | **Najlepszy punkt startowy** | Widzą problem klienta (zaległości, egzekucję) wcześniej niż on sam zacznie szukać w Google. To potwierdzona, powszechna praktyka w tej branży. Zero kosztu poza czasem na budowanie relacji. |
+| **LinkedIn** | Dobre dopasowanie, zwłaszcza pod „Zarząd SAFE" | Odbiorca (osoba w zarządzie) jest tam zawodowo obecny. Lepsze dla osób planujących prewencyjnie niż dla kogoś w panice z pozwem w ręku. |
+| **Blog / SEO** | Gra długoterminowa, temat główny trudny | Trzeba różnicować się węższymi podtematami (konkretne scenariusze, orzecznictwo, ZUS/US) zamiast walczyć o najbardziej obsadzone hasła. |
+| **Artykuły gościnne na portalach branżowych** (np. sieć „Kancelarie RP") | Warto rozważyć później | Buduje autorytet i widoczność, ale częściowo płatne — do oceny, gdy będzie budżet. |
+| **Google Ads** | Tylko punktowo, na frazy pilne | Branża prawnicza w Polsce ma jedne z najwyższych stawek za kliknięcie (rząd kilkunastu-kilkudziesięciu złotych). Sensowne wyłącznie dla fraz „ktoś już ma problem" (np. „pozew art 299 co robić"), NIE dla fraz ogólnych/informacyjnych — tam koszt zjadłby budżet bez pewności konwersji. |
+| **Grupy na Facebooku, fora** | Niska priorytetowość | Grupy biznesowe istnieją i są aktywne, ale nie ma dedykowanej grupy pod ten temat, a bezpośrednia reklama w cudzych grupach zwykle źle się przyjmuje — można tam co najwyżej odpowiadać na pytania, nie reklamować się wprost. |
+
+## 4. Plan działania — kolejność
+
+Zanim ruszy jakakolwiek promocja: strona musi wyjść z etapu „wersja robocza"
+(prawdziwe dane kontaktowe, usunięcie dopisków roboczych) — to już wiadomo
+i czeka na testy przez inne osoby.
+
+**Etap 1 — bezpłatne, zacząć od razu po publikacji strony**
+1. Rozmowy z 3–5 znanymi księgowymi/biurami rachunkowymi lub doradcami
+   restrukturyzacyjnymi o współpracy poleceniowej (najprostsza forma: „jeśli
+   trafi do Was klient z pozwem z art. 299 albo decyzją ZUS/US, wyślijcie go
+   do nas — kalkulator jest darmowy, a wycena audytu jest jasna z góry").
+2. Założenie/uzupełnienie profilu firmowego KRS Guard na LinkedIn, kilka
+   postów edukacyjnych miesięcznie (np. na bazie artykułów z bloga).
+
+**Etap 2 — treść, praca ciągła w tle**
+3. Rozbudowa bloga o wąskie, konkretne tematy ZUS/US (mniej obsadzone w
+   Google niż sam art. 299) oraz o konkretne scenariusze („co po wyroku
+   zaocznym", „jak liczyć termin"), zamiast kolejnych ogólnych artykułów o
+   art. 299 KSH.
+4. Aktywne promowanie kalkulatora jako narzędzia — skoro w Google nikt o
+   niego jeszcze nie konkuruje, warto go wspominać wprost w każdym poście
+   LinkedIn, w rozmowach z księgowymi, w podpisie mailowym itd., żeby ludzie
+   zaczęli go szukać z nazwy.
+
+**Etap 3 — płatna promocja, gdy będzie budżet i przetestowany lejek**
+5. Mała, testowa kampania Google Ads WYŁĄCZNIE na frazy pilne (ktoś już ma
+   pozew/decyzję w ręku), z wykluczeniem fraz ogólnych/informacyjnych — cel:
+   sprawdzić realny koszt kliknięcia i konwersji na małym budżecie, zanim
+   zwiększy się wydatki.
+6. Rozważenie artykułu gościnnego na portalu branżowym (np. przez sieć
+   „Kancelarie RP") dla dodatkowej widoczności i wiarygodności.
+
+## Otwarte pytania do właściciela
+
+- Czy ma Pan już jakieś kontakty wśród księgowych/doradców restrukturyzacyjnych
+  do etapu 1, czy zaczynamy od zera?
+- Budżet na promocję — czy w ogóle jest planowany na start (Etap 3), czy na
+  razie tylko kanały bezpłatne (Etapy 1–2)?
