@@ -122,6 +122,34 @@ i czeka na testy przez inne osoby.
    restrukturyzacyjnymi o współpracy poleceniowej (najprostsza forma: „jeśli
    trafi do Was klient z pozwem z art. 299 albo decyzją ZUS/US, wyślijcie go
    do nas — kalkulator jest darmowy, a wycena audytu jest jasna z góry").
+
+   **Punkt startowy (05.08.2026, właściciel zaczyna od zera, brak kontaktów):**
+   zamiast zimnego wychodzenia do obcych osób — dołączyć do **BNI Polska**
+   (Business Network International), zorganizowanej sieci grup networkingowych
+   działającej w Polsce od 2006 r., gdzie w jednej grupie może być tylko JEDEN
+   przedstawiciel danej branży, a członkowie cotygodniowo polecają sobie
+   nawzajem klientów. To trafia dokładnie w priorytet numer 1 z tej sekcji.
+   W Krakowie (siedziba właściciela) działa 8 grup:
+
+   | Grupa | Dzień | Godzina |
+   |---|---|---|
+   | CITY | wtorek | 6:40 |
+   | INSPIRE | wtorek | 6:30 |
+   | KINGS | środa | 6:30 |
+   | MILION | środa | 7:00 |
+   | MASTERS | środa | 7:30 |
+   | VIKINGS | czwartek | 6:45 |
+   | VICTORIA | czwartek | 7:00 |
+   | ONLINE | piątek | 7:40 |
+
+   Publiczna wyszukiwarka BNI nie pokazuje, w której grupie jest wolne miejsce
+   dla „radcy prawnego" ani która ma już księgowego/doradcę restrukturyzacyjnego
+   — to widać dopiero od środka. Następny krok należy do właściciela: zapisać
+   się jako gość na jedno spotkanie (bez zobowiązań), najlepiej zacząć od grupy
+   **ONLINE** (piątek, najmniej kłopotliwa logistycznie), a potem odwiedzić 1–2
+   stacjonarne w Krakowie. Kontakt: [bnipolska.pl/kontakt](https://bnipolska.pl/kontakt/)
+   lub formularz [„Zostań Członkiem BNI"](https://bnipolska.pl/zostan-czlonkiem-bni/).
+
 2. Założenie/uzupełnienie profilu firmowego KRS Guard na LinkedIn, kilka
    postów edukacyjnych miesięcznie (np. na bazie artykułów z bloga).
 
@@ -145,7 +173,8 @@ i czeka na testy przez inne osoby.
 
 ## Otwarte pytania do właściciela
 
-- Czy ma Pan już jakieś kontakty wśród księgowych/doradców restrukturyzacyjnych
-  do etapu 1, czy zaczynamy od zera?
+- ~~Czy ma Pan już jakieś kontakty wśród księgowych/doradców restrukturyzacyjnych
+  do etapu 1, czy zaczynamy od zera?~~ **Odpowiedziano 05.08.2026: od zera —
+  punkt startowy to BNI Kraków, patrz Etap 1 wyżej.**
 - Budżet na promocję — czy w ogóle jest planowany na start (Etap 3), czy na
   razie tylko kanały bezpłatne (Etapy 1–2)?
