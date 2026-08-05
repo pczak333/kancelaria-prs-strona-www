@@ -72,6 +72,34 @@ wejście do czołówki Google na te frazy będzie trudne.
   — trzeba samemu „nauczyć" rynek, że taki kalkulator istnieje (przez inne
   kanały, nie tylko liczyć na to, że Google sam przyśle ruch).
 
+### 2a. Weryfikacja w Google Trends (05.08.2026)
+
+Sprawdzono bezpośrednio w Google Trends (Polska, ostatnie 12 miesięcy), żeby
+zobaczyć realną skalę zainteresowania, nie tylko liczbę konkurujących stron.
+Wynik jest mocniejszy niż sugerowało samo badanie konkurencji:
+
+- **„art. 299 ksh" to płaskie zero przez cały ostatni rok** w Google Trends
+  dla Polski. Dla porównania sprawdzono na tej samej skali dwie popularne
+  frazy prawnicze: „rozwód" (średnio 17 pkt) i „odszkodowanie" (średnio
+  58 pkt) — nasza nisza jest na tym tle praktycznie niewidoczna.
+- Bardziej szczegółowe, pilne frazy („pozew z art 299", „wezwanie do zapłaty
+  członek zarządu", „decyzja zus członek zarządu") wypadły jeszcze gorzej —
+  Google Trends zgłasza „za mało danych" niemal przez cały rok, z pojedynczymi
+  izolowanymi skokami (prawdopodobnie reakcja na jakiś news, nie stały ruch).
+- Jedyny pozytywny sygnał: „kalkulator ryzyka" i „rezygnacja z zarządu"
+  pokazują niewielki wzrost zainteresowania od połowy lipca 2026 — wciąż mała
+  skala, ale warto to obserwować dalej w kolejnych miesiącach.
+
+**Wniosek — ważniejszy niż wcześniej sądzono:** to nie jest kwestia „trudno
+się przebić przez konkurencję", tylko **w samym Google jest dziś mało ruchu
+do przechwycenia w tej niszy**, niezależnie od konkurencji. Nie znaczy to,
+że nikt nie ma tego problemu — raczej że osoby w takiej sytuacji nie szukają
+żargonem prawnym, tylko pytają swojego księgowego, dzwonią do znajomego
+prawnika albo wpisują coś ogólnego („prawnik od długów firmy"). **To jeszcze
+mocniej podnosi priorytet kanału poleceń od księgowych i doradców
+restrukturyzacyjnych (Etap 1 planu) względem samego SEO** — może być on
+ważniejszy niż ruch organiczny z Google, przynajmniej na start.
+
 ## 3. Kanały promocji — ocena
 
 | Kanał | Ocena | Dlaczego |
