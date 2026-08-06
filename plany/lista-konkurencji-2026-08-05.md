@@ -10,19 +10,42 @@ znalazły łącznie ok. **115 unikalnych podmiotów** po usunięciu duplikatów
 pokrycie jest solidne, nie przypadkowe).
 ---
 
-**Aktualizacja 05.08.2026 (po południu):** właściciel osobiście sprawdził wpis o Kancelarii
-Skarbiec i nie znalazł na jej stronie treści opisanej w pierwszej wersji zestawienia — słuszna
-wątpliwość co do rzetelności całego badania. W odpowiedzi wszystkie 21 firm z Tier 1 zostało
-**ponownie zweryfikowanych z pierwszej ręki** (bezpośrednie odwiedzenie stron WWW, nie odczyt
-z pamięci), a plik Excel (`lista-konkurencji-KRS-Guard-2026-08-05.xlsx`, arkusz „Tier 1") został
-rozbudowany o: skorygowane opisy oferty (z cytatami i adresami URL źródłowymi), opinie klientów,
-status „firmowana przez radcę prawnego" (dokładny tytuł zawodowy prowadzącego), ciekawe pomysły
-do adaptacji przez KRS Guard oraz **pełną analizę SWOT** (mocne/słabe strony konkurenta, szanse/
-zagrożenia dla KRS Guard) dla każdej z 21 firm. Wynik: część opisów (np. Kłodziński Kancelaria,
-Kancelaria Tyrka, KPR Restrukturyzacja) okazała się przesadzona tym samym wzorem co u Skarbca —
-treść blogowa przedstawiona jako pełnoprawna usługa — ale sam wpis o Skarbcu po ponownym,
-dogłębnym sprawdzeniu okazał się w rzeczywistości SZERSZY niż zgłosił właściciel (możliwe, że
-trafił na inną podstronę). Szczegóły per firma — w Excelu, nie w tym pliku.
+**⚠️ WAŻNE — dwie rundy korekt po weryfikacji na żywo (05–06.08.2026), przeczytać przed
+użyciem czegokolwiek z tego pliku w materiałach marketingowych.** Tabela Tier 1 niżej w tym
+pliku to WCIĄŻ pierwotna wersja z agentów badawczych — **autorytatywne, poprawione dane są w
+Excelu** (`lista-konkurencji-KRS-Guard-2026-08-05.xlsx`, arkusz „Tier 1", kolumna „Ocena
+wiarygodności opisu"). Co się stało:
+
+1. **Runda 1 (05.08, po południu):** właściciel osobiście sprawdził wpis o Kancelarii Skarbiec
+   i nie znalazł na stronie treści opisanej pierwotnie — słuszna wątpliwość co do rzetelności
+   całego badania. W odpowiedzi wszystkie 21 firm z Tier 1 zweryfikowano ponownie z pierwszej
+   ręki (bezpośrednie odwiedzenie stron, nie odczyt z pamięci) i dodano do Excela: skorygowane
+   opisy z cytatami i URL, opinie klientów, tytuł zawodowy prowadzącego, oraz pełną analizę
+   SWOT. Wynik: sam wpis o Skarbcu okazał się SZERSZY niż zgłosił właściciel (być może trafił
+   na inną podstronę) — ale **trzy inne opisy okazały się przesadzone tym samym wzorem**
+   (treść blogowa przedstawiona jako pełnoprawna usługa): **Kłodziński Kancelaria** (to ogólna
+   kancelaria butikowa z jedną dobrą niszą, nie firma wyspecjalizowana wyłącznie w art. 299),
+   **Kancelaria Tyrka** ("udokumentowane wygrane sprawy" to w rzeczywistości jedno zdanie bez
+   żadnej dokumentacji, na wpisie nieaktualizowanym od 2020 r.), **KPR Restrukturyzacja**
+   ("kompleksowa ochrona majątku" brzmi jak usługa, a to głównie treść blogowa bez własnej
+   podstrony ofertowej).
+2. **Runda 2 (06.08):** kontrolne sprawdzenie 4 losowo wybranych twierdzeń z kolumny „Ciekawe
+   pomysły dla KRS Guard" — **2 z 4 okazały się częściowo lub całkowicie ZMYŚLONE**: nieistniejące
+   FAQ u **Jakubowskiej-Zawady** (tłumaczące różnicę adwokat/radca — nie istnieje na stronie),
+   wymyślone liczby w case study **PW Restrukturyzacja** ("291 734 zł korzyści, 83 dni" — nie
+   znaleziono na stronie; jedyne case study dotyczy innej usługi i nie ma żadnych liczb). Jedno
+   twierdzenie było istotnie nieścisłe: **UpStart Legal** opisana jako działająca „wyłącznie
+   zdalnie" — w rzeczywistości ma fizyczne biuro w Katowicach (poprawione też w tabeli niżej).
+   **Wniosek z tej rundy: przy tej małej próbce wykryto ok. 50% trafień z błędem — każde
+   twierdzenie z tego zestawienia, zanim trafi do materiałów marketingowych, warto samodzielnie
+   zweryfikować na stronie źródłowej.** Pełny opis przyczyny i standing rule na przyszłość:
+   `memory/weryfikacja-tresci-ze-stron-www.md`.
+
+Konsekwencja dla liczb w tym pliku i w `plan-marketingowy-2026-08-05.md`: **model obsługi
+poprawiony na 0 z 21 wyłącznie zdalnych** (nie 1) — to jedyna liczba, która się realnie zmieniła
+z tych trzech dogłębnych ustaleń (obsługa/ceny/lata), bo dotyczyła losowo skontrolowanej firmy.
+Ceny i lata/sprawy nie były w próbce kontrolnej — traktować jako wiarygodne, ale niezweryfikowane
+powtórnie.
 
 ---
 
@@ -53,19 +76,19 @@ obsługi (zdalnie czy stacjonarnie), transparentność cenowa, i twarde liczby
 | Kancelaria MW (Wieczorkowski) | Gdynia/Kutno | Art. 299 + US/ZUS + rezygnacja | (b) hybrydowo (wideokonferencja) | **450 zł** za poradę — **płatny** pierwszy kontakt | brak danych |
 | Bladowski.Legal | Warszawa | Art. 299/586 KSH, doradztwo kryzysowe, darmowy PDF jako lead magnet | (c) stacjonarnie | Brak cen, kontakt niejasny | ~24 lata, 400+ spraw (ogólne) |
 | Sieńko Pięta i Partnerzy | Poznań | "Ochrona Członków Zarządu": art. 299, D&O, upadłość | (b) hybrydowo (porady online) | Brak cen, kontakt niejasny | brak danych |
-| Kłodziński Kancelaria | Warszawa/Kraków | Wyłącznie obrona z art. 299 KSH | (b) hybrydowo (rezerwacja online) | **750 zł** konsultacja wstępna — **płatny** pierwszy kontakt | brak danych |
+| Kłodziński Kancelaria | Warszawa/Kraków | ⚠️ **Poprawione 06.08:** ogólna kancelaria butikowa z jedną dobrą niszą, NIE firma wyspecjalizowana wyłącznie w art. 299 (przesada w pierwotnym opisie) | (b) hybrydowo (rezerwacja online) | **750 zł** konsultacja wstępna — **płatny** pierwszy kontakt | brak danych |
 | Be Law | Bydgoszcz | Art. 299 + materiał o ZUS/podatkach | (b) hybrydowo (konsultacje zdalne) | Brak cen, kontakt niejasny | 20+ lat, brak liczby spraw |
 | Dowlegal | Warszawa | Partner opisywany jako "obrońca interesów zarządu" | (c) stacjonarnie | Brak cen, ale **bezpłatna** analiza jako 1. krok | 18 lat, 300+ spraw/500+ klientów (ogólne) |
 | Staniek&Partners | Wrocław/Kraków/Warszawa/Gdańsk | "Chronimy członków zarządu" — D&O, szkolenia | (c) stacjonarnie (4 biura) | Brak cen, ale **bezpłatna** 15-min konsultacja | brak lat, 100+ sporów/300 klientów (ogólne) |
 | PLA.partners | Warszawa | Dedykowana podstrona o art. 299 KSH | (b) hybrydowo ("cała Polska") | Brak cen, kontakt sugerowany bezpłatny (niepotwierdzone) | brak danych |
 | KSK (Kosmus i Łojkowska) | Gdańsk | Wsparcie w sporach z art. 299 + D&O | (c) stacjonarnie | 400–600 zł konsultacja — **warunkowo bezpłatny** pierwszy kontakt | 29+ lat, 27 000+ spraw/1000+ klientów (ogólne) |
-| UpStart Legal | Katowice/Śląsk | Niemal wyłącznie ten temat | **(a) WYŁĄCZNIE ZDALNIE** — jedyna taka firma na liście | **150–5500 zł**, cennik jawny — **płatny** pierwszy kontakt (150 zł) | brak lat, 50+ spraw/30+ klientów (ogólne) |
-| Kancelaria Tyrka | Szczecin | Udokumentowane wygrane sprawy z art. 299 | (b) hybrydowo (porady online) | Płatność z góry za porady online, kwota niejasna | brak danych |
+| UpStart Legal | Katowice/Śląsk | Jeden z 6 równorzędnych tematów firmy (nie priorytet — dominuje upadłość konsumencka) | (b) hybrydowo — **poprawione 06.08.2026**: ma realne biuro w Katowicach (ul. Mieleckiego 10), wcześniejszy zapis "wyłącznie zdalnie" był błędny | **150–5500 zł**, cennik jawny — **płatny** pierwszy kontakt (150 zł) | brak lat, 50+ spraw/30+ klientów (ogólne) |
+| Kancelaria Tyrka | Szczecin | ⚠️ **Poprawione 06.08:** "udokumentowane wygrane sprawy" to w rzeczywistości jedno ogólne zdanie BEZ żadnej dokumentacji, na wpisie nieaktualizowanym od 2020 r. | (b) hybrydowo (porady online) | Płatność z góry za porady online, kwota niejasna | brak danych |
 | Wardyn Doradztwo Restrukturyzacyjne | Szczecin | Wyspecjalizowana w ochronie zarządu | (b) hybrydowo ("cała Polska", bez słowa "zdalnie") | Brak cen, ale **bezpłatna** analiza jako 1. krok | 20+ lat, brak liczby spraw |
 | M.D. Legal Solutions (Monika Drab) | Warszawa | Cała marka; abonament doradczy, BEZ kalkulatora/pakietów | (c) stacjonarnie | 499 zł porada online (cena abonamentu niejawna) | brak danych |
 | Jakubowska-Zawada | Rzeszów | Analiza ryzyka, strategia obrony, bezpieczne zakończenie mandatu | (c) stacjonarnie | Wspomina koszt, **bez kwoty** — płatny pierwszy kontakt | 11+ lat, 1000+ spraw (ogólne) |
 | PW Restrukturyzacja | Warszawa | Ochrona majątku przy zagrożeniu niewypłacalnością | (c) stacjonarnie | Brak cen, ale **bezpłatna** rozmowa jako 1. krok | 10+ lat, brak liczby spraw |
-| KKPR / KPR Restrukturyzacja | Kraków | Ochrona majątku w kryzysie + art. 116 Ordynacji podatkowej | (c) stacjonarnie | Brak cen, ale **bezpłatna** konsultacja | 15 lat, 900+ postępowań (ogólne) |
+| KKPR / KPR Restrukturyzacja | Kraków | ⚠️ **Poprawione 06.08:** "kompleksowa ochrona majątku" brzmi jak sprzedawana usługa, a to głównie treść blogowa bez własnej podstrony ofertowej | (c) stacjonarnie | Brak cen, ale **bezpłatna** konsultacja | 15 lat, 900+ postępowań (ogólne) |
 | Worytko & Słupek | Rzeszów | Analiza ryzyk, obrona przed roszczeniami wierzycieli | (c) stacjonarnie | Brak cen, kontakt niejasny | brak danych |
 | KPP (Baran & Pluta) | Warszawa | Reprezentacja obu stron sporu + upadłość S.A. | (b) hybrydowo ("klienci działający zdalnie") | Brak cen, kontakt niejasny | 10+ lat, 3000+ postępowań (ogólne) |
 | Wbrew ZUS (Matyasik-Ochlust) | Kraków | Wąsko: odwołania od decyzji ZUS | (b) hybrydowo (porady on-line) | 499 zł porada online — kontakt raczej płatny | brak danych ogólnych |
@@ -81,15 +104,19 @@ dotyczy wprost tej specjalizacji. Szczegóły w sekcji niżej.
 produkcie z cennikiem tak jak planuje KRS Guard — Skarbiec i Kancelaria MW
 są najbliżej, ale bez kalkulatora i bez pełnego cennika pakietów.
 
-### Dogłębna weryfikacja: model obsługi, ceny, doświadczenie (05.08.2026)
+### Dogłębna weryfikacja: model obsługi, ceny, doświadczenie (05.08.2026,
+### poprawione 06.08.2026 po weryfikacji na żywo)
 
-**1. Obsługa wyłącznie zdalna (bez biura, jak KRS Guard) — rzadkość.**
-Na 21 firm: **1 wyłącznie zdalnie** (UpStart Legal — i nawet ona podaje
-adres biura obok deklaracji zdalności), **9 hybrydowo** (fizyczne biuro +
-wzmianka o kontakcie/poradzie online, zwykle jedno zdanie lub pozycja w
-menu, nie główny model), **11 wyłącznie/głównie stacjonarnie** (adres biura,
-zero wzmianek o zdalności). Model KRS Guard — w pełni zdalny, bez żadnego
-fizycznego adresu, jako JEDYNY sposób działania — nie ma odpowiednika wśród
+**1. Obsługa wyłącznie zdalna (bez biura, jak KRS Guard) — rzadkość, nawet
+większa niż pierwotnie ustalono.** Na 21 firm: **0 wyłącznie zdalnie**
+(poprawione 06.08.2026 — UpStart Legal, opisywana wcześniej jako jedyny
+wyjątek, przy weryfikacji na żywo okazała się mieć realny adres biura w
+Katowicach, "ul. Mieleckiego 10", więc to jednak model hybrydowy, nie w
+pełni zdalny), **10 hybrydowo** (fizyczne biuro + wzmianka o kontakcie/
+poradzie online, zwykle jedno zdanie lub pozycja w menu, nie główny model),
+**11 wyłącznie/głównie stacjonarnie** (adres biura, zero wzmianek o
+zdalności). Model KRS Guard — w pełni zdalny, bez żadnego fizycznego
+adresu, jako JEDYNY sposób działania — nie ma odpowiednika wśród
 21 sprawdzonych firm. To realny, potwierdzony wyróżnik.
 
 **2. Ceny i darmowy pierwszy kontakt — KRS Guard bardziej transparentny

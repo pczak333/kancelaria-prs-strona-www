@@ -41,11 +41,13 @@ pośrednia — sprzedają polisę zamiast obrony prawnej).
   bezpieczna rezygnacja) w jednym, spójnym produkcie z pakietami tak jak
   KRS Guard — Skarbiec i Kancelaria MW są najbliżej tematycznie, ale bez
   kalkulatora i bez pełnego cennika pakietów.
-- **Model obsługi:** na 21 firm tylko **1 działa wyłącznie zdalnie**
-  (UpStart Legal — i nawet ona ma adres biura), 9 to model hybrydowy
-  (biuro + wzmianka o kontakcie online), 11 to czysto stacjonarne kancelarie.
-  Model KRS Guard (w pełni zdalny, bez żadnego biura, jako jedyny sposób
-  działania) nie ma odpowiednika wśród sprawdzonych firm.
+- **Model obsługi:** na 21 firm **0 działa wyłącznie zdalnie** (poprawione
+  06.08.2026 po weryfikacji na żywo — UpStart Legal, opisywana wcześniej
+  jako jedyny wyjątek, też ma fizyczne biuro w Katowicach), 10 to model
+  hybrydowy (biuro + wzmianka o kontakcie online), 11 to czysto stacjonarne
+  kancelarie. Model KRS Guard (w pełni zdalny, bez żadnego biura, jako
+  jedyny sposób działania) nie ma ŻADNEGO odpowiednika wśród 21 sprawdzonych
+  firm — po korekcie to jeszcze mocniejszy wyróżnik niż wcześniej sądzono.
 - **Ceny:** tylko 7 z 21 podaje jakąkolwiek cenę (zwykle tylko stawka za
   pojedynczą poradę, 150–750 zł), 6 z 21 ma jawnie darmowy pierwszy kontakt,
   a 11 z 21 milczy w obu sprawach. Nikt nie ma dwuetapowego procesu z
@@ -77,10 +79,12 @@ badaniem, nie domysłem — można ich śmiało używać w komunikacji:**
    doświadczenia" wypada słabiej niż mediana konkurencji (20 lat) — nie
    ukrywać tego, tylko przesunąć nacisk komunikacji na precyzję liczby
    spraw, nie na długość stażu.
-6. **Praca w pełni zdalna, bez żadnego biura, w całej Polsce** — potwierdzona
-   rzadkość: tylko 1 z 21 konkurentów działa podobnie, i nawet ta jedna firma
-   ma adres biura. Warto to komunikować wprost jako udogodnienie, nie ukrywać
-   jako "brak prawdziwej siedziby".
+6. **Praca w pełni zdalna, bez żadnego biura, w całej Polsce** — po korekcie
+   06.08.2026: **żadna** z 21 sprawdzonych firm nie działa w tym modelu (nie
+   1, jak wcześniej błędnie ustalono — UpStart Legal też ma biuro). To
+   unikalny wyróżnik KRS Guard na tle całego sprawdzonego rynku. Warto to
+   komunikować wprost jako udogodnienie, nie ukrywać jako "brak prawdziwej
+   siedziby".
 
 ## 2. Co pokazało badanie słów kluczowych
 
