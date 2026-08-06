@@ -503,6 +503,44 @@ button.tile-btn{cursor:pointer;font:inherit;width:100%}
   font-size:13px;
 }
 
+/* ============================= Formularze (Zarząd SAFE + Kontakt ogólny) ============================= */
+.form-card{padding:26px; margin-top:18px}
+.form-row{display:grid; grid-template-columns:1fr 1fr; gap:14px 16px}
+
+.field{margin:0 0 16px}
+.field.full{grid-column:1 / -1}
+.field label{display:block; font-size:14px; font-weight:700; color:var(--ink2); margin:0 0 6px}
+.field .req{color:#b91c1c}
+.field input[type="text"], .field input[type="email"], .field input[type="tel"], .field textarea{
+  width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:12px;
+  background:#fff; font:inherit; font-size:14px; color:var(--ink); outline:none;
+}
+.field textarea{min-height:120px; resize:vertical}
+.field input:focus, .field textarea:focus{border-color:var(--brand); box-shadow:0 0 0 3px rgba(15,86,112,.12)}
+.field input.invalid, .field textarea.invalid{border-color:#b91c1c; box-shadow:0 0 0 3px rgba(185,28,28,.10)}
+.field-error{display:none; color:#b91c1c; font-size:12.5px; margin-top:6px}
+.field-help{color:var(--muted); font-size:12.5px; margin-top:6px}
+
+.form-consent{display:flex; gap:10px; align-items:flex-start; font-size:13px; color:var(--ink2); margin:4px 0 18px}
+.form-consent input{margin-top:3px}
+
+.form-errorsummary{display:none; margin:0 0 18px; border:1px solid #fecaca; background:#fff1f2; color:#7f1d1d; border-radius:12px; padding:12px 14px; font-size:13px}
+.form-errorsummary ul{margin:6px 0 0 18px; padding:0}
+
+.form-success{display:none; margin-top:18px; border:1px solid #bbf7d0; background:#f0fdf4; color:#14532d; border-radius:14px; padding:16px 18px}
+.form-success h3{margin:0 0 6px; font-size:15px}
+.form-success p{margin:0; font-size:13.5px; line-height:1.55}
+.form-success .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+
+/* Podgląd treści maila (mailto) — wspólny modal dla obu formularzy */
+.mailmodal-overlay{position:fixed; inset:0; background:rgba(11,37,53,.45); display:flex; align-items:center; justify-content:center; padding:18px; z-index:9999}
+.mailmodal{width:min(720px,100%); max-height:90vh; overflow:auto; background:#fff; border-radius:18px; border:1px solid var(--line); box-shadow:var(--shadow)}
+.mailmodal-head{position:sticky; top:0; background:#fff; padding:16px 18px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
+.mailmodal-title{font-weight:800; color:var(--ink)}
+.mailmodal-body{padding:16px 18px}
+.mailmodal-label{font-weight:700; margin-bottom:6px; color:var(--ink2); font-size:13px}
+.mailmodal-box{border:1px solid var(--line); background:var(--bg); border-radius:12px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; font-size:13px; color:var(--ink); white-space:pre-wrap}
+
 /* ============================= Footer ============================= */
 .footer{border-top:1px solid var(--line); background:rgba(255,255,255,.65); margin-top:20px}
 .footer-inner{display:flex; justify-content:space-between; gap:18px; padding:22px 0; flex-wrap:wrap}
@@ -541,6 +579,7 @@ button.tile-btn{cursor:pointer;font:inherit;width:100%}
   .grid-2{grid-template-columns:1fr}
   .blog-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
   .mini-grid{grid-template-columns:1fr;gap:14px}
   .brand-name{font-size:28px}
   .brand-logo{height:74px}

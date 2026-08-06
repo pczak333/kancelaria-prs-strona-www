@@ -78,21 +78,97 @@ Dane poniżej są <b>przykładowe (makieta)</b> — do zastąpienia prawdziwymi 
 
 <div class="card contact-card">
 <h2 class="h2" style="margin-top:0">Jak zacząć współpracę?</h2>
-<p class="p">Wybierz najprostszą dla siebie ścieżkę:</p>
 <ul class="list">
-<li><b>Otrzymałeś pozew, nakaz lub decyzję (US/ZUS)</b> — zacznij od <b>Audytu 48h</b>: szybka diagnoza terminów i ryzyk.</li>
-<li><b>Nie masz pewności, czego dotyczy sprawa</b> — uruchom <b>Kalkulator ryzyka</b> (2–3 min).</li>
-<li><b>Chcesz bezpiecznie odejść z zarządu albo z wyprzedzeniem ograniczyć ryzyko</b> — to pakiet <b>Zarząd SAFE</b> (wycena indywidualna). Napisz do nas na adres e-mail obok, opisując swoją sytuację.</li>
-<li><b>Chcesz zarejestrować spółkę lub zmienić dane w KRS</b> — tym zajmuje się partnerska <a href="https://kancelaria-prs.vercel.app/" target="_blank" rel="noopener">Kancelaria PRS</a>.</li>
+<li>Otrzymałeś pozew, nakaz lub decyzję (US/ZUS)? → <a href="audyt-48h.html">Rozpocznij Audyt 48h</a></li>
+<li>Nie masz pewności, czego dotyczy sprawa? → <a href="narzedzia.html">Uruchom Kalkulator ryzyka</a> (2–3 min)</li>
+<li>Chcesz bezpiecznie odejść z zarządu / ograniczyć ryzyko z wyprzedzeniem? → <a href="zarzad-safe-formularz.html">Zapytaj o wycenę Zarząd SAFE</a></li>
+<li>Chcesz zarejestrować spółkę lub zmienić dane w KRS? → <a href="https://kancelaria-prs.vercel.app/" target="_blank" rel="noopener">Kancelaria PRS</a></li>
 </ul>
-<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:6px">
-<a class="btn" href="audyt-48h.html">Rozpocznij Audyt 48h</a>
-<a class="btn ghost" href="narzedzia.html">Kalkulator Ryzyka</a>
+</div>
+</div>
+
+<div class="card contact-card form-card">
+<h2 class="h2" style="margin-top:0">Piszesz w innej sprawie?</h2>
+<p class="p">Nie pasuje żadna z powyższych ścieżek? Napisz do nas bezpośrednio.</p>
+
+<div class="form-errorsummary" id="ctErrorSummary"></div>
+
+<form id="ctForm" novalidate>
+<div class="form-row">
+<div class="field">
+<label for="ct_first">Imię <span class="req">*</span></label>
+<input id="ct_first" type="text"/>
+<div class="field-error" id="ct_first_error">Podaj imię.</div>
+</div>
+<div class="field">
+<label for="ct_last">Nazwisko <span class="req">*</span></label>
+<input id="ct_last" type="text"/>
+<div class="field-error" id="ct_last_error">Podaj nazwisko.</div>
+</div>
+</div>
+<div class="form-row">
+<div class="field">
+<label for="ct_email">Email <span class="req">*</span></label>
+<input id="ct_email" type="email"/>
+<div class="field-error" id="ct_email_error">Podaj poprawny adres e-mail.</div>
+</div>
+<div class="field">
+<label for="ct_phone">Numer telefonu <span class="field-help" style="display:inline">(opcjonalnie)</span></label>
+<input id="ct_phone" type="tel"/>
+</div>
+</div>
+<div class="field full">
+<label for="ct_subject">Temat <span class="req">*</span></label>
+<input id="ct_subject" type="text"/>
+<div class="field-error" id="ct_subject_error">Podaj temat wiadomości.</div>
+</div>
+<div class="field full">
+<label for="ct_message">Treść wiadomości <span class="req">*</span></label>
+<textarea id="ct_message"></textarea>
+<div class="field-error" id="ct_message_error">Napisz treść wiadomości.</div>
+</div>
+
+<div class="note">
+Po kliknięciu „Otwórz w programie pocztowym” otworzy się Twój program pocztowy z gotową wiadomością do nas — trafi do nas dopiero, gdy klikniesz „Wyślij” u siebie. Jeśli program pocztowy się nie otworzy, skopiuj treść z podglądu i wyślij ją sam(a) na adres <span class="ph">kontakt@[domena].pl</span>.
+</div>
+
+<label class="form-consent">
+<input id="ct_consent" type="checkbox"/>
+<span>Wyrażam zgodę na kontakt w sprawie odpowiedzi na zapytanie i zapoznałem/-am się z <a href="polityka-prywatnosci.html" target="_blank">Polityką prywatności</a>. <span class="req">*</span></span>
+</label>
+<div class="field-error" id="ct_consent_error">Zaznacz zgodę, aby przygotować wiadomość.</div>
+
+<button type="button" class="btn" id="ctSubmit">Wyślij</button>
+</form>
+
+<div class="form-success" id="ctSuccess">
+<h3>Wiadomość jest gotowa</h3>
+<p>Sprawdź treść i wyślij ją do nas ze swojej skrzynki — dopiero wtedy do nas dotrze.</p>
+<div class="btnrow">
+<button type="button" class="btn ghost" id="ctPreviewBtn">Podgląd treści</button>
+<button type="button" class="btn" id="ctSendBtn">Otwórz w programie pocztowym</button>
 </div>
 </div>
 </div>
 </div>
 </main>
+
+<div class="mailmodal-overlay" id="ctMailModal" style="display:none">
+<div class="mailmodal" role="dialog" aria-modal="true" aria-label="Podgląd wiadomości">
+<div class="mailmodal-head">
+<div class="mailmodal-title">Podgląd wiadomości</div>
+<button class="btn ghost" type="button" data-role="close">Zamknij</button>
+</div>
+<div class="mailmodal-body">
+<div class="mailmodal-label">Do</div>
+<div class="mailmodal-box" data-role="to"></div>
+<div class="mailmodal-label" style="margin-top:12px">Temat</div>
+<div class="mailmodal-box" data-role="subject"></div>
+<div class="mailmodal-label" style="margin-top:12px">Treść</div>
+<div class="mailmodal-box" data-role="body"></div>
+</div>
+</div>
+</div>
 
 <footer class="footer">
 <div class="container footer-inner">

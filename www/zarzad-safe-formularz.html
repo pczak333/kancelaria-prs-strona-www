@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Zarząd SAFE — zapytanie o wycenę | KRS Guard</title>
+<meta name="description" content="Zapytaj o wycenę pakietu Zarząd SAFE — bezpieczne odejście z zarządu i ograniczenie ryzyka z wyprzedzeniem. Krótki formularz, odpowiadamy zwykle w ciągu 24 godzin."/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header class="header">
+<div class="container">
+<div class="header-inner">
+<a class="brand" href="index.html" aria-label="KRS Guard — strona główna">
+<img class="brand-logo" src="assets/krs_guard_logo_transparent.png" alt=""/>
+<div class="brand-mark">
+<span class="brand-name">KRS Guard</span>
+<span class="brand-sub">Ochrona zarządu</span>
+</div>
+</a>
+<button class="nav-toggle" type="button" aria-label="Otwórz menu" aria-controls="mainnav" aria-expanded="false">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+</button>
+<nav class="nav" id="mainnav" aria-label="Nawigacja">
+<a href="index.html">Strona główna</a>
+<a href="krs-guard.html">Jak pomagamy</a>
+<a href="uslugi-cennik.html">Cennik</a>
+<a href="narzedzia.html">Kalkulator ryzyka</a>
+<a href="audyt-48h.html">Audyt 48h</a>
+<a href="faq.html">FAQ</a>
+<a href="kontakt.html">Kontakt</a>
+<a href="blog.html">Blog</a>
+</nav>
+</div>
+</div>
+</header>
+<main class="page">
+<div class="container">
+<a class="backlink" href="uslugi-cennik.html#pakiet-zarzad-safe">← Wróć do cennika</a>
+<h1 class="h1">Zarząd SAFE — zapytanie o wycenę</h1>
+<p class="p lead">Pakiet dla osób, które chcą bezpiecznie odejść z zarządu albo z wyprzedzeniem ograniczyć osobiste ryzyko. Napisz kilka słów o swojej sytuacji — przygotujemy indywidualną wycenę i odezwiemy się zwykle w ciągu 24 godzin.</p>
+
+<div class="card contact-card form-card">
+<div class="form-errorsummary" id="zsErrorSummary"></div>
+
+<form id="zsForm" novalidate>
+<div class="form-row">
+<div class="field">
+<label for="zs_name">Imię i nazwisko <span class="req">*</span></label>
+<input id="zs_name" type="text"/>
+<div class="field-error" id="zs_name_error">Podaj imię i nazwisko.</div>
+</div>
+<div class="field">
+<label for="zs_phone">Telefon <span class="field-help" style="display:inline">(opcjonalnie)</span></label>
+<input id="zs_phone" type="tel" placeholder="np. 600 000 000"/>
+</div>
+</div>
+<div class="form-row">
+<div class="field">
+<label for="zs_email">E-mail <span class="req">*</span></label>
+<input id="zs_email" type="email"/>
+<div class="field-error" id="zs_email_error">Podaj poprawny adres e-mail.</div>
+</div>
+<div class="field">
+<label for="zs_company">Nazwa spółki <span class="field-help" style="display:inline">(opcjonalnie)</span></label>
+<input id="zs_company" type="text"/>
+</div>
+</div>
+<div class="field full">
+<label for="zs_description">Krótki opis sytuacji <span class="req">*</span></label>
+<textarea id="zs_description" placeholder="Np.: planuję rezygnację z zarządu i chcę wcześniej sprawdzić, czy uchwały i wpis w KRS są w porządku…"></textarea>
+<div class="field-error" id="zs_description_error">Opisz krótko swoją sytuację.</div>
+</div>
+
+<ul class="list">
+<li><b>Żeby przyspieszyć wycenę</b>, przygotuj: uchwałę o powołaniu/odwołaniu z zarządu, aktualny odpis z KRS spółki oraz (opcjonalnie) umowę spółki — dołączysz je ręcznie w mailu, który się zaraz otworzy.</li>
+</ul>
+
+<div class="note">
+To prosty formularz bez własnego serwera. Po kliknięciu „Otwórz w programie pocztowym” otworzy się Twój program pocztowy z gotową wiadomością do nas — trafi do nas dopiero, gdy klikniesz „Wyślij” w swoim programie pocztowym. Dokumenty dołączasz ręcznie jako załącznik w tym oknie — ten formularz nie przesyła plików automatycznie. Jeśli program pocztowy się nie otworzy, skopiuj treść z podglądu wiadomości i wyślij ją sam(a) na adres <span class="ph">kontakt@[domena].pl</span>.
+</div>
+
+<label class="form-consent">
+<input id="zs_consent" type="checkbox"/>
+<span>Wyrażam zgodę na kontakt w sprawie odpowiedzi na zapytanie i zapoznałem/-am się z <a href="polityka-prywatnosci.html" target="_blank">Polityką prywatności</a>. <span class="req">*</span></span>
+</label>
+<div class="field-error" id="zs_consent_error">Zaznacz zgodę, aby przygotować wiadomość.</div>
+
+<button type="button" class="btn" id="zsSubmit">Przygotuj wiadomość</button>
+</form>
+
+<div class="form-success" id="zsSuccess">
+<h3>Wiadomość jest gotowa</h3>
+<p>Sprawdź treść i wyślij ją do nas ze swojej skrzynki — dopiero wtedy do nas dotrze. Odpowiadamy zwykle w ciągu 24 godzin od otrzymania wiadomości.</p>
+<div class="btnrow">
+<button type="button" class="btn ghost" id="zsPreviewBtn">Podgląd treści</button>
+<button type="button" class="btn" id="zsSendBtn">Otwórz w programie pocztowym</button>
+</div>
+</div>
+</div>
+
+</div>
+</main>
+
+<div class="mailmodal-overlay" id="zsMailModal" style="display:none">
+<div class="mailmodal" role="dialog" aria-modal="true" aria-label="Podgląd wiadomości">
+<div class="mailmodal-head">
+<div class="mailmodal-title">Podgląd wiadomości</div>
+<button class="btn ghost" type="button" data-role="close">Zamknij</button>
+</div>
+<div class="mailmodal-body">
+<div class="mailmodal-label">Do</div>
+<div class="mailmodal-box" data-role="to"></div>
+<div class="mailmodal-label" style="margin-top:12px">Temat</div>
+<div class="mailmodal-box" data-role="subject"></div>
+<div class="mailmodal-label" style="margin-top:12px">Treść</div>
+<div class="mailmodal-box" data-role="body"></div>
+</div>
+</div>
+</div>
+
+<footer class="footer">
+<div class="container footer-inner">
+<div class="foot-left">
+<div class="brand-mark mini">
+<span class="brand-name">KRS Guard</span>
+<span class="brand-sub">Ochrona zarządu</span>
+</div>
+<div class="foot-note">KRS Guard — ochrona członków zarządu (art. 299 KSH, US/ZUS). Makieta — dane kontaktowe przykładowe, do uzupełnienia.</div>
+</div>
+<div class="foot-links">
+<a href="index.html">Strona główna</a>
+<a href="krs-guard.html">Jak pomagamy</a>
+<a href="uslugi-cennik.html">Cennik</a>
+<a href="narzedzia.html">Kalkulator ryzyka</a>
+<a href="kontakt.html">Kontakt</a>
+<a href="polityka-prywatnosci.html">Polityka prywatności</a>
+</div>
+</div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
