@@ -11,3 +11,4 @@ między komputerami" w `CLAUDE.md`.
 - [Stan pracy 31.07.2026](stan-pracy-2026-07-31.md) — poprzedni punkt zapisu; wciąż aktualne: podgląd lokalny i pułapki przy testach agenta
 - [Ciągłość: sprawdzać repo na starcie](ciaglosc-sprawdzac-repo-na-starcie.md) — najpierw zajrzeć do plany/ i memory/ w repo (mogą być z drugiego komputera)
 - [Browser pane bywa zawodny](browser-preview-css-cache.md) — stary CSS w cache i/lub błąd renderowania screenshotów; mierzyć layout przez JS (getBoundingClientRect), nie walczyć w kółko z odświeżaniem
+- [Weryfikacja treści ze stron WWW](weryfikacja-tresci-ze-stron-www.md) — STANDING RULE: przy każdym badaniu opartym na przeglądaniu stron wymagać dosłownego cytatu + URL albo „NIE ZNALEZIONO"; właściciel wychwycił zmyślone twierdzenia w zestawieniu konkurencji (06.08.2026) — czytać przed każdym kolejnym badaniem/zestawieniem web
