@@ -527,15 +527,13 @@ button.tile-btn{cursor:pointer;font:inherit;width:100%}
 .form-errorsummary{display:none; margin:0 0 18px; border:1px solid #fecaca; background:#fff1f2; color:#7f1d1d; border-radius:12px; padding:12px 14px; font-size:13px}
 .form-errorsummary ul{margin:6px 0 0 18px; padding:0}
 
-.form-success{display:none; margin-top:18px; border:1px solid #bbf7d0; background:#f0fdf4; color:#14532d; border-radius:14px; padding:16px 18px}
-.form-success h3{margin:0 0 6px; font-size:15px}
-.form-success p{margin:0; font-size:13.5px; line-height:1.55}
-.form-success .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-
-/* Gotowa treść wiadomości — widoczna wprost na stronie, bez modala */
-.msg-box{margin-top:14px; border:1px solid var(--line); background:#fff; border-radius:12px; padding:14px 16px}
-.msg-label{font-weight:700; color:var(--ink2); font-size:12.5px}
-.msg-value{margin-top:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; font-size:13px; color:var(--ink); white-space:pre-wrap}
+/* Wynik wysłania formularza — trzy warianty: udane (ok), nieskonfigurowane (warn), błąd (error) */
+.form-result{display:none; margin-top:18px; border-radius:14px; padding:16px 18px}
+.form-result h3{margin:0 0 6px; font-size:15px}
+.form-result p{margin:0; font-size:13.5px; line-height:1.55}
+.form-result-ok{border:1px solid #bbf7d0; background:#f0fdf4; color:#14532d}
+.form-result-warn{border:1px solid rgba(244,209,125,.7); background:rgba(244,209,125,.18); color:#5b3d00}
+.form-result-error{border:1px solid #fecaca; background:#fff1f2; color:#7f1d1d}
 
 /* ============================= Footer ============================= */
 .footer{border-top:1px solid var(--line); background:rgba(255,255,255,.65); margin-top:20px}

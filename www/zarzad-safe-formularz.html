@@ -47,65 +47,50 @@
 <div class="form-row">
 <div class="field">
 <label for="zs_name">Imię i nazwisko <span class="req">*</span></label>
-<input id="zs_name" type="text"/>
+<input id="zs_name" name="zs_name" type="text"/>
 <div class="field-error" id="zs_name_error">Podaj imię i nazwisko.</div>
 </div>
 <div class="field">
 <label for="zs_phone">Telefon <span class="field-help" style="display:inline">(opcjonalnie)</span></label>
-<input id="zs_phone" type="tel" placeholder="np. 600 000 000"/>
+<input id="zs_phone" name="zs_phone" type="tel" placeholder="np. 600 000 000"/>
 </div>
 </div>
 <div class="form-row">
 <div class="field">
 <label for="zs_email">E-mail <span class="req">*</span></label>
-<input id="zs_email" type="email"/>
+<input id="zs_email" name="zs_email" type="email"/>
 <div class="field-error" id="zs_email_error">Podaj poprawny adres e-mail.</div>
 </div>
 <div class="field">
 <label for="zs_company">Nazwa spółki <span class="field-help" style="display:inline">(opcjonalnie)</span></label>
-<input id="zs_company" type="text"/>
+<input id="zs_company" name="zs_company" type="text"/>
 </div>
 </div>
 <div class="field full">
 <label for="zs_krs">Numer KRS spółki <span class="field-help" style="display:inline">(opcjonalnie, 10 cyfr)</span></label>
-<input id="zs_krs" type="text" placeholder="np. 0000123456"/>
-<div class="field-help">Numer KRS pozwala nam od razu sprawdzić podstawowe dane spółki. O dodatkowe dokumenty (np. umowę spółki) poprosimy, jeśli będą potrzebne — już w bezpośredniej rozmowie.</div>
+<input id="zs_krs" name="zs_krs" type="text" placeholder="np. 0000123456"/>
+<div class="field-help">Numer KRS pozwala nam od razu sprawdzić podstawowe dane spółki z jawnego rejestru.</div>
 </div>
 <div class="field full">
 <label for="zs_description">Krótki opis sytuacji <span class="req">*</span></label>
-<textarea id="zs_description" placeholder="Np.: planuję rezygnację z zarządu i chcę wcześniej sprawdzić, czy uchwały i wpis w KRS są w porządku…"></textarea>
+<textarea id="zs_description" name="zs_description" placeholder="Np.: planuję rezygnację z zarządu i chcę wcześniej sprawdzić, czy uchwały i wpis w KRS są w porządku…"></textarea>
 <div class="field-error" id="zs_description_error">Opisz krótko swoją sytuację.</div>
 </div>
 
 <div class="note">
-To prosty formularz bez własnego serwera. Po kliknięciu „Wyślij zapytanie” zobaczysz poniżej gotową treść — skopiuj ją do swojej poczty (przycisk „Skopiuj treść”) albo spróbuj otworzyć program pocztowy, jeśli masz go na tym komputerze skonfigurowany.
+Zgłoszenie trafia bezpośrednio do nas — nie musisz nic kopiować ani otwierać programu pocztowego. Dokumentów (np. uchwał, umowy spółki) prosimy na razie nie załączać — poprosimy o nie i wskażemy bezpieczny sposób przesłania po pierwszym kontakcie.
 </div>
 
 <label class="form-consent">
-<input id="zs_consent" type="checkbox"/>
+<input id="zs_consent" name="zs_consent" type="checkbox"/>
 <span>Wyrażam zgodę na kontakt w sprawie odpowiedzi na zapytanie i zapoznałem/-am się z <a href="polityka-prywatnosci.html" target="_blank">Polityką prywatności</a>. <span class="req">*</span></span>
 </label>
-<div class="field-error" id="zs_consent_error">Zaznacz zgodę, aby przygotować wiadomość.</div>
+<div class="field-error" id="zs_consent_error">Zaznacz zgodę, aby wysłać zgłoszenie.</div>
 
 <button type="button" class="btn" id="zsSubmit">Wyślij zapytanie</button>
 </form>
 
-<div class="form-success" id="zsSuccess">
-<h3>Wiadomość jest gotowa</h3>
-<p>Skopiuj treść i wyślij ją do nas ze swojej skrzynki — dopiero wtedy do nas dotrze. Odpowiadamy zwykle w ciągu 24 godzin od otrzymania wiadomości.</p>
-<div class="msg-box">
-<div class="msg-label">Do</div>
-<div class="msg-value" data-role="to"></div>
-<div class="msg-label" style="margin-top:10px">Temat</div>
-<div class="msg-value" data-role="subject"></div>
-<div class="msg-label" style="margin-top:10px">Treść</div>
-<div class="msg-value" data-role="body"></div>
-</div>
-<div class="btnrow">
-<button type="button" class="btn" id="zsCopyBtn">Skopiuj treść</button>
-<button type="button" class="btn ghost" id="zsSendBtn">Otwórz w programie pocztowym</button>
-</div>
-</div>
+<div class="form-result" id="zsSuccess" style="display:none"></div>
 </div>
 
 </div>

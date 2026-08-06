@@ -85,7 +85,13 @@
     });
   }
 
-  // 5) Wspólny silnik prostych formularzy mailowych (bez backendu)
+  // 5) Wspólny silnik prostych formularzy — prawdziwe wysyłanie (POST do usługi
+  //    pośredniczącej wskazanej w config.actionUrl), bez własnego serwera.
+  //    Dopóki actionUrl nie jest realnym adresem (zaczyna się od "["), formularz
+  //    pokazuje jasną informację, że nie jest jeszcze podłączony — nigdy nie
+  //    udaje, że coś wysłał, skoro nie ma dokąd.
+  var FORM_NOT_CONFIGURED_PREFIX = '[';
+
   function isValidEmail(value) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
   }
@@ -95,22 +101,12 @@
     if (errorEl) errorEl.style.display = show ? 'block' : 'none';
   }
 
-  function mfCollectValues(config) {
-    var values = {};
-    config.fields.forEach(function (f) {
-      var el = document.getElementById(f.id);
-      values[f.id] = el ? el.value.trim() : '';
-    });
-    return values;
-  }
-
-  function validateMailForm(config) {
+  function validateForm(config) {
     var messages = [];
-    var values = mfCollectValues(config);
     config.fields.forEach(function (f) {
       var el = document.getElementById(f.id);
       var errorEl = document.getElementById(f.id + '_error');
-      var value = values[f.id];
+      var value = el ? el.value.trim() : '';
       var bad = false;
       if (f.required && !value) bad = true;
       if (!bad && f.type === 'email' && value && !isValidEmail(value)) bad = true;
@@ -122,7 +118,7 @@
     var consentErrorEl = document.getElementById(config.consentId + '_error');
     var consentOk = consentEl ? consentEl.checked : false;
     if (consentErrorEl) consentErrorEl.style.display = consentOk ? 'none' : 'block';
-    if (!consentOk) messages.push('Zaznacz zgodę, aby przygotować wiadomość.');
+    if (!consentOk) messages.push('Zaznacz zgodę, aby wysłać zgłoszenie.');
 
     var summaryEl = document.getElementById(config.errorSummaryId);
     if (summaryEl) {
@@ -135,85 +131,75 @@
       }
     }
 
-    return { ok: messages.length === 0, values: values };
+    return { ok: messages.length === 0 };
   }
 
-  function mfBuildPayload(config) {
-    var values = mfCollectValues(config);
-    return {
-      to: config.toAddress,
-      subject: config.buildSubject(values),
-      body: config.buildBody(values)
-    };
+  function showFormResult(box, kind, title, html) {
+    if (!box) return;
+    box.className = 'form-result form-result-' + kind;
+    box.innerHTML = '<h3>' + title + '</h3><p>' + html + '</p>';
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function initMailForm(config) {
+  function initRealForm(config) {
+    var formEl = document.getElementById(config.formId);
     var submitBtn = document.getElementById(config.submitBtnId);
     var resultBox = document.getElementById(config.resultBoxId);
-    var copyBtn = document.getElementById(config.copyBtnId);
-    var sendBtn = document.getElementById(config.sendBtnId);
-    if (!submitBtn) return;
+    if (!formEl || !submitBtn) return;
 
-    function fillResult() {
-      if (!resultBox) return;
-      var payload = mfBuildPayload(config);
-      var toEl = resultBox.querySelector('[data-role="to"]');
-      var subjEl = resultBox.querySelector('[data-role="subject"]');
-      var bodyEl = resultBox.querySelector('[data-role="body"]');
-      if (toEl) toEl.textContent = payload.to;
-      if (subjEl) subjEl.textContent = payload.subject;
-      if (bodyEl) bodyEl.textContent = payload.body;
-    }
+    var originalLabel = submitBtn.textContent;
 
     submitBtn.addEventListener('click', function () {
-      var result = validateMailForm(config);
+      var result = validateForm(config);
       if (!result.ok) {
         if (resultBox) resultBox.style.display = 'none';
         var summaryEl = document.getElementById(config.errorSummaryId);
         if (summaryEl) summaryEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-      fillResult();
-      if (resultBox) {
-        resultBox.style.display = 'block';
-        resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      if (!config.actionUrl || config.actionUrl.indexOf(FORM_NOT_CONFIGURED_PREFIX) === 0) {
+        showFormResult(resultBox, 'warn', 'Formularz nie jest jeszcze podłączony',
+          'Ten formularz nie ma jeszcze skonfigurowanego adresu usługi wysyłkowej — ' +
+          'to się pojawi, gdy wybierzemy dostawcę. Na razie prosimy o kontakt na adres ' +
+          '<span class="ph">kontakt@[domena].pl</span>.');
+        return;
       }
-    });
 
-    if (copyBtn) {
-      copyBtn.addEventListener('click', function () {
-        var payload = mfBuildPayload(config);
-        var text = 'Do: ' + payload.to + '\nTemat: ' + payload.subject + '\n\n' + payload.body;
-        var done = function () {
-          var original = copyBtn.textContent;
-          copyBtn.textContent = 'Skopiowano!';
-          setTimeout(function () { copyBtn.textContent = original; }, 1500);
-        };
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(done, function () {
-            alert('Nie udało się skopiować automatycznie — zaznacz i skopiuj treść ręcznie z pola poniżej.');
-          });
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Wysyłanie…';
+
+      fetch(config.actionUrl, {
+        method: 'POST',
+        body: new FormData(formEl),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (resp) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        if (resp.ok) {
+          showFormResult(resultBox, 'ok', 'Dziękujemy!', config.successText);
+          formEl.reset();
         } else {
-          alert('Ta przeglądarka nie obsługuje kopiowania jednym kliknięciem — zaznacz i skopiuj treść ręcznie z pola poniżej.');
+          showFormResult(resultBox, 'error', 'Coś poszło nie tak',
+            'Nie udało się wysłać zgłoszenia. Spróbuj ponownie albo napisz bezpośrednio na adres ' +
+            '<span class="ph">kontakt@[domena].pl</span>.');
         }
+      }, function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        showFormResult(resultBox, 'error', 'Coś poszło nie tak',
+          'Nie udało się wysłać zgłoszenia (sprawdź połączenie z internetem). Spróbuj ponownie albo napisz bezpośrednio na adres ' +
+          '<span class="ph">kontakt@[domena].pl</span>.');
       });
-    }
-
-    if (sendBtn) {
-      sendBtn.addEventListener('click', function () {
-        var payload = mfBuildPayload(config);
-        var href = 'mailto:' + encodeURIComponent(payload.to)
-          + '?subject=' + encodeURIComponent(payload.subject)
-          + '&body=' + encodeURIComponent(payload.body);
-        window.location.href = href;
-      });
-    }
+    });
   }
 
   function initZarzadSafeForm() {
     if (!document.getElementById('zsForm')) return;
-    initMailForm({
-      toAddress: 'kontakt@[domena].pl',
+    initRealForm({
+      formId: 'zsForm',
+      actionUrl: '[ADRES_USLUGI_FORMULARZY — uzupełnić po wyborze dostawcy]',
       fields: [
         { id: 'zs_name', label: 'Imię i nazwisko', required: true, type: 'text', errorMsg: 'Podaj imię i nazwisko.' },
         { id: 'zs_email', label: 'E-mail', required: true, type: 'email', errorMsg: 'Podaj poprawny adres e-mail.' },
@@ -225,41 +211,16 @@
       consentId: 'zs_consent',
       resultBoxId: 'zsSuccess',
       submitBtnId: 'zsSubmit',
-      copyBtnId: 'zsCopyBtn',
-      sendBtnId: 'zsSendBtn',
       errorSummaryId: 'zsErrorSummary',
-      buildSubject: function (v) {
-        return 'Zarząd SAFE — zapytanie o wycenę (' + v.zs_name + ')';
-      },
-      buildBody: function (v) {
-        return [
-          'Dzień dobry,',
-          '',
-          'Piszę w sprawie pakietu Zarząd SAFE (bezpieczne odejście z zarządu / ograniczenie ryzyka).',
-          '',
-          'Dane kontaktowe:',
-          '- Imię i nazwisko: ' + v.zs_name,
-          '- E-mail: ' + v.zs_email,
-          '- Telefon: ' + (v.zs_phone || '—'),
-          '- Nazwa spółki: ' + (v.zs_company || '—'),
-          '- Numer KRS: ' + (v.zs_krs || '—'),
-          '',
-          'Opis sytuacji:',
-          v.zs_description,
-          '',
-          'Pozdrawiam,',
-          v.zs_name,
-          '',
-          '(Wiadomość przygotowana z formularza na stronie KRS Guard — zarzad-safe-formularz.html)'
-        ].join('\n');
-      }
+      successText: 'Otrzymaliśmy Twoje zgłoszenie w sprawie pakietu Zarząd SAFE — odezwiemy się zwykle w ciągu 24 godzin i wskażemy, jak bezpiecznie przesłać dalsze dokumenty, jeśli będą potrzebne.'
     });
   }
 
   function initContactGeneralForm() {
     if (!document.getElementById('ctForm')) return;
-    initMailForm({
-      toAddress: 'kontakt@[domena].pl',
+    initRealForm({
+      formId: 'ctForm',
+      actionUrl: '[ADRES_USLUGI_FORMULARZY — uzupełnić po wyborze dostawcy]',
       fields: [
         { id: 'ct_first', label: 'Imię', required: true, type: 'text', errorMsg: 'Podaj imię.' },
         { id: 'ct_last', label: 'Nazwisko', required: true, type: 'text', errorMsg: 'Podaj nazwisko.' },
@@ -271,30 +232,8 @@
       consentId: 'ct_consent',
       resultBoxId: 'ctSuccess',
       submitBtnId: 'ctSubmit',
-      copyBtnId: 'ctCopyBtn',
-      sendBtnId: 'ctSendBtn',
       errorSummaryId: 'ctErrorSummary',
-      buildSubject: function (v) {
-        return 'Wiadomość ze strony KRS Guard — ' + v.ct_subject;
-      },
-      buildBody: function (v) {
-        return [
-          'Dzień dobry,',
-          '',
-          v.ct_message,
-          '',
-          'Dane kontaktowe:',
-          '- Imię i nazwisko: ' + v.ct_first + ' ' + v.ct_last,
-          '- E-mail: ' + v.ct_email,
-          '- Telefon: ' + (v.ct_phone || '—'),
-          '- Temat: ' + v.ct_subject,
-          '',
-          'Pozdrawiam,',
-          v.ct_first + ' ' + v.ct_last,
-          '',
-          '(Wiadomość przygotowana z formularza na stronie KRS Guard — kontakt.html)'
-        ].join('\n');
-      }
+      successText: 'Otrzymaliśmy Twoją wiadomość — odezwiemy się zwykle w ciągu 24 godzin.'
     });
   }
 

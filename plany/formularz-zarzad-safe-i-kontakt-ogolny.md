@@ -1,101 +1,94 @@
-# Plan (rewizja): uprość formularze Zarząd SAFE + Kontakt ogólny, dodaj numer KRS
+# Plan (kolejna rewizja): prawdziwe wysyłanie formularza Zarząd SAFE, bez „kombinacji"
 
 ## Kontekst
 
-Poprzedni etap (formularz Zarząd SAFE + ogólny formularz na Kontakt, `mailto:` do
-kancelarii) został wdrożony, ale test na żywo pokazał realny problem, którego nie dało
-się przewidzieć bez sprawdzenia na komputerze bez skonfigurowanego programu pocztowego:
-kliknięcie „Otwórz w programie pocztowym” pokazuje systemowe okno Windows „Jak chcesz
-otwierać elementy tego typu?" (Chrome/Edge/Outlook/sklep) zamiast po prostu wysłać
-wiadomość — bo `mailto:` działa tylko wtedy, gdy na komputerze jest ustawiony domyślny
-program pocztowy, a wielu ludzi (szczególnie tych korzystających głównie z poczty w
-przeglądarce, np. Gmaila) go nie ma. To realny ślepy zaułek dla części użytkowników, nie
-tylko niedogodność.
+Poprzednia wersja (jeden przycisk „Wyślij zapytanie" → gotowa treść + „Skopiuj treść" /
+„Otwórz w programie pocztowym") wciąż nie odpowiada na sedno pytania właściciela: **dlaczego
+kliknięcie „Wyślij" nie wysyła po prostu wiadomości samo z siebie?**
 
-Właściciel zgłosił też, że układ jest przekombinowany: osobny przycisk „Przygotuj
-wiadomość" (który tylko waliduje i pokazuje kolejny panel), a w nim osobny przycisk
-„Podgląd treści" (który dopiero pokazuje samą wiadomość) — trzy kliknięcia zamiast
-jednego, bez jasnego powodu. Do tego brakuje pola na numer KRS spółki, które jest istotne
-dla wyceny — a jego dodanie rozwiązuje też problem z dokumentami: **mając numer KRS,
-sprawdzimy podstawowe dane spółki (skład zarządu, uchwały, wpisy) sami w publicznym
-rejestrze KRS, bez konieczności proszenia klienta o przesyłanie dokumentów na tym etapie**.
-Dokumenty, których nie ma w jawnym rejestrze (np. umowa spółki), można domówić już w
-bezpośredniej korespondencji po pierwszym kontakcie — nie trzeba tego rozwiązywać w tym
-krótkim formularzu.
+Odpowiedź techniczna: ta strona to same pliki bez własnego serwera — jak dokument otwarty
+w przeglądarce, nie działający program. Przycisk może zrobić tylko to, co potrafi sama
+przeglądarka bez pomocy z zewnątrz (otworzyć program pocztowy użytkownika, skopiować
+tekst). Żeby naprawdę wysłać zgłoszenie — w tym załączone dokumenty — trzeba połączyć
+formularz z zewnętrzną usługą, która ma serwer po drugiej stronie i przekazuje zgłoszenia
+jako e-mail. To nie wymaga budowania własnego serwera ani zmiany podejścia „strona to
+zwykłe pliki" — wystarczy, że formularz wysyła dane pod adres takiej usługi (`<form
+action="...">`), zamiast tylko otwierać mailto.
+
+**Sprawdziłem bezpośrednio na stronie jednego z popularnych dostawców takich usług
+(Formspree), zamiast polegać na streszczeniach z wyszukiwarki** (już raz w tej sesji takie
+streszczenie podało błędną cenę — 15$ zamiast faktycznych 10$). Dwa istotne ustalenia:
+- Plan z obsługą załączników zaczyna się od **10 USD/mies.** (200 zgłoszeń, 1 GB na pliki).
+- **Regulamin (Privacy Policy) tego dostawcy wprost zabrania używania ich usługi do
+  zbierania „wrażliwych danych osobowych" i zrzeka się odpowiedzialności za takie dane** —
+  bez jasno opisanej unijnej umowy powierzenia danych. Dla kancelarii prawnej, która
+  chciałaby tą drogą odbierać dokumenty spraw klientów (uchwały, dane spółki), to realny
+  sygnał ostrzegawczy — nie sama cena jest tu problemem, tylko to, komu i na jakich
+  warunkach powierzylibyśmy dokumenty klientów.
+
+To rozstrzyga, dlaczego nie mogę po prostu podłączyć pierwszej lepszej usługi tego typu —
+wybór konkretnego dostawcy dla **dokumentów prawnych klientów** to decyzja wymagająca
+oceny radcy prawnego, nie tylko techniczna. Rozdzielam więc problem na dwie części o różnym
+ryzyku, żeby nie blokować tego, co można bezpiecznie zrobić już teraz.
 
 ## Rozwiązanie
 
-**Jeden przycisk zamiast trzech kroków.** Formularz ma teraz tylko przycisk „Wyślij
-zapytanie" (Zarząd SAFE) / „Wyślij" (formularz ogólny — bez zmian nazwy). Po kliknięciu:
-walidacja jak dotychczas (błędy przy polach + podsumowanie na górze), a jeśli wszystko
-poprawne — **od razu, w tym samym miejscu, pojawia się gotowa treść wiadomości** (bez
-dodatkowego klikania „podgląd"). Nie ma już osobnego „panelu sukcesu" oddzielonego od
-treści ani modala z podglądem — to, co wcześniej było w modalu, staje się głównym,
-widocznym wynikiem.
+**Część 1 — dane z formularza (imię, e-mail, telefon, numer KRS, opis sytuacji) zaczynają
+być NAPRAWDĘ wysyłane, jednym kliknięciem, bez żadnych dodatkowych kroków.** Formularz
+łączy się z usługą pośredniczącą, która odbiera zgłoszenie i przekazuje je e-mailem na
+adres kancelarii — bez potrzeby posiadania własnego programu pocztowego przez klienta.
+Znika „Skopiuj treść" / „Otwórz w programie pocztowym" — zostaje jeden przycisk „Wyślij
+zapytanie", a po kliknięciu widać tylko potwierdzenie: „Dziękujemy, otrzymaliśmy Twoje
+zgłoszenie — odezwiemy się w ciągu 24 godzin." Same pola tekstowe (bez dokumentów) to
+znacznie niższe ryzyko niż przesyłanie akt sprawy, więc tu mogę zaproponować konkretnego
+dostawcę bez czekania na dodatkową decyzję — ale nadal nie zakładam za Pana konta ani nie
+płacę (to musi Pan zrobić sam, zgodnie z zasadami tej sesji) — przygotuję formularz
+gotowy do podłączenia, z jasną instrukcją, co dokładnie kliknąć.
 
-**Dwie równorzędne opcje wysyłki, obie widoczne od razu, żadna nie jest jedynym wyjściem:**
-- **„Skopiuj treść”** (nowość — Clipboard API) — kopiuje gotowy tekst (adresat, temat,
-  treść) do schowka jednym kliknięciem, z krótkim potwierdzeniem „Skopiowano!”. Nie zależy
-  od żadnej konfiguracji systemu — działa zawsze, niezależnie od tego, czy ktoś ma Gmaila
-  w przeglądarce, Outlooka, czy cokolwiek innego. To robi się **główną, zalecaną ścieżką**
-  (przycisk `.btn`, wyraźny).
-- **„Otwórz w programie pocztowym”** (istniejący mechanizm `mailto:`) — zostaje jako
-  dodatkowa wygoda dla osób, które mają skonfigurowany program pocztowy, ale wyraźnie
-  opisana jako opcjonalna, nie jako główna ścieżka (przycisk `.btn.ghost`, drugorzędny).
+**Część 2 — dokumenty (uchwały, wypis z KRS, umowa spółki) NIE trafiają na ten formularz.**
+Zamiast obiecywać upload, którego nie da się bezpiecznie zrobić na tym etapie, formularz
+kończy się jasną informacją: „Po otrzymaniu zgłoszenia napiszemy do Ciebie i wskażemy
+bezpieczny sposób przesłania dokumentów." To nie jest wymówka — to standardowa praktyka
+kancelarii: dokumentów sprawy nie przesyła się przez formularz na stronie marketingowej,
+tylko w bezpośredniej korespondencji z konkretną, znaną już osobą po pierwszym kontakcie.
+Numer KRS (już w formularzu) w międzyczasie pozwala wstępnie zorientować się w sytuacji
+spółki z jawnego rejestru.
 
-Treść wiadomości jest zawsze pokazana wprost na stronie (czytelny blok tekstu), więc
-nawet jeśli oba przyciski zawiodą, użytkownik i tak widzi gotowy tekst do ręcznego
-skopiowania — żadnego ślepego zaułka.
+Ten podział de facto **rozwiązuje główną skargę** („po co te kombinacje") dla zwykłego
+zgłoszenia, a jednocześnie nie naraża dokumentów klientów na niejasne warunki obcej firmy
+bez Pana świadomej zgody jako radcy prawnego.
 
-**Nowe pole: „Numer KRS spółki”** (w formularzu Zarząd SAFE, nie w ogólnym formularzu
-kontaktowym — tam nie ma to zastosowania). Opcjonalne (nie blokuje wysłania), ale
-umieszczone przy „Nazwa spółki” z krótką podpowiedzią „10 cyfr — znajdziesz go np. w
-KRS lub w umowie spółki", placeholder „np. 0000123456". Trafia do treści wiadomości
-razem z pozostałymi danymi.
+## Do decyzji (nie mogę tego rozstrzygnąć sam)
 
-**Usuwam listę „co przygotować" (uchwała/odpis KRS/umowa spółki)** — była myląca, bo
-sugerowała przesyłanie załączników, których formularz i tak nie potrafi przyjąć. Zastępuję
-ją jednym krótkim zdaniem tłumaczącym, po co jest numer KRS: „Numer KRS pozwala nam od
-razu sprawdzić podstawowe dane spółki. O dodatkowe dokumenty (np. umowę spółki) poprosimy,
-jeśli będą potrzebne — już w bezpośredniej rozmowie.”
+- **Wybór konkretnego dostawcy** dla Części 1 — potrzebuję Pana zgody, zanim cokolwiek
+  podłączę na stałe, bo to Pan zakłada tam konto i wpisuje dane rozliczeniowe (ja tego nie
+  zrobię). Zanim to ustalimy, przygotuję formularz technicznie gotowy, z placeholderem do
+  podmiany na adres usługi — analogicznie jak `kontakt@[domena].pl` czeka na prawdziwy
+  e-mail. Jeśli chce Pan, żebym najpierw dokładniej sprawdził 2-3 dostawców z jasną,
+  europejską umową powierzenia danych (nawet dla samych pól tekstowych, dla pewności) —
+  proszę dać znać, zrobię to przed wdrożeniem.
+- **Kiedy i jak wracamy do tematu dokumentów** — czy zostawiamy to tak, jak opisano wyżej
+  (dokumenty tylko po nawiązaniu bezpośredniego kontaktu), czy chce Pan w przyszłości
+  zbadać dostawcę z jasną umową powierzenia danych specjalnie do tego celu.
 
-**Uproszczona notatka** pod formularzem — zamiast tłumaczenia mechaniki `mailto:` (co
-okazało się mylące), krótkie: „To prosty formularz bez własnego serwera. Po kliknięciu
-„Wyślij zapytanie" zobaczysz gotową treść — skopiuj ją do swojej poczty albo spróbuj
-otworzyć program pocztowy, jeśli masz go na tym komputerze skonfigurowany.”
+## Zmiany techniczne
 
-## Zmiany techniczne (ta sama filozofia co poprzednio: wspólny silnik, bez duplikacji)
-
-- **`www/main.js`** — uproszczenie wspólnego silnika formularzy: `initMailForm(config)`
-  traci `previewBtnId`/`modalId` (modal znika całkowicie z obu stron), zyskuje
-  `copyBtnId` i `resultBoxId` (blok z gotową treścią, widoczny od razu po poprawnej
-  walidacji, nie osobny „panel sukcesu"). Kopiowanie przez `navigator.clipboard.writeText()`
-  z krótkim komunikatem zwrotnym na przycisku (np. zmiana tekstu na „Skopiowano!” na 1,5 s).
-  Do configu formularza Zarząd SAFE dochodzi pole `zs_krs` (opcjonalne, bez walidacji
-  formatu — tylko podpowiedź w interfejsie, żeby nie utrudniać wysyłki komuś, kto nie
-  pamięta numeru na pamięć) i trafia do treści maila.
-- **`www/zarzad-safe-formularz.html`** — usunięcie modala (`#zsMailModal`), usunięcie
-  `#zsPreviewBtn`, przycisk `#zsSubmit` zmienia etykietę na „Wyślij zapytanie”, nowe pole
-  `#zs_krs`, nowy blok wyniku (dawny `#zsSuccess`, teraz pokazuje też treść wiadomości
-  bezpośrednio, plus przyciski „Skopiuj treść” / „Otwórz w programie pocztowym”), usunięcie
-  listy „co przygotować”, skrócona notatka.
-- **`www/kontakt.html`** — analogiczne uproszczenie formularza ogólnego (usunięcie
-  `#ctMailModal`, `#ctPreviewBtn`, ten sam wzorzec wyniku z „Skopiuj treść”), bez nowych pól
-  (numer KRS dotyczy tylko Zarząd SAFE).
-- **`www/styles.css`** — modal (`.mailmodal-*`) można usunąć jako nieużywany, albo
-  zostawić nieużywany (nie szkodzi, ale sprzątam, skoro i tak edytuję plik — usuwam, żeby
-  nie zostawiać martwego kodu). Reszta klas formularzowych (`.field`, `.form-row`, `.note`,
-  `.form-errorsummary`, `.btn`/`.btn.ghost`) zostaje, dochodzi mały styl na blok wyniku z
-  widoczną treścią (można wykorzystać istniejącą `.mailmodal-box` typografię — przenieść ją
-  pod nową nazwę `.msg-box`, żeby nie zależeć od skasowanych klas modala).
+- **`www/zarzad-safe-formularz.html`** i **`www/kontakt.html`**: formularze zamieniają się
+  z JS-owej walidacji + copy/mailto na zwykłe wysyłanie `<form method="POST"
+  action="[adres usługi — do uzupełnienia]">`, z zachowaniem tych samych pól i tej samej
+  walidacji „na oko" (błędy przy polach) doszytej w JS przed wysłaniem, żeby nie wysyłać
+  pustych zgłoszeń. Po wysłaniu — prosty komunikat potwierdzenia zamiast bloku z treścią
+  do skopiowania (bo tym razem naprawdę dociera do kancelarii, nie trzeba pokazywać
+  „dowodu" w postaci tekstu).
+- **`www/main.js`**: obecny „silnik" kopiowania/mailto (`initMailForm` i pochodne) zostaje
+  zastąpiony dużo prostszym kodem — tylko walidacja pól przed wysłaniem formularza,
+  bez budowania treści maila ręcznie (to teraz robi usługa pośrednicząca).
+- Widoczna, jasna notatka na obu stronach: „Twoje zgłoszenie trafia bezpośrednio do nas.
+  Dokumentów prosimy nie załączać tutaj — poprosimy o nie po pierwszym kontakcie."
 
 ## Weryfikacja
 
-Ręcznie w przeglądarce (Pana Edge), na obu formularzach: puste pole → błędy; wypełnić
-poprawnie (w Zarząd SAFE też wpisać numer KRS) → od razu widoczna treść wiadomości bez
-dodatkowego klikania; „Skopiuj treść” → wkleić gdziekolwiek (np. w notatnik) i sprawdzić,
-że treść jest kompletna i poprawna; „Otwórz w programie pocztowym” → sprawdzić, że nadal
-działa tam, gdzie jest skonfigurowany program pocztowy (u Pana pewnie pokaże to samo okno
-wyboru co poprzednio — to oczekiwane, bo to ograniczenie Windows, nie błąd formularza,
-ale teraz nie jest to już jedyna droga). Szybki rzut oka na `index.html`/`faq.html`, że
-nic się nie zepsuło (współdzielony `main.js`/`styles.css`).
+Po podłączeniu adresu usługi: wysłać testowe zgłoszenie z obu formularzy i sprawdzić, że
+faktycznie przychodzi e-mail na adres kancelarii (na koncie testowym/docelowym, które Pan
+założy). Do tego czasu — bez adresu usługi — formularz nie ma jak wysłać niczego naprawdę,
+więc ten krok czeka na Pana decyzję z sekcji „Do decyzji" wyżej.
