@@ -149,45 +149,53 @@
 
   function initMailForm(config) {
     var submitBtn = document.getElementById(config.submitBtnId);
-    var previewBtn = document.getElementById(config.previewBtnId);
+    var resultBox = document.getElementById(config.resultBoxId);
+    var copyBtn = document.getElementById(config.copyBtnId);
     var sendBtn = document.getElementById(config.sendBtnId);
-    var successBox = document.getElementById(config.successBoxId);
-    var modal = document.getElementById(config.modalId);
     if (!submitBtn) return;
+
+    function fillResult() {
+      if (!resultBox) return;
+      var payload = mfBuildPayload(config);
+      var toEl = resultBox.querySelector('[data-role="to"]');
+      var subjEl = resultBox.querySelector('[data-role="subject"]');
+      var bodyEl = resultBox.querySelector('[data-role="body"]');
+      if (toEl) toEl.textContent = payload.to;
+      if (subjEl) subjEl.textContent = payload.subject;
+      if (bodyEl) bodyEl.textContent = payload.body;
+    }
 
     submitBtn.addEventListener('click', function () {
       var result = validateMailForm(config);
       if (!result.ok) {
-        if (successBox) successBox.style.display = 'none';
+        if (resultBox) resultBox.style.display = 'none';
         var summaryEl = document.getElementById(config.errorSummaryId);
         if (summaryEl) summaryEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-      if (successBox) {
-        successBox.style.display = 'block';
-        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      fillResult();
+      if (resultBox) {
+        resultBox.style.display = 'block';
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
 
-    if (previewBtn && modal) {
-      previewBtn.addEventListener('click', function () {
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
         var payload = mfBuildPayload(config);
-        var toEl = modal.querySelector('[data-role="to"]');
-        var subjEl = modal.querySelector('[data-role="subject"]');
-        var bodyEl = modal.querySelector('[data-role="body"]');
-        if (toEl) toEl.textContent = payload.to;
-        if (subjEl) subjEl.textContent = payload.subject;
-        if (bodyEl) bodyEl.textContent = payload.body;
-        modal.style.display = 'flex';
-      });
-    }
-
-    if (modal) {
-      modal.querySelectorAll('[data-role="close"]').forEach(function (el) {
-        el.addEventListener('click', function () { modal.style.display = 'none'; });
-      });
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) modal.style.display = 'none';
+        var text = 'Do: ' + payload.to + '\nTemat: ' + payload.subject + '\n\n' + payload.body;
+        var done = function () {
+          var original = copyBtn.textContent;
+          copyBtn.textContent = 'Skopiowano!';
+          setTimeout(function () { copyBtn.textContent = original; }, 1500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () {
+            alert('Nie udało się skopiować automatycznie — zaznacz i skopiuj treść ręcznie z pola poniżej.');
+          });
+        } else {
+          alert('Ta przeglądarka nie obsługuje kopiowania jednym kliknięciem — zaznacz i skopiuj treść ręcznie z pola poniżej.');
+        }
       });
     }
 
@@ -211,13 +219,13 @@
         { id: 'zs_email', label: 'E-mail', required: true, type: 'email', errorMsg: 'Podaj poprawny adres e-mail.' },
         { id: 'zs_phone', label: 'Telefon', required: false, type: 'tel' },
         { id: 'zs_company', label: 'Nazwa spółki', required: false, type: 'text' },
+        { id: 'zs_krs', label: 'Numer KRS spółki', required: false, type: 'text' },
         { id: 'zs_description', label: 'Opis sytuacji', required: true, type: 'textarea', errorMsg: 'Opisz krótko swoją sytuację.' }
       ],
       consentId: 'zs_consent',
-      modalId: 'zsMailModal',
-      successBoxId: 'zsSuccess',
+      resultBoxId: 'zsSuccess',
       submitBtnId: 'zsSubmit',
-      previewBtnId: 'zsPreviewBtn',
+      copyBtnId: 'zsCopyBtn',
       sendBtnId: 'zsSendBtn',
       errorSummaryId: 'zsErrorSummary',
       buildSubject: function (v) {
@@ -234,6 +242,7 @@
           '- E-mail: ' + v.zs_email,
           '- Telefon: ' + (v.zs_phone || '—'),
           '- Nazwa spółki: ' + (v.zs_company || '—'),
+          '- Numer KRS: ' + (v.zs_krs || '—'),
           '',
           'Opis sytuacji:',
           v.zs_description,
@@ -260,10 +269,9 @@
         { id: 'ct_message', label: 'Treść wiadomości', required: true, type: 'textarea', errorMsg: 'Napisz treść wiadomości.' }
       ],
       consentId: 'ct_consent',
-      modalId: 'ctMailModal',
-      successBoxId: 'ctSuccess',
+      resultBoxId: 'ctSuccess',
       submitBtnId: 'ctSubmit',
-      previewBtnId: 'ctPreviewBtn',
+      copyBtnId: 'ctCopyBtn',
       sendBtnId: 'ctSendBtn',
       errorSummaryId: 'ctErrorSummary',
       buildSubject: function (v) {

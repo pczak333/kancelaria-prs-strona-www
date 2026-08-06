@@ -129,7 +129,7 @@ Dane poniżej są <b>przykładowe (makieta)</b> — do zastąpienia prawdziwymi 
 </div>
 
 <div class="note">
-Po kliknięciu „Otwórz w programie pocztowym” otworzy się Twój program pocztowy z gotową wiadomością do nas — trafi do nas dopiero, gdy klikniesz „Wyślij” u siebie. Jeśli program pocztowy się nie otworzy, skopiuj treść z podglądu i wyślij ją sam(a) na adres <span class="ph">kontakt@[domena].pl</span>.
+To prosty formularz bez własnego serwera. Po kliknięciu „Wyślij” zobaczysz poniżej gotową treść — skopiuj ją do swojej poczty (przycisk „Skopiuj treść”) albo spróbuj otworzyć program pocztowy, jeśli masz go na tym komputerze skonfigurowany.
 </div>
 
 <label class="form-consent">
@@ -143,32 +143,23 @@ Po kliknięciu „Otwórz w programie pocztowym” otworzy się Twój program po
 
 <div class="form-success" id="ctSuccess">
 <h3>Wiadomość jest gotowa</h3>
-<p>Sprawdź treść i wyślij ją do nas ze swojej skrzynki — dopiero wtedy do nas dotrze.</p>
+<p>Skopiuj treść i wyślij ją do nas ze swojej skrzynki — dopiero wtedy do nas dotrze.</p>
+<div class="msg-box">
+<div class="msg-label">Do</div>
+<div class="msg-value" data-role="to"></div>
+<div class="msg-label" style="margin-top:10px">Temat</div>
+<div class="msg-value" data-role="subject"></div>
+<div class="msg-label" style="margin-top:10px">Treść</div>
+<div class="msg-value" data-role="body"></div>
+</div>
 <div class="btnrow">
-<button type="button" class="btn ghost" id="ctPreviewBtn">Podgląd treści</button>
-<button type="button" class="btn" id="ctSendBtn">Otwórz w programie pocztowym</button>
+<button type="button" class="btn" id="ctCopyBtn">Skopiuj treść</button>
+<button type="button" class="btn ghost" id="ctSendBtn">Otwórz w programie pocztowym</button>
 </div>
 </div>
 </div>
 </div>
 </main>
-
-<div class="mailmodal-overlay" id="ctMailModal" style="display:none">
-<div class="mailmodal" role="dialog" aria-modal="true" aria-label="Podgląd wiadomości">
-<div class="mailmodal-head">
-<div class="mailmodal-title">Podgląd wiadomości</div>
-<button class="btn ghost" type="button" data-role="close">Zamknij</button>
-</div>
-<div class="mailmodal-body">
-<div class="mailmodal-label">Do</div>
-<div class="mailmodal-box" data-role="to"></div>
-<div class="mailmodal-label" style="margin-top:12px">Temat</div>
-<div class="mailmodal-box" data-role="subject"></div>
-<div class="mailmodal-label" style="margin-top:12px">Treść</div>
-<div class="mailmodal-box" data-role="body"></div>
-</div>
-</div>
-</div>
 
 <footer class="footer">
 <div class="container footer-inner">
