@@ -137,7 +137,7 @@ najbliższej okazji.
 > Jedyna kancelaria w Polsce, która broni Cię na każdym etapie bycia w
 > zarządzie — od bezpiecznego wejścia, przez obronę przed pozwem z art.
 > 299 KSH i decyzjami US/ZUS, po bezpieczne odejście — w pełni zdalnie,
-> z jawną ceną, zanim jeszcze zadzwonisz.
+> z ceną znaną z góry.
 
 **Cztery dowody, które to uwiarygadniają (każdy oparty na zweryfikowanej
 liczbie z badania rynku, nie na deklaracji):**
@@ -155,8 +155,8 @@ liczbie z badania rynku, nie na deklaracji):**
 
 **Krótsza wersja na stronę / hasło reklamowe:**
 
-> Zarząd chroniony od wejścia po wyjście. W pełni zdalnie. Cena znana,
-> zanim zadzwonisz.
+> Zarząd chroniony od wejścia po wyjście. W pełni zdalnie. Cena znana
+> z góry.
 
 **Do rozważenia:** obecny H1 strony głównej („Odpowiadasz prywatnym
 majątkiem za długi spółki? Nie musisz zostać z tym sam.") celowo skupia
