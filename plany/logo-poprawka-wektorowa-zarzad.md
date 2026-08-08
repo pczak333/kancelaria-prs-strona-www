@@ -1,6 +1,28 @@
 # Plan: poprawa napisu „ZARZĄD" na logo-tarczy (wersja ostra/wektorowa)
 
-> Status: **plan zaakceptowany przez właściciela (07.08.2026), wykonanie NIE
+> ## ⛔ NIEAKTUALNY — zamknięty 08.08.2026. Nie realizować.
+>
+> **Diagnoza w tym planie była błędna.** Plan zakładał, że rozmyty jest
+> wyłącznie napis „ZARZĄD" (doklejony rastrowo), a reszta tarczy jest ostra.
+> Pomiar pliku 08.08.2026 pokazał co innego: `krs_guard_logo_transparent.png`
+> (601×779) to **powiększenie ~5,2× obrazka 116×134 px**, więc rozmyta jest
+> **cała tarcza** — srebrna ramka, niebieskie tło i wstęga tak samo jak napis.
+>
+> Plan wykonano mimo to w całości (wymazanie napisu + nowy napis Cinzel 700
+> zamieniony na krzywe, dopasowany co do piksela). Napis wyszedł ostry, ale
+> **właściciel odrzucił wynik** — bo reszta tarczy pozostała rozmyta, i o to
+> mu chodziło od początku („logo wygląda FATALNIE. Nic nie poprawiłeś!").
+>
+> **Obowiązujący kierunek:** narysować logo od nowa w dużym rozmiarze
+> **w Canvie** (polecenie właściciela). Canva zwróciła 4 ostre wersje —
+> czekamy na wybór. Szczegóły, adresy kandydatur i następne kroki:
+> `memory/stan-pracy-2026-08-08.md`.
+>
+> Poniższa treść zostaje wyłącznie jako zapis tego, co i dlaczego próbowano.
+
+---
+
+> Status pierwotny: **plan zaakceptowany przez właściciela (07.08.2026), wykonanie NIE
 > rozpoczęte.** Właściciel przechodzi na komputer na stałe, żeby pokazać
 > plik logo z lokalnego folderu „testy" (niewidoczny z sesji w chmurze) —
 > **przed startem wykonania sprawdzić na komputerze, czy ten plik zmienia
