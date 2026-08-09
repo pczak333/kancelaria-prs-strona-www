@@ -45,12 +45,14 @@ nazwa repo `kancelaria-prs-strona-www`, nazwy plików
 `Podglad strony KRS Guard.lnk`. Skrót „KRS" zostaje wszędzie tam, gdzie
 znaczy Krajowy Rejestr Sądowy — to nie nazwa marki.
 
-**Sprostowanie lokalizacji skrótu do podglądu:** wcześniejsze notatki (i
-`CLAUDE.md`) mówiły „skrót na pulpicie". Nieprawda — sprawdzone 09.08.2026:
-na pulpicie go nie ma, leży w **katalogu głównym repo**. Od 09.08.2026 jest
-zacommitowany, więc jedzie na drugi komputer. Zadziała tam jednak tylko, gdy
-repo leży w `C:\Users\User\Desktop\` — argument skrótu ma ścieżkę
-bezwzględną do `www/index.html`.
+**Doprecyzowanie lokalizacji skrótu do podglądu:** starsze notatki mówiły
+„skrót na pulpicie" — to skrót myślowy, nie błąd. Skrót leży w **katalogu
+głównym repo**, a sam folder repo jest na pulpicie
+(`C:\Users\User\Desktop\kancelaria-prs-strona-www\`), więc idzie się do niego
+przez pulpit → folder. Od 09.08.2026 plik `.lnk` jest zacommitowany, więc
+jedzie na drugi komputer. Zadziała tam jednak tylko, gdy repo leży dokładnie
+w `C:\Users\User\Desktop\` — argument skrótu ma ścieżkę bezwzględną do
+`www/index.html`.
 
 **Kalkulatora to NIE objęło** — osobne repo, osobne wdrożenie; nie
 sprawdzano, jaką nazwą posługuje się on sam. Nie zakładać, że jest spójny.

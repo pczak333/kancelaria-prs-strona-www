@@ -86,7 +86,10 @@ strona jest w pełni statyczna, więc w Edge działa z pliku bez serwera).
   ustawienia systemu; potwierdzone testem 31.07.2026 — plik `.bat` nie
   zostawił nawet logu, że się uruchomił). Dlatego na tym komputerze
   podgląd odpalamy przez skrót **`Podglad strony KRS Guard.lnk`** (ikona
-  Edge) — leży w **katalogu głównym repo** (NIE na pulpicie) i jest
+  Edge) — leży w **katalogu głównym repo**, czyli w
+  `C:\Users\User\Desktop\kancelaria-prs-strona-www\`. Sam folder repo jest na
+  pulpicie, więc do skrótu idzie się przez pulpit → folder (starsze notatki
+  skracały to do „skrót na pulpicie" — chodzi o to samo miejsce). Skrót jest
   zacommitowany, więc jedzie na drugi komputer. Utworzony PowerShellem
   (`WScript.Shell`), celuje w `msedge.exe` z argumentem
   `--new-window "file:///C:/Users/User/Desktop/kancelaria-prs-strona-www/www/index.html"`.
