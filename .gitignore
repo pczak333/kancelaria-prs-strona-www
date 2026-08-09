@@ -220,5 +220,10 @@ __marimo__/
 # Claude Code — lokalne ustawienia per komputer, nie commitować
 .claude/settings.local.json
 
+# Skrót do podglądu strony — ma ścieżki bezwzględne tego konkretnego
+# komputera, więc na drugim i tak nie zadziała; tworzy się go lokalnie
+# (patrz „Podgląd lokalny" w CLAUDE.md)
+*.lnk
+
 # Node — pozostałości po rozważanym (odrzuconym) podejściu Eleventy; nie commitować
 node_modules/

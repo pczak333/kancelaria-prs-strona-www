@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Kancelaria PRS – KRS Guard (prototyp testowy v13)</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    :root{
+      --tagline-left: 88px;
+      --ink:#0b2535;
+      --ink2:#12384b;
+      --muted:#5b6a76;
+      --bg:#f3f0ea;
+      --card:#ffffff;
+      --line:rgba(11,37,53,.14);
+      --shadow:0 22px 55px rgba(11,37,53,.14);
+      --radius:22px;
+      --brand:#0f5670;
+      --brand-2:#11485f;
+      --link:#0b4f6a;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+    a{color:inherit}
+
+    .container{max-width:1180px;margin:0 auto;padding:0 18px}
+
+    /* Header */
+    .header{
+      background:var(--bg);
+      border-bottom:1px solid rgba(11,37,53,.08);
+    
+      padding:14px 22px 10px;
+    }
+    .header-inner{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:flex-end;
+      gap:14px;
+      text-decoration:none;
+    }
+    .brand-mark{
+      display:flex;
+      flex-direction:column;
+      line-height:1;
+      transform:translateY(1px);
+    }
+    .brand-mark .kancelaria{
+      font-size:14px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--ink2);
+      font-weight:700;
+    }
+    .brand-mark .prs{
+      font-family:Georgia,"Times New Roman",Times,serif;
+      font-size:62px;
+      letter-spacing:.03em;
+      font-weight:700;
+      color:var(--ink);
+    }
+
+    .nav{
+      display:flex;
+      flex-wrap:nowrap;
+      justify-content:flex-start;
+      gap:18px;
+      align-items:center;
+      font-size:14px;
+      color:var(--ink2);
+      margin-top:0;
+      margin-left:12px;
+      flex:1;
+}
+    .nav a{white-space:nowrap}
+    .nav a{
+      text-decoration:none;
+      padding:8px 6px;
+      border-radius:10px;
+    }
+    .nav a:hover{background:rgba(255,255,255,.55)}
+
+    .krs-logo{
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-end;
+      padding-top:2px;
+      padding-right:6px;
+    }
+    
+    
+    .krs-logo-img{
+      height:64px;
+      width:auto;
+      display:block;
+      opacity:1;
+      filter:drop-shadow(0 1px 1px rgba(0,0,0,.10));
+    }
+.krs-logo span{display:block;font-size:28px;line-height:1.05}
+
+    /* hasło w belce usunięte zgodnie z nowymi założeniami */
+
+    /* Hero */
+    .hero{
+      padding:18px 0 10px;
+    }
+
+    .hero-bg{
+      border-radius:28px;
+      overflow:hidden;
+      background-image:
+        linear-gradient(135deg, rgba(13,70,92,.30), rgba(255,255,255,.06)),
+        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1800&q=60');
+      background-size:cover;
+      background-position:center;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(11,37,53,.12);
+    }
+
+    .hero-panel{
+      padding:28px;
+      background:rgba(255,255,255,.70);
+      backdrop-filter: blur(10px) saturate(1.2);
+      -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .hero-left, .hero-right{
+      border-radius:22px;
+      padding:18px;
+      background:rgba(255,255,255,.74);
+      border:1px solid rgba(11,37,53,.18);
+    }
+
+    .copy-box{
+      border:2px solid rgba(0,0,0,.55);
+      border-radius:14px;
+      padding:18px 18px;
+      background:rgba(255,255,255,.65);
+      color:var(--ink);
+      font-size:18px;
+      line-height:1.45;
+    }
+
+    .tabs{
+      margin-top: 34px;
+      display:flex;
+      width:100%;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(11,37,53,.35);
+      background:rgba(255,255,255,.7);
+}
+    .tab{
+      flex:1;
+      text-align:center;
+      text-decoration:none;
+      padding:12px 10px;
+      font-weight:900;
+      font-size:22px;
+      letter-spacing:.01em;
+    }
+    .tab.light{
+      color:var(--ink);
+      background:rgba(255,255,255,.9);
+      border-right:1px solid rgba(11,37,53,.25);
+    }
+    .tab.brand{
+      color:#fff;
+      background:var(--brand);
+    }
+
+    /* Nie wyświetlamy linii "Sprawy pilne..." na stronie głównej */
+    .hero-meta{display:none !important;}
+
+    .stats{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    .stat{
+      text-align:center;
+      padding:14px 10px;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(11,37,53,.14);
+      border-radius:16px;
+    }
+    .stat .n{
+      font-size:38px;
+      font-weight:900;
+      color:var(--ink);
+      line-height:1.05;
+    }
+    .stat .l{
+      margin-top:4px;
+      font-size:13px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .card-stack{display:flex;flex-direction:column;gap:12px}
+    .service-card{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      background:rgba(255,255,255,.90);
+      border:1px solid rgba(11,37,53,.18);
+      border-radius:16px;
+      padding:14px;
+    }
+    .icon{
+      width:38px;height:38px;
+      border-radius:12px;
+      display:grid;place-items:center;
+      background:rgba(15,86,112,.08);
+      border:1px solid rgba(15,86,112,.18);
+      flex:0 0 auto;
+      color:var(--ink);
+    }
+    .icon svg{width:22px;height:22px;display:block}
+    .service-card h3{margin:0;font-size:18px;color:var(--ink);line-height:1.15}
+    .service-card p{margin:6px 0 0;color:var(--muted);line-height:1.35}
+
+    /* About */
+    .section{
+      padding:26px 0 40px;
+    }
+    .about{
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(11,37,53,.10);
+      border-radius:26px;
+      padding:26px;
+      box-shadow:0 14px 40px rgba(11,37,53,.10);
+    }
+    .about h2{
+      margin:0 0 10px;
+      font-size:26px;
+      color:var(--ink);
+    }
+    .about p{
+      margin:10px 0;
+      font-size:16px;
+      line-height:1.6;
+      color:var(--ink2);
+    }
+    .about p .hl{font-weight:900;color:var(--ink)}
+    .about strong{font-weight:900;color:var(--ink)}
+
+    .about-bottom{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .feature-list{
+      background:rgba(255,255,255,.85);
+      border:1px solid rgba(11,37,53,.14);
+      border-radius:22px;
+      padding:18px;
+    }
+    .feature{
+      display:flex;
+      gap:12px;
+      padding:12px 0;
+      border-bottom:1px solid rgba(11,37,53,.10);
+    }
+    .feature:last-child{border-bottom:none}
+    .feature h4{margin:0;font-size:18px;line-height:1.2}
+    .feature .sub{margin-top:4px;color:var(--muted);font-size:14px;line-height:1.35}
+    .pill{
+      display:inline-block;
+      margin-left:8px;
+      padding:6px 10px;
+      border:2px solid rgba(0,0,0,.55);
+      border-radius:10px;
+      font-weight:900;
+      background:#fff;
+      color:var(--ink);
+      font-size:14px;
+      vertical-align:middle;
+    }
+
+    .about-stats{
+      background:rgba(255,255,255,.90);
+      border:1px solid rgba(11,37,53,.16);
+      border-radius:22px;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .about-stats .big{
+      font-size:48px;
+      font-weight:900;
+      line-height:1;
+      text-align:center;
+    }
+    .about-stats .big-label{
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:700;
+      margin-top:4px;
+    }
+    .mini-row{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      text-align:center;
+      margin-top:10px;
+    }
+    .mini .n{font-size:30px;font-weight:900;line-height:1.05}
+    .mini .l{color:var(--muted);font-size:13px;font-weight:700}
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      justify-content:center;
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(11,37,53,.18);
+      background:rgba(15,86,112,.10);
+      color:var(--link);
+      text-decoration:none;
+      font-weight:900;
+    }
+    .cta:hover{background:rgba(15,86,112,.14)}
+
+
+    /* Services */
+    .services-wrap{
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(11,37,53,.10);
+      border-radius:26px;
+      padding:26px;
+      box-shadow:0 14px 40px rgba(11,37,53,.10);
+    }
+    .services-title{
+      margin:0;
+      text-align:center;
+      font-size:28px;
+      font-weight:900;
+      color:var(--ink);
+    }
+    .services-sub{
+      margin:10px auto 0;
+      max-width:760px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+      font-weight:600;
+    }
+    .service-grid{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      align-items:stretch;
+    }
+    .service-tile{
+      background:rgba(255,255,255,.85);
+      border:1px solid rgba(11,37,53,.14);
+      border-radius:18px;
+      padding:18px 18px 16px;
+      display:flex;
+      flex-direction:column;
+      min-height:360px;
+    }
+    .tile-icon{
+      width:58px;height:58px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      margin:0 auto 12px;
+      background:rgba(11,37,53,.06);
+      border:1px solid rgba(11,37,53,.12);
+      color:var(--ink);
+    }
+    .service-tile h3{
+      margin:0;
+      text-align:center;
+      font-size:18px;
+      font-weight:900;
+      color:var(--ink);
+    }
+    .tile-list{
+      margin:12px 0 0;
+      padding-left:18px;
+      color:var(--ink2);
+      font-size:14px;
+      line-height:1.55;
+      flex:1;
+    }
+    .tile-list li{margin:4px 0}
+    .tile-list a{
+      color:var(--link);
+      font-weight:800;
+      text-decoration:none;
+    }
+    .tile-list a:hover{text-decoration:underline}
+    .tile-list .hot{color:var(--link);font-weight:800}
+    .price{
+      margin-top:10px;
+      font-weight:900;
+      color:var(--ink);
+      font-size:15px;
+    }
+    .tile-btn{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:12px;
+      background:var(--ink);
+      color:#fff;
+      text-decoration:none;
+      text-align:center;
+      font-weight:900;
+      border:1px solid rgba(11,37,53,.25);
+    }
+    .tile-btn:hover{background:#091f2c}
+
+    .service-tile.small{min-height:300px}
+
+    .service-tile.special{
+      background:rgba(255,255,255,.95);
+      border:2px solid rgba(15,86,112,.18);
+      box-shadow:0 20px 45px rgba(11,37,53,.12);
+      padding:16px;
+    }
+    .special-inner{
+      border:1px solid rgba(11,37,53,.12);
+      border-radius:18px;
+      padding:18px;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .spacer{background:transparent;border:none}
+
+    /* Footer helper */
+    .footnote{
+      padding:16px 0 26px;
+      color:rgba(11,37,53,.70);
+      font-size:12px;
+      text-align:center;
+    }
+
+    @media (max-width:980px){
+      .header-inner{flex-direction:column;align-items:stretch;align-items:flex-start}
+      .nav{margin-left:0;flex-wrap:wrap}
+      .hero-grid{grid-template-columns:1fr}
+      .about-bottom{grid-template-columns:1fr}
+      .service-grid{grid-template-columns:1fr}
+      .brand-mark .prs{font-size:54px}
+    }
+    @media (max-width:560px){
+      .tab{font-size:18px}
+      .copy-box{font-size:16px}
+      .stats{grid-template-columns:1fr}
+      .hero-panel{padding:18px}
+      .hero-left,.hero-right{padding:14px}
+    }
+  
+.brand-wrap{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      align-items:flex-start;
+      padding-bottom:0;
+}
+
+
+
+.svc-icon{width:28px;height:28px;display:block}
+
+
+.mini-features{padding:18px 0 6px;background:var(--bg)}
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.mini-item{display:flex;gap:12px;align-items:flex-start}
+.mini-ico{width:32px;height:32px;border-radius:12px;display:grid;place-items:center;background:rgba(11,37,53,.06);border:1px solid rgba(11,37,53,.12);color:var(--ink);flex:0 0 auto}
+.mini-ico svg{width:18px;height:18px;display:block}
+.mini-title{font-weight:700;letter-spacing:.2px;color:var(--ink);font-size:15px;margin-bottom:4px}
+.mini-text{color:var(--ink2);font-size:14px;line-height:1.45;max-width:340px}
+@media (max-width: 900px){
+  .mini-grid{grid-template-columns:1fr;gap:14px}
+}
+
+
+.tagline{ text-align:left; padding:6px 0 12px; padding-left:var(--tagline-left); font-size:14px; font-weight:700; color:var(--ink); line-height:1.25; }
+
+    /* Nav active state – no "chip" */
+    .nav a.active, .nav a[aria-current="page"]{
+      background:transparent !important;
+      border-radius:0 !important;
+      box-shadow:none !important;
+      padding-bottom:6px !important;
+      border-bottom:2px solid rgba(7,39,55,.22);
+    }
+    
+    @media (max-width:900px){
+      :root{--tagline-left:0px;}
+      .tagline{padding-left:0;}
+      header{padding:12px 16px 8px;}
+      .krs-logo-img{height:52px;}
+    }
+    </style>
+</head>
+<body>
+<header class="header">
+<div class="container">
+<div class="header-inner">
+<div class="brand-wrap"><a aria-label="Strona główna prototypu" class="brand" href="index.html">
+<div class="brand-mark">
+<span class="kancelaria">KANCELARIA</span>
+<span class="prs">PRS</span>
+</div>
+</a></div>
+<nav aria-label="Nawigacja" class="nav">
+<a href="index.html">Strona główna</a>
+<a href="uslugi-cennik.html">Usługi/Cennik</a>
+<a href="https://kancelariaprs.com/formularz-zgloszeniowy/" rel="noopener" target="_blank">Formularz zgłoszeniowy</a>
+<a href="https://kancelariaprs.com/blog/" rel="noopener" target="_blank">Blog</a>
+<a href="kalkulator.html">Narzędzia</a>
+<a href="https://kancelariaprs.com/kontakt/" rel="noopener" target="_blank">Kontakt</a>
+<a href="https://kancelariaprs.com/faq/" rel="noopener" target="_blank">FAQ</a>
+</nav>
+<div aria-label="Logo KRS Guard" class="krs-logo"><img alt="KRS Guard" class="krs-logo-img" src="assets/krs_guard_logo_transparent.png"/></div>
+</div>
+</div>
+</header>
+<main>
+<!-- HERO zgodny z PDF: baner + 2 ścieżki + karty -->
+<section class="hero">
+<div class="container">
+<div class="hero-bg">
+<div class="hero-panel">
+<div class="hero-grid">
+<div class="hero-left">
+<div class="copy-box">
+                  Szybka i profesjonalna rejestracja wszystkich typów spółek. Pełna obsługa formalności w KRS.
+                  <br/><br/>
+                  Prawna ochrona członków zarządu w sytuacjach kryzysowych
+                </div>
+<div aria-label="Ścieżki usług" class="tabs" role="tablist">
+<a class="tab light" href="https://kancelariaprs.com/uslugi-pomocy-prawnej-w-krs/" rel="noopener" role="tab" target="_blank">PRS/S24/KRS</a>
+<a aria-current="page" class="tab brand" href="krs-guard.html" role="tab">KRS Guard</a>
+</div>
+<div aria-label="Statystyki" class="stats">
+<div class="stat">
+<div class="n">100+</div>
+<div class="l">Zarejestrowanych spółek</div>
+</div>
+<div class="stat">
+<div class="n">4+</div>
+<div class="l">Lata doświadczenia</div>
+</div>
+<div class="stat">
+<div class="n">24h</div>
+<div class="l">Średni czas odpowiedzi</div>
+</div>
+</div>
+</div>
+<aside aria-label="Atuty kancelarii" class="hero-right">
+<div class="card-stack">
+<div class="service-card">
+<div aria-hidden="true" class="icon">
+<svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2 20 6v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4Z" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3>Bezpieczeństwo</h3>
+<p>Pełna ochrona prawna Twojego biznesu</p>
+</div>
+</div>
+<div class="service-card">
+<div aria-hidden="true" class="icon">
+<svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M4 22c1.6-4.2 5-6 8-6s6.4 1.8 8 6" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3>Doradztwo</h3>
+<p>Profesjonalne doradztwo prawne</p>
+</div>
+</div>
+<div class="service-card">
+<div aria-hidden="true" class="icon">
+<svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M14 3v4h4" stroke="currentColor" stroke-width="2"></path>
+<path d="M8 12h8M8 16h8" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3>Dokumentacja</h3>
+<p>Kompletne sporządzenie dokumentów</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- O NAS zgodnie z PDF -->
+<section class="section" id="o-nas">
+<div class="container">
+<div class="about">
+<h2>O Nas</h2>
+<p>
+            Kancelaria PRS to nowoczesna kancelaria prawa gospodarczego, specjalizująca się w prowadzeniu postępowań rejestrowych związanych z dokonywaniem zgłoszeń do <span class="hl">Krajowego Rejestru Sądowego</span> poprzez system <span class="hl">Portal Rejestrów Sądowych (PRS)</span> oraz <span class="hl">S24</span>. Obsługujemy nie tylko spółki, ale również inne podmioty zobowiązane do wpisu w rejestrach prowadzonych przez KRS – w tym w rejestrze przedsiębiorców, stowarzyszeń, organizacji społecznych i zawodowych, fundacji czy zakładów opieki zdrowotnej (sprawdź katalog naszych usług).
+          </p>
+<p>
+            Nasza nadrzędna idea jest realizacja planowanych przedsięwzięć w możliwie najkrótszym czasie, z pełnym poszanowaniem interesu Klienta. Dzięki wdrożeniu Portalu Rejestrów Sądowych Kancelaria może skutecznie obsługiwać Klientów z całej Polski, korzystając z możliwości sporządzania i przesyłania dokumentów przede wszystkim w formie elektronicznej.
+          </p>
+<p>
+<strong>Rozszerzyliśmy naszą specjalizację o KRS Guard – ochronę członków zarządu w sytuacjach kryzysowych.</strong> W praktyce zdarza się, że po bezskutecznej egzekucji wobec spółki wierzyciele kierują roszczenia bezpośrednio do członków zarządu. Podobnie ryzyko może dotyczyć spraw publicznoprawnych (np. decyzji US lub ZUS). W ramach KRS Guard pomagamy uporządkować sytuację prawną, przygotować strategię działania oraz prowadzić sprawę – w sposób bezpieczny i procesowo skuteczny.
+          </p>
+<p>
+            Naszym rozwiązaniem „na start” jest <strong>Audyt 48h</strong> – szybka analiza dokumentów, terminów i ryzyk, zakończona jasnym planem dalszych działań. Dzięki temu Klient od razu wie, co jest pilne, jakie dokumenty są kluczowe i jakie kroki należy podjąć w pierwszej kolejności.
+          </p>
+<p>
+            Jeżeli zależy Ci na czasie oraz bezkontaktowej realizacji obowiązków rejestrowych w KRS – Kancelaria PRS jest miejscem, którego szukasz. Jeżeli natomiast otrzymałeś pozew, wezwanie, nakaz zapłaty lub decyzję i potrzebujesz ochrony jako członek zarządu – rozpoczniemy współpracę od Audytu 48h, aby jak najszybciej zabezpieczyć Twoją sytuację. Zajmujemy się podmiotami gospodarczymi od momentu ich powstania aż do ich wykreślenia z rejestru – oraz wspieramy osoby zarządzające wtedy, gdy w grę wchodzi odpowiedzialność za zobowiązania spółki.
+          </p>
+<p>
+            Jako nowoczesna kancelaria rejestrowa, oferujemy więcej niż tylko wpisy. Chronimy Twój biznes i majątek prywatny na każdym etapie życia spółki.
+          </p>
+</div>
+</div>
+</section>
+<!-- BLOKI jak na stronie oryginalnej (po "O nas") -->
+<section aria-label="Atuty kancelarii" class="mini-features">
+<div class="container">
+<div class="mini-grid">
+<div class="mini-item">
+<div aria-hidden="true" class="mini-ico">
+<svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path d="M4 7h16v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M9 12h6" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<div class="mini-title">Doświadczony zespół</div>
+<div class="mini-text">Wykwalifikowani prawnicy z wieloletnim doświadczeniem w prawie gospodarczym</div>
+</div>
+</div>
+<div class="mini-item">
+<div aria-hidden="true" class="mini-ico">
+<svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M12 10.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<div class="mini-title">Specjalizacja</div>
+<div class="mini-text">Koncentrujemy się na prawie spółek, KRS, obsłudze biznesowej oraz ochronie prawnej członków zarządu</div>
+</div>
+</div>
+<div class="mini-item">
+<div aria-hidden="true" class="mini-ico">
+<svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 8v5l3 2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10Z" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<div class="mini-title">Szybkość działania</div>
+<div class="mini-text">Realizujemy zlecenia w najkrótszym możliwym czasie</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- NASZE USŁUGI zgodnie z PDF -->
+<section class="section" id="nasze-uslugi">
+<div class="container">
+<div class="services-wrap">
+<h2 class="services-title">Nasze Usługi</h2>
+<p class="services-sub">
+            Oferujemy kompleksowe usługi prawne dostosowane do potrzeb Twojego biznesu.
+            Profesjonalne doradztwo i obsługa na każdym etapie rozwoju firmy.
+          </p>
+<div aria-label="Katalog usług" class="service-grid">
+<article class="service-tile">
+<div aria-hidden="true" class="tile-icon">
+<svg fill="none" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 22V8l8-4 8 4v14" stroke="currentColor" stroke-width="2"></path>
+<path d="M9 22v-8h6v8" stroke="currentColor" stroke-width="2"></path>
+<path d="M7 12h2M15 12h2M7 16h2M15 16h2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3>Rejestracja w KRS</h3>
+<ul class="tile-list">
+<li>Spółka jawna</li>
+<li>Spółka partnerska</li>
+<li>Spółka komandytowa</li>
+<li>Spółka komandytowo-akcyjna</li>
+<li>Spółka z o.o.</li>
+<li>Prosta Spółka Akcyjna</li>
+<li>Spółka Akcyjna</li>
+<li>Fundacja</li>
+<li>Stowarzyszenia</li>
+<li>Inne</li>
+</ul>
+<div class="price">od 2499 zł netto</div>
+<a class="tile-btn" href="https://kancelariaprs.com/uslugi-pomocy-prawnej-w-krs/">Wybierz usługę</a>
+</article>
+<article class="service-tile">
+<div aria-hidden="true" class="tile-icon">
+<svg fill="none" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M14 3v4h4" stroke="currentColor" stroke-width="2"></path>
+<path d="M8 12h8M8 16h8" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3>Zmiany w KRS</h3>
+<ul class="tile-list">
+<li>Zmiana umowy/statutu</li>
+<li>Podwyższenie kapitału zakładowego</li>
+<li>Obniżenie kapitału zakładowego</li>
+<li>Umorzenie udziałów</li>
+<li>Aktualizacja/zmiana kodów PKD</li>
+<li>Zmiana organów (zarządu, RN, likwidatora)</li>
+<li>Zmiana adresu</li>
+<li>Zmiana nazwy</li>
+</ul>
+<div class="price">od 799 zł netto</div>
+<a class="tile-btn" href="https://kancelariaprs.com/uslugi-pomocy-prawnej-w-krs/">Wybierz usługę</a>
+</article>
+<article class="service-tile">
+<div aria-hidden="true" class="tile-icon">
+<svg fill="none" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M8 6h8M8 10h8" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path d="M8 14h3M13 14h3M8 18h3M13 18h3" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3>Portal S24</h3>
+<ul class="tile-list">
+<li>Rejestracja spółki przez s24</li>
+<li>Wpis zmian przez s24</li>
+<li>Sporządzenie dokumentów przez s24</li>
+<li>Reprezentacja</li>
+<li>Monitorowanie spraw</li>
+</ul>
+<div class="price">od 399 zł netto</div>
+<a class="tile-btn" href="https://kancelariaprs.com/uslugi-pomocy-prawnej-w-krs/">Wybierz usługę</a>
+</article>
+<article class="service-tile small">
+<div aria-hidden="true" class="tile-icon">
+<svg fill="none" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v5H7V7Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M5 12h14v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M9 12v-2h6v2" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+<h3>Pozostałe Usługi</h3>
+<ul class="tile-list">
+<li>Ujawnienie już dokonanych zmian (złożenie wniosku)</li>
+<li>Umorzenie grzywny</li>
+<li>Przygotowanie umowy (np. sprzedaży udziałów, najmu)</li>
+<li>Pomoc w przypadku zwrotu wniosku</li>
+<li>Likwidacja podmiotu</li>
+<li>Wykreślenie z rejestru</li>
+</ul>
+<div class="price">od 799 zł netto</div>
+<a class="tile-btn" href="https://kancelariaprs.com/uslugi-pomocy-prawnej-w-krs/">Wybierz usługę</a>
+</article>
+<article aria-label="KRS Guard (wyróżnione)" class="service-tile special small">
+<div class="special-inner">
+<div aria-hidden="true" class="tile-icon" style="margin-bottom:10px">
+<svg fill="none" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2 20 6v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4Z" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+<h3>KRS Guard</h3>
+<ul class="tile-list" style="margin-top:10px">
+<li>Audyt 48h (Diagnoza)</li>
+<li>Pakiet Art. 299 KSH</li>
+<li>Pakiet US / ZUS</li>
+<li>Zarząd SAFE (Prewencja)</li>
+</ul>
+<div class="price">od 900 zł netto</div>
+<a class="tile-btn" href="krs-guard.html">Wybierz usługę</a>
+</div>
+</article>
+<div aria-hidden="true" class="spacer"></div>
+</div>
+</div>
+</div>
+</section>
+<div class="footnote">Prototyp testowy (HTML). Kolejny krok: ujednolicenie stylu pozostałych podstron (KRS Guard / Cennik / Narzędzia) zgodnie z PDF.</div>
+</main>
+</body>
+</html>

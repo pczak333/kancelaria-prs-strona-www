@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>KRS Guard – Prototyp: Audyt 48h (Diagnoza)</title>
+<style>
+    :root{
+      --tagline-left: 88px;
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --navy:#1a2b3e;
+      --warn-bg:#fff7e6;
+      --warn-bd:#f4d17d;
+      --err:#b91c1c;
+      --ok:#16a34a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:var(--navy)}
+    .wrap{max-width:1040px;margin:0 auto;padding:22px}
+    .topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{width:40px;height:40px;border-radius:12px;background:#e9edf2;border:1px solid var(--border);display:grid;place-items:center;font-weight:800;color:#1f2937}
+    .brand h1{font-size:16px;margin:0}
+    .brand p{margin:2px 0 0 0;font-size:12px;color:var(--muted)}
+    .tabs{display:flex;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px}
+    .tab{border:none;background:transparent;padding:10px 12px;border-radius:10px;font-weight:700;color:var(--muted);cursor:pointer;font-size:13px}
+    .tab.active{background:var(--navy);color:white}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 18px 14px 18px;box-shadow:0 1px 0 rgba(15,23,42,.02)}
+    .header{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap
+      padding:14px 22px 10px;
+    }
+    .title{margin:0;font-size:18px;font-weight:800}
+    .sub{margin:4px 0 0 0;font-size:13px;color:var(--muted);max-width:66ch}
+    .fine{margin:6px 0 0 0;font-size:12px;color:var(--muted)}
+    .progress{min-width:220px;max-width:280px}
+    .progress .label{font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+    .bar{height:8px;border-radius:999px;background:#eef2f7;border:1px solid var(--border);overflow:hidden;margin-top:6px}
+    .bar > div{height:100%;width:0;background:var(--navy)}
+    .step{display:none;margin-top:14px}
+    .step.active{display:block}
+    .q{font-weight:800;margin:0 0 6px 0;font-size:14px}
+    .req{color:var(--err)}
+    .help{font-size:12px;color:var(--muted);margin:0 0 10px 0}
+    .why{margin:8px 0 12px 0}
+    .why button{border:none;background:transparent;color:var(--navy);cursor:pointer;padding:0;font-size:12px;font-weight:700}
+    .why .whytext{display:none;margin-top:6px;font-size:12px;color:var(--muted)}
+    .field{margin:10px 0}
+    .field label{display:block;font-size:13px;font-weight:700;margin:0 0 6px 0}
+    input[type="text"], input[type="email"], input[type="date"], select, textarea{width:100%;padding:10px 11px;border:1px solid var(--border);border-radius:12px;background:white;font-size:14px;outline:none}
+    textarea{min-height:120px;resize:vertical}
+    input:focus, select:focus, textarea:focus{border-color:#93a4b8;box-shadow:0 0 0 3px rgba(26,43,62,.08)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:760px){.row{grid-template-columns:1fr}}
+    .radio, .check{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+    .opt{display:flex;gap:10px;align-items:flex-start;padding:10px 10px;border:1px solid var(--border);border-radius:12px;cursor:pointer}
+    .opt input{margin-top:2px}
+    .opt span{font-size:13px}
+    .opt small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+    .inline{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .inline small{color:var(--muted)}
+    .badge{display:inline-flex;align-items:center;gap:6px;background:var(--warn-bg);border:1px solid var(--warn-bd);color:#7a5200;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:800}
+    .alert{background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:12px;padding:10px 12px;font-size:12.5px;color:#5b3d00;line-height:1.45;margin-top:10px}
+    .error{color:var(--err);font-size:12px;margin-top:6px;display:none}
+.invalid{border-color:#ef4444 !important;box-shadow:0 0 0 3px rgba(239,68,68,.08) !important}
+    .errorsummary{display:none;margin-top:12px;border:1px solid #fecaca;background:#fff1f2;color:#7f1d1d;border-radius:12px;padding:10px 12px;font-size:12.5px}
+    .nav{display:flex;gap:16px;justify-content:space-between;align-items:center;margin-top:2px;flex-wrap:wrap}
+    .nav .left, .nav .right{display:flex;gap:10px;align-items:center}
+    .btn{border:none;border-radius:12px;padding:10px 12px;font-weight:800;cursor:pointer;font-size:13px}
+    .btn.primary{background:var(--navy);color:white}
+    .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .navhint{font-size:12px;color:var(--muted)}
+    .sentcount{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;margin-top:6px}
+    .files{margin-top:8px;font-size:12px;color:var(--muted)}
+    .success{margin-top:14px;border:1px solid #bbf7d0;background:#f0fdf4;color:#14532d;border-radius:14px;padding:12px 14px}
+    .success h3{margin:0 0 6px 0;font-size:14px}
+    .success p{margin:0;font-size:12.5px;line-height:1.5}
+    .footerline{margin-top:10px;font-size:12px;color:var(--muted)}
+    .divider{height:1px;background:var(--border);margin:14px 0}
+  
+    .why button:hover + .whytext, .why button:focus + .whytext{display:block}
+
+/* --- email preview modal (test) --- */
+.modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(15,23,42,0.45);
+  display:flex; align-items:center; justify-content:center;
+  padding:18px; z-index:9999;
+}
+.modal{
+  width:min(820px, 100%);
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 18px 50px rgba(2,6,23,0.35);
+  overflow:hidden;
+  border:1px solid #e7e7e7;
+}
+.modal-head{
+  padding:14px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  border-bottom:1px solid #eee;
+}
+.modal-title{font-weight:800;}
+.modal-body{padding:14px 16px;}
+.box{
+  border:1px solid #e5e7eb;
+  background:#f8fafc;
+  border-radius:12px;
+  padding:10px 12px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:13px;
+  color:#0f172a;
+}
+.label{font-weight:700;margin-bottom:6px;}
+
+/* modal-ux-fix */
+.modal{ max-height: 92vh; }
+.modal-head{
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
+}
+.modal-body{
+  max-height: calc(92vh - 70px);
+  overflow: auto;
+}
+#emailPreviewBody{
+  max-height: 46vh;
+  overflow: auto;
+}
+/* calm info box */
+.info-hint{
+  margin-top: 10px;
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.info-hint ul{ margin: 8px 0 6px 18px; }
+.info-hint li{ margin: 4px 0; }
+
+/* mandate-explainer */
+.info-hint{ margin-top:10px; }
+.info-hint summary{ cursor:pointer; }
+.info-hint summary::-webkit-details-marker{ display:none; }
+.info-hint summary:before{
+  content:"ℹ️ ";
+}
+.info-hint[open]{ box-shadow: 0 0 0 3px rgba(15,23,42,0.04); }
+
+.krs-logo{
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-end;
+      padding-top:2px;
+      padding-right:6px;
+    }
+.krs-logo-img{
+      height:64px;
+      width:auto;
+      display:block;
+      opacity:1;
+      filter:drop-shadow(0 1px 1px rgba(0,0,0,.10));
+    }
+
+.tagline{ text-align:left; padding:6px 0 12px; padding-left:var(--tagline-left); font-size:14px; font-weight:700; color:var(--ink); line-height:1.25; }
+
+    /* Nav active state – no "chip" */
+    .nav a.active, .nav a[aria-current="page"]{
+      background:transparent !important;
+      border-radius:0 !important;
+      box-shadow:none !important;
+      padding-bottom:6px !important;
+      border-bottom:2px solid rgba(7,39,55,.22);
+    }
+    
+    @media (max-width:900px){
+      :root{--tagline-left:0px;}
+      .tagline{padding-left:0;}
+      header{padding:12px 16px 8px;}
+      .krs-logo-img{height:52px;}
+    }
+    </style>
+</head>
+<body>
+<div class="wrap">
+<div class="topbar">
+<div class="brand">
+<div class="logo">KG</div>
+<div>
+<h1>KRS Guard – prototyp testowy</h1>
+<p>Audyt 48h (Diagnoza) – formularz kwalifikacyjny</p>
+</div>
+</div>
+</div>
+<!-- AUDIT MODULE -->
+<section aria-labelledby="tab-audit" class="card" id="module-audit">
+<div class="header">
+<div>
+<h2 class="title">Audyt 48h (Diagnoza) – formularz kwalifikacyjny</h2>
+<p class="sub">Zajmie 2–3 min. Przygotuj: <b>pismo + potwierdzenie doręczenia</b>.</p>
+<p class="fine">W Audycie 48h ustalamy priorytet: realna obrona, minimalizacja ryzyka albo uporządkowanie sytuacji w czasie.</p>
+</div>
+<div class="progress">
+<div class="label"><span id="auditProgressLabel">Krok 1 z 7</span><span class="badge" id="auditPill" style="display:none;">PILNE</span></div>
+<div aria-hidden="true" class="bar"><div id="auditBar"></div></div>
+</div>
+</div>
+<div class="errorsummary" id="auditErrorSummary"></div>
+<!-- Step 1 -->
+<div class="step active" data-step="1">
+<p class="q">Jakiego rodzaju pismo dotyczy sprawa? <span class="req">*</span></p>
+<p class="help">Wybierz to, co najbardziej pasuje. Jeśli nie masz pewności — wybierz „nie wiem”.</p>
+<div class="radio" role="radiogroup">
+<label class="opt"><input name="audit_case_type" type="radio" value="ART299"/> <span>Pozew / nakaz – <b>Pakiet Art. 299 KSH</b></span></label>
+<label class="opt"><input name="audit_case_type" type="radio" value="US"/> <span>Decyzja <b>US</b> (podatki)</span></label>
+<label class="opt"><input name="audit_case_type" type="radio" value="ZUS"/> <span>Decyzja <b>ZUS</b> (składki)</span></label>
+<label class="opt"><input name="audit_case_type" type="radio" value="UNKNOWN"/> <span>Wezwanie do wyjaśnień / inne pismo (<b>nie wiem</b>)</span></label>
+</div>
+<div class="why">
+<button data-why="audit_why1" type="button">Dlaczego pytamy?</button>
+<div class="whytext" id="audit_why1">To pozwala dobrać właściwą ścieżkę i checklistę.</div>
+</div>
+<div class="error" data-error-for="audit_case_type">Wybierz jedną opcję, aby przejść dalej.</div>
+</div>
+<!-- Step 2 -->
+<div class="step" data-step="2">
+<p class="q">Na jakim etapie jest sprawa? <span class="req">*</span></p>
+<p class="help">Jeśli termin już biegnie, wybierz drugą opcję — to ustawia priorytet.</p>
+<div class="radio" role="radiogroup">
+<label class="opt"><input name="audit_stage" type="radio" value="NEW"/> <span>Pismo dopiero wpłynęło</span></label>
+<label class="opt"><input name="audit_stage" type="radio" value="DEADLINE_RUNNING"/> <span>Termin na odpowiedź/odwołanie <b>już biegnie</b></span></label>
+<label class="opt"><input name="audit_stage" type="radio" value="ENFORCEMENT"/> <span>Trwa egzekucja / zajęcia / komornik</span></label>
+<label class="opt"><input name="audit_stage" type="radio" value="UNKNOWN"/> <span>Nie wiem</span></label>
+</div>
+<div class="why">
+<button data-why="audit_why2" type="button">Dlaczego pytamy?</button>
+<div class="whytext" id="audit_why2">Od etapu zależy pilność i pierwsze pismo.</div>
+</div>
+<div class="error" data-error-for="audit_stage">Wybierz etap sprawy, aby przejść dalej.</div>
+<div id="audit_short_goal_wrap" style="display:none;margin-top:14px">
+<div class="divider"></div>
+<p class="q">Jaki jest Twój najbliższy cel? <span class="req">*</span></p>
+<p class="help">Jedna odpowiedź wystarczy.</p>
+<div class="radio" role="radiogroup">
+<label class="opt"><input name="audit_short_goal" type="radio" value="SECURE"/> <span>Zabezpieczyć termin i złożyć poprawne pismo na czas</span></label>
+<label class="opt"><input name="audit_short_goal" type="radio" value="DEFENSE"/> <span>Opracować argumenty do realnej obrony</span></label>
+<label class="opt"><input name="audit_short_goal" type="radio" value="SETTLEMENT"/> <span>Rozważyć porozumienie/ugodę i ograniczyć ryzyko</span></label>
+</div>
+<div class="why">
+<button data-why="audit_why2b" type="button">Dlaczego pytamy?</button>
+<div class="whytext" id="audit_why2b">To pomaga ustalić kolejność działań już na starcie.</div>
+</div>
+<div class="error" data-error-for="audit_short_goal">Wybierz najbliższy cel, aby przejść dalej.</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="step" data-step="3">
+<p class="q">Podaj daty z pisma (to najważniejsze dla terminów). <span class="req">*</span></p>
+<div class="row">
+<div class="field">
+<label>Data doręczenia pisma <span class="req">*</span></label>
+<input id="audit_service_date" type="date"/>
+<div class="help" style="margin-top:6px">Zwykle na kopercie, UPP lub e-doręczeniu.</div>
+<div class="error" data-error-for="audit_service_date">Podaj datę doręczenia.</div>
+<div class="error" data-error-for="audit_service_future">Niewłaściwa data — data doręczenia nie może być w przyszłości.</div>
+</div>
+<div class="field">
+<label>Termin na odpowiedź/odwołanie <span class="req" id="audit_deadline_req">*</span></label>
+<input id="audit_deadline_date" type="date"/>
+<div class="inline" style="margin-top:8px">
+<label style="font-weight:700;font-size:12.5px;display:flex;gap:8px;align-items:center">
+<input id="audit_deadline_unknown" type="checkbox"/> Nie wiem — proszę o weryfikację z dokumentu
+            </label>
+</div>
+<div class="help" style="margin-top:6px">Jeśli nie wiesz, zaznacz „Nie wiem” — sprawdzimy w dokumencie.</div>
+<div class="error" data-error-for="audit_deadline_date">Podaj termin albo zaznacz „Nie wiem”.</div>
+<div class="error" data-error-for="audit_deadline_min3">Za krótki termin — Audyt 48h wymaga co najmniej 3 dni roboczych od doręczenia.</div>
+</div>
+</div>
+<div class="field" style="margin-top:4px">
+<label style="font-weight:700;font-size:12.5px;display:flex;gap:8px;align-items:center">
+<input id="audit_urgent_3days" type="checkbox"/> Termin upływa w ciągu 3 dni roboczych
+        </label>
+<div class="alert" id="audit_urgent_hint" style="display:none">
+          Po wysłaniu formularza odpisz na maila potwierdzającego i wpisz w temacie: <b>PILNE</b>.
+        </div>
+<div class="alert danger" id="audit_too_short_alert" style="display:none;margin-top:10px">
+<b>Uwaga: za krótki czas reakcji.</b><br/>
+          Jeśli termin na odpowiedź jest <b>krótszy niż 3 dni robocze</b>, Audyt 48h nie jest możliwy do przeprowadzenia.
+          W takiej sytuacji wybierz pełny pakiet (Art. 299 KSH / US/ZUS) albo skontaktuj się z nami pilnie.
+        </div>
+</div>
+<div class="why">
+<button data-why="audit_why3" type="button">Dlaczego pytamy?</button>
+<div class="whytext" id="audit_why3">Od doręczenia liczą się terminy na sprzeciw/odwołanie.</div>
+</div>
+<div class="error" data-error-for="audit_dates_logic">Sprawdź daty — jeśli nie masz pewności, zaznacz „Nie wiem” przy terminie.</div>
+</div>
+<!-- Step 4 -->
+<div class="step" data-step="4">
+<p class="q">Jaką pełniłeś funkcję i w jakim okresie? <span class="req">*</span></p>
+<div class="field">
+<label>Rola <span class="req">*</span></label>
+<select id="audit_role">
+<option value="">— wybierz —</option>
+<option value="PREZES">Prezes</option>
+<option value="CZLONEK">Członek zarządu</option>
+<option value="INNA">Inna</option>
+</select>
+<div class="help">Jeśli nie jesteś pewien — wybierz „Inna” i dopisz w opisie.</div>
+<div class="error" data-error-for="audit_role">Wybierz swoją rolę w spółce.</div>
+</div>
+<div class="row">
+<div class="field">
+<label>Okres pełnienia funkcji – od <span class="req">*</span></label>
+<input id="audit_mandate_from" type="date"/>
+<div class="error" data-error-for="audit_mandate_from">Uzupełnij datę „od”.</div>
+</div>
+<div class="field" id="audit_mandate_to_wrap">
+<label>Okres pełnienia funkcji – do <span class="req">*</span></label>
+<input id="audit_mandate_to" type="date"/>
+<div class="error" data-error-for="audit_mandate_to">Uzupełnij datę „do”.</div>
+</div>
+</div>
+<div class="field">
+<label style="font-weight:700;font-size:12.5px;display:flex;gap:8px;align-items:center">
+<input id="audit_mandate_current" type="checkbox"/> Nadal pełnię funkcję
+        </label>
+</div>
+<div class="field" id="audit_resignation_wrap">
+<label>Czy była rezygnacja/odwołanie? <span class="req">*</span></label>
+<div class="radio" role="radiogroup">
+<label class="opt"><input name="audit_resignation" type="radio" value="YES"/> <span>Tak</span></label>
+<label class="opt"><input name="audit_resignation" type="radio" value="NO"/> <span>Nie</span></label>
+<label class="opt"><input name="audit_resignation" type="radio" value="UNKNOWN"/> <span>Nie wiem</span></label>
+</div>
+<div class="error" data-error-for="audit_resignation">Wybierz jedną opcję.</div>
+</div>
+<div class="field" id="audit_resignation_date_wrap" style="display:none">
+<label>Data rezygnacji/odwołania <span class="req">*</span></label>
+<input id="audit_resignation_date" type="date"/>
+<div class="error" data-error-for="audit_resignation_date">Podaj datę rezygnacji/odwołania.</div>
+</div>
+<details class="info-hint info-hint--mandate" role="note">
+<summary><strong>Co oznaczają te daty?</strong> (krótkie wyjaśnienie)</summary>
+<div style="margin-top:8px">
+<ul>
+<li><strong>Okres pełnienia funkcji (od / do)</strong> — kiedy faktycznie pełniłeś funkcję w zarządzie (w praktyce: ostatni dzień pełnienia).</li>
+<li><strong>Data rezygnacji/odwołania</strong> — kiedy złożono rezygnację albo podjęto uchwałę o odwołaniu. Zwykle jest taka sama jak „do”, ale czasem różni się (np. skutek od późniejszej daty).</li>
+</ul>
+<div class="muted small">Jeśli nie pamiętasz dokładnie — wpisz przybliżoną datę. Zweryfikujemy to z dokumentów w Audycie 48h.</div>
+</div>
+</details>
+<div class="field" id="audit_krs_updated_wrap">
+<label>Czy wpis w KRS jest już zaktualizowany?</label>
+<div class="radio" role="radiogroup">
+<label class="opt"><input name="audit_krs_updated" type="radio" value="YES"/> <span>Tak</span></label>
+<label class="opt"><input name="audit_krs_updated" type="radio" value="NO"/> <span>Nie</span></label>
+<label class="opt"><input name="audit_krs_updated" type="radio" value="UNKNOWN"/> <span>Nie wiem</span></label>
+</div>
+</div>
+<div class="error" data-error-for="audit_mandate_logic">Sprawdź zakres dat — wygląda na odwrócony.</div>
+<div class="why">
+<button data-why="audit_why4" type="button">Dlaczego pytamy?</button>
+<div class="whytext" id="audit_why4">Chronologia mandatu ma znaczenie dla strategii.</div>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="step" data-step="5">
+<p class="q">Jaka jest kwota roszczenia / zaległości (orientacyjnie)? <span class="req">*</span></p>
+<p class="help">Jeśli nie znasz kwoty — wybierz „Nie wiem”. To normalne.</p>
+<div class="field">
+<select id="audit_amount_bucket">
+<option value="">— wybierz —</option>
+<option value="A1">do 50 000 zł</option>
+<option value="A2">50 001 – 200 000 zł</option>
+<option value="A3">200 001 – 500 000 zł</option>
+<option value="A4">powyżej 500 000 zł</option>
+<option value="UNK">Nie wiem — proszę o weryfikację w piśmie</option>
+</select>
+<div class="error" data-error-for="audit_amount_bucket">Wybierz widełki kwoty albo „Nie wiem”.</div>
+</div>
+<div class="why">
+<button data-why="audit_why5" type="button">Dlaczego pytamy?</button>
+<div class="whytext" id="audit_why5">To pomaga przygotować transparentną wycenę dalszych etapów.</div>
+</div>
+</div>
+<!-- Step 6 -->
+<div class="step" data-step="6">
+<p class="q">Na czym najbardziej Ci zależy na tym etapie? <span class="req">*</span></p>
+<p class="help">To nie jest deklaracja strategii procesowej — pomaga dopasować plan po analizie dokumentów.</p>
+<div class="radio" role="radiogroup">
+<label class="opt"><input name="audit_priority" type="radio" value="DEFENSE"/> <span>Realna obrona merytoryczna (chcę wygrać/oddalić/uchylić)</span></label>
+<label class="opt"><input name="audit_priority" type="radio" value="RISK_MIN"/> <span>Minimalizacja kosztów i ryzyka (bezpiecznie, bez eskalacji)</span></label>
+<label class="opt"><input name="audit_priority" type="radio" value="TIME"/> <span>Zyskanie czasu / uporządkowanie sytuacji (terminy, finanse, negocjacje)</span></label>
+<label class="opt"><input name="audit_priority" type="radio" value="DONT_KNOW"/> <span>Nie wiem — proszę o rekomendację</span></label>
+</div>
+<div class="why">
+<button data-why="audit_why6" type="button">Dlaczego pytamy?</button>
+<div class="whytext" id="audit_why6">Różne priorytety wymagają innej kolejności działań.</div>
+</div>
+<div class="error" data-error-for="audit_priority">Wybierz priorytet, aby przejść dalej.</div>
+<div class="divider"></div>
+<p class="q">Po czym poznasz, że to idzie w dobrą stronę? <span style="color:var(--muted);font-weight:700;font-size:12px">(opcjonalnie)</span></p>
+<div class="radio" role="radiogroup">
+<label class="opt"><input name="audit_success_metric" type="radio" value="WIN"/> <span>Oddalenie roszczenia / uchylenie decyzji</span></label>
+<label class="opt"><input name="audit_success_metric" type="radio" value="REDUCE"/> <span>Zmniejszenie kwoty / ograniczenie odpowiedzialności</span></label>
+<label class="opt"><input name="audit_success_metric" type="radio" value="PLAN"/> <span>Zabezpieczenie terminu i plan na 7 dni</span></label>
+<label class="opt"><input name="audit_success_metric" type="radio" value="SETTLE"/> <span>Porozumienie/ugoda na akceptowalnych warunkach</span></label>
+</div>
+<div class="divider"></div>
+<p class="q">Opisz krótko sytuację (maks. 8 zdań). <span class="req">*</span></p>
+<p class="help">Najlepiej: kto napisał → czego chce → kwota → daty mandatu → co już się wydarzyło.</p>
+<div class="field">
+<textarea id="audit_description" placeholder="Otrzymałem pismo dnia … / dotyczy … / kwota … / pełniłem funkcję od … do … / rezygnacja … / egzekucja wobec spółki … / najważniejsze fakty …"></textarea>
+<div class="sentcount"><span id="audit_sent_count">0/8 zdań</span><span class="navhint">Maks. 8 zdań</span></div>
+<div class="error" data-error-for="audit_description">Wpisz krótki opis (maks. 8 zdań).</div>
+<div class="error" data-error-for="audit_description_too_long">Skróć opis do 8 zdań — wystarczy chronologia i najważniejsze fakty.</div>
+</div>
+<div class="why">
+<button data-why="audit_why6b" type="button">Dlaczego pytamy?</button>
+<div class="whytext" id="audit_why6b">Krótka chronologia pozwala szybciej dobrać strategię.</div>
+</div>
+</div>
+<!-- Step 7 -->
+<div class="step" data-step="7">
+<p class="q">Załącz dokumenty do Audytu 48h. <span class="req">*</span></p>
+<div class="alert">
+<b>Masz to pod ręką?</b><br/>
+        Minimum do Audytu 48h to <b>pismo</b> + <b>potwierdzenie doręczenia</b>.
+        <div style="margin-top:8px">
+          ☐ Pismo (pozew/nakaz/decyzja)<br/>
+          ☐ Potwierdzenie doręczenia (koperta/UPP/e-doręczenie)
+        </div>
+</div>
+<div class="row" style="margin-top:10px">
+<div class="field">
+<label>Załącz pismo <span class="req">*</span></label>
+<input accept=".pdf,.jpg,.jpeg,.png" id="audit_file_main" type="file"/>
+<div class="help" style="margin-top:6px">Załącz pełny dokument (wszystkie strony). Dozwolone: PDF/JPG/PNG.</div>
+<div class="files" id="audit_file_main_name"></div>
+<div class="error" data-error-for="audit_file_main">Załącz pismo, aby wysłać zgłoszenie.</div>
+<div class="error" data-error-for="audit_file_main_type">Dozwolone pliki: PDF, JPG, PNG.</div>
+<div class="error" data-error-for="audit_file_main_size">Plik jest za duży. Zmniejsz go lub wyślij w dwóch częściach.</div>
+</div>
+<div class="field">
+<label>Załącz potwierdzenie doręczenia <span class="req">*</span></label>
+<input accept=".pdf,.jpg,.jpeg,.png" id="audit_file_service" type="file"/>
+<div class="help" style="margin-top:6px">To kluczowe dla terminów. Dozwolone: PDF/JPG/PNG.</div>
+<div class="files" id="audit_file_service_name"></div>
+<div class="error" data-error-for="audit_file_service">Załącz potwierdzenie doręczenia — bez tego nie policzymy terminów.</div>
+<div class="error" data-error-for="audit_file_service_type">Dozwolone pliki: PDF, JPG, PNG.</div>
+<div class="error" data-error-for="audit_file_service_size">Plik jest za duży. Zmniejsz go lub wyślij w dwóch częściach.</div>
+</div>
+</div>
+<div class="row" style="margin-top:10px">
+<div class="field">
+<label>Adres e-mail <span class="req">*</span></label>
+<input id="audit_email" placeholder="np. jan.kowalski@…" type="email"/>
+<div class="help" style="margin-top:6px">Na ten adres wyślemy potwierdzenie i dalsze instrukcje.</div>
+<div class="error" data-error-for="audit_email">Podaj poprawny adres e-mail.</div>
+</div>
+<div class="field">
+<label>Telefon <span style="color:var(--muted);font-weight:700;font-size:12px">(opcjonalnie)</span></label>
+<input id="audit_phone" placeholder="np. 600 000 000" type="text"/>
+<div class="help" style="margin-top:6px">Ułatwia kontakt w sprawach pilnych.</div>
+</div>
+</div>
+<div class="field">
+<label style="font-weight:700;font-size:12.5px;display:flex;gap:8px;align-items:center">
+<input id="audit_consent" type="checkbox"/> Wyrażam zgodę na kontakt w sprawie odpowiedzi na zapytanie. <span class="req">*</span>
+</label>
+<div class="error" data-error-for="audit_consent">Zaznacz zgodę, aby wysłać formularz.</div>
+</div>
+<div class="footerline">Po wysłaniu dostaniesz potwierdzenie na podany adres e-mail. Jeśli sprawa jest pilna, w odpowiedzi wpisz w temacie: <b>PILNE</b>.</div>
+</div>
+<div class="nav">
+<div class="left"><button class="btn ghost" id="auditPrev" type="button">Wstecz</button></div>
+<div class="right">
+<span class="navhint" id="auditNavHint">Możesz wrócić do poprzedniego kroku bez utraty danych.</span>
+<button class="btn primary" id="auditNext" type="button">Dalej</button>
+</div>
+</div>
+<div aria-live="polite" class="success" id="auditSuccess" role="status" style="display:none">
+<h3>Dziękujemy — zgłoszenie przyjęte</h3>
+<p id="auditSuccessText">Analizujemy Twój kwestionariusz. Wrócimy z planem w ramach Audytu 48h. Potwierdzenie wysłaliśmy na e-mail.</p>
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+<button class="btn ghost" id="auditPreviewEmailBtn" onclick="openEmailModal()" type="button">Podgląd e-maila</button>
+<button class="btn ghost" id="auditSendMailtoBtn" onclick="sendMailtoFromPreview()" type="button">Wyślij testowo (mail)</button>
+<button class="btn ghost" id="auditRestart" type="button">Wyślij kolejne zgłoszenie</button>
+</div>
+</div>
+</section>
+<!-- CALC MODULE -->
+</div>
+<script>
+const $ = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+function show(el){ el.style.display=''; }
+function hide(el){ el.style.display='none'; }
+function setText(sel, txt){ const el = $(sel); if(el) el.textContent = txt; }
+function todayISO(){
+  const d=new Date(); d.setHours(0,0,0,0);
+  const pad=n=>String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+function parseDate(val){
+  if(!val) return null;
+  const d = new Date(val+'T00:00:00');
+  if(Number.isNaN(d.getTime())) return null;
+  return d;
+}
+
+function fmtISO(d){
+  if(!d) return '';
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function addBusinessDays(dateISO, n){
+  const base = parseDate(dateISO);
+  if(!base || typeof n !== 'number') return null;
+  const d = new Date(base.getTime());
+  let count = 0;
+  while(count < n){
+    d.setDate(d.getDate()+1);
+    const wd = d.getDay();
+    if(wd !== 0 && wd !== 6) count++;
+  }
+  return d;
+}
+function isValidEmail(v){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v||'').trim());
+}
+
+function auditApplyDateMaxMin(){
+  const max = todayISO();
+  ['audit_service_date','audit_mandate_from','audit_mandate_to','audit_resignation_date'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.setAttribute('max', max);
+  });
+
+  const sd = document.getElementById('audit_service_date')?.value || '';
+  const dd = document.getElementById('audit_deadline_date');
+  if(dd){
+    if(sd) dd.setAttribute('min', sd);
+    else dd.removeAttribute('min');
+  }
+
+  const mf = document.getElementById('audit_mandate_from')?.value || '';
+  const mt = document.getElementById('audit_mandate_to');
+  if(mt){
+    if(mf) mt.setAttribute('min', mf);
+    else mt.removeAttribute('min');
+  }
+  const rd = document.getElementById('audit_resignation_date');
+  if(rd){
+    if(mf) rd.setAttribute('min', mf);
+    else rd.removeAttribute('min');
+  }
+}
+
+function auditUpdateTooShort(){
+  const sd = document.getElementById('audit_service_date')?.value || '';
+  const unk = document.getElementById('audit_deadline_unknown')?.checked;
+  const dd = document.getElementById('audit_deadline_date')?.value || '';
+  const urgent = document.getElementById('audit_urgent_3days')?.checked;
+  const box = document.getElementById('audit_too_short_alert');
+  if(!box) return;
+
+  let showBox = false;
+  if(urgent){
+    showBox = true;
+  } else if(sd && dd && !unk){
+    const min = addBusinessDays(sd, 3);
+    const d2 = parseDate(dd);
+    if(min && d2 && d2 < min) showBox = true;
+  }
+
+  showBox ? show(box) : hide(box);
+
+  const nextBtn = document.getElementById('auditNext');
+  if(nextBtn && typeof window.auditStep !== 'undefined' && window.auditStep === 3){
+    nextBtn.disabled = showBox;
+    nextBtn.classList.toggle('disabled', showBox);
+    nextBtn.style.opacity = showBox ? '0.55' : '';
+    nextBtn.style.cursor = showBox ? 'not-allowed' : '';
+  }
+}
+
+
+
+function auditValidateServiceDateLive(){
+  const el = document.getElementById('audit_service_date');
+  if(!el) return;
+  const v = el.value;
+  const errEl = document.querySelector('#module-audit .error[data-error-for="audit_service_future"]');
+  if(!v){
+    if(errEl) errEl.style.display='none';
+    el.classList.remove('invalid');
+    return;
+  }
+  const d = parseDate(v);
+  const t = parseDate(todayISO());
+  if(d && t && d > t){
+    if(errEl) errEl.style.display='block';
+    el.classList.add('invalid');
+  } else {
+    if(errEl) errEl.style.display='none';
+    el.classList.remove('invalid');
+  }
+}
+function countSentences(text){
+  const cleaned = (text || '').trim();
+  if(!cleaned) return 0;
+  const parts = cleaned.split(/(?:[.!?]+|\n+)/g).map(s=>s.trim()).filter(Boolean);
+  return parts.length;
+}
+function clearErrors(scope){
+  $$('.error', scope).forEach(e=>hide(e));
+  // remove red highlighting
+  $$('input, select, textarea', scope).forEach(el=>el.classList.remove('invalid'));
+  const sum = scope.id === 'module-audit' ? $('#auditErrorSummary') : $('#calcErrorSummary');
+  if(sum){ sum.innerHTML=''; hide(sum); }
+}
+function showError(scope, key){
+  const el = $(`.error[data-error-for="${key}"]`, scope);
+  if(el) show(el);
+
+  // mark related field (best-effort)
+  const alias = {
+    'audit_service_future':'audit_service_date',
+    'audit_dates_logic':'audit_service_date',
+    'audit_mandate_logic':'audit_mandate_from',
+    'audit_description_too_long':'audit_description',
+    'audit_file_main_type':'audit_file_main',
+    'audit_file_main_size':'audit_file_main',
+    'audit_file_service_type':'audit_file_service',
+    'audit_file_service_size':'audit_file_service',
+    'calc_service_future':'calc_service_date',
+    'audit_deadline_min3':'audit_deadline_date',
+  };
+  const k = alias[key] || key;
+
+  const byId = scope.querySelector('#' + k);
+  if(byId) byId.classList.add('invalid');
+}
+
+function focusForKey(scope, key){
+  if(!key) return false;
+
+  // aliases for message-only errors
+  const alias = {
+    'audit_service_future':'audit_service_date',
+    'audit_dates_logic':'audit_service_date',
+    'audit_mandate_logic':'audit_mandate_from',
+    'audit_description_too_long':'audit_description',
+    'audit_file_main_type':'audit_file_main',
+    'audit_file_main_size':'audit_file_main',
+    'audit_file_main':'audit_file_main',
+    'audit_file_service_type':'audit_file_service',
+    'audit_file_service_size':'audit_file_service',
+    'audit_file_service':'audit_file_service',
+    'calc_service_future':'calc_service_date',
+    'audit_deadline_min3':'audit_deadline_date',
+  };
+  const k = alias[key] || key;
+
+  // try by id
+  const byId = scope.querySelector('#' + k);
+  if(byId && typeof byId.focus === 'function'){
+    byId.focus({preventScroll:true});
+    byId.scrollIntoView({behavior:'smooth', block:'center'});
+    return true;
+  }
+
+  // try by name (radio/checkbox groups)
+  const byName = scope.querySelector(`[name="${k}"]`);
+  if(byName && typeof byName.focus === 'function'){
+    byName.focus({preventScroll:true});
+    byName.scrollIntoView({behavior:'smooth', block:'center'});
+    return true;
+  }
+
+  // special: if key refers to radio group
+  const byName2 = scope.querySelector(`[name="${key}"]`);
+  if(byName2 && typeof byName2.focus === 'function'){
+    byName2.focus({preventScroll:true});
+    byName2.scrollIntoView({behavior:'smooth', block:'center'});
+    return true;
+  }
+  return false;
+}
+
+function focusFirstError(scope){
+  // 1) prefer highlighted invalid inputs
+  const inv = scope.querySelector('.invalid');
+  if(inv && typeof inv.focus === 'function'){
+    inv.focus({preventScroll:true});
+    inv.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  // 2) first visible error message -> focus its field
+  const firstErr = Array.from(scope.querySelectorAll('.error'))
+    .find(e => e.style.display !== 'none' && e.offsetParent !== null);
+  if(firstErr){
+    const key = firstErr.getAttribute('data-error-for') || '';
+    if(focusForKey(scope, key)) return;
+  }
+
+  // 3) fallback: first input in the active step
+  const active = scope.querySelector('.step.active');
+  if(active){
+    const f = active.querySelector('input, select, textarea, button');
+    if(f && typeof f.focus === 'function'){
+      f.focus({preventScroll:true});
+      f.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  }
+}
+
+function showSummary(scope, messages){
+  const sum = scope.id === 'module-audit' ? $('#auditErrorSummary') : $('#calcErrorSummary');
+  if(!sum) return;
+  sum.innerHTML = '<b>Popraw poniższe pola:</b><ul style="margin:6px 0 0 18px; padding:0">' +
+    messages.map(m=>`<li style="margin:4px 0">${m}</li>`).join('') + '</ul>';
+  show(sum);
+  // bring errors into view (important on mobile)
+  sum.scrollIntoView({behavior:'smooth', block:'start'});
+
+  focusFirstError(scope);
+}
+
+/* Dlaczego pytamy? */
+$$('[data-why]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const id = btn.getAttribute('data-why');
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.style.display = (el.style.display==='block') ? 'none' : 'block';
+  });
+});
+
+const moduleAudit = $('#module-audit');
+
+/* AUDIT */
+let auditStep = 1;
+const auditSteps = $$('.step[data-step]', moduleAudit);
+const auditPrev = $('#auditPrev');
+const auditNext = $('#auditNext');
+const auditBar = $('#auditBar');
+const auditProgressLabel = $('#auditProgressLabel');
+const auditPill = $('#auditPill');
+const auditSuccess = $('#auditSuccess');
+const auditSuccessText = $('#auditSuccessText');
+const MAX_FILE_MB = 15;
+
+function auditGetRadio(name){
+  const checked = $(`input[name="${name}"]:checked`, moduleAudit);
+  return checked ? checked.value : '';
+}
+function auditSetPill(){
+  const stage = auditGetRadio('audit_stage');
+  const urgent = $('#audit_urgent_3days').checked;
+  const showP = urgent || stage === 'DEADLINE_RUNNING' || stage === 'ENFORCEMENT';
+  if(showP) show(auditPill); else hide(auditPill);
+}
+function auditUpdateShortGoalVisibility(){
+  const stage = auditGetRadio('audit_stage');
+  const wrap = $('#audit_short_goal_wrap');
+  if(stage === 'DEADLINE_RUNNING' || stage === 'ENFORCEMENT'){
+    show(wrap);
+  } else {
+    hide(wrap);
+    $$('input[name="audit_short_goal"]', moduleAudit).forEach(i=>i.checked=false);
+  }
+  auditSetPill();
+}
+function auditUpdateDeadlineUnknown(){
+  const unk = $('#audit_deadline_unknown').checked;
+  const reqMark = $('#audit_deadline_req');
+  const dateInput = $('#audit_deadline_date');
+  if(unk){
+    dateInput.value = '';
+    dateInput.disabled = true;
+    reqMark.style.display = 'none';
+  } else {
+    dateInput.disabled = false;
+    reqMark.style.display = '';
+  }
+}
+function auditUpdateUrgentHint(){
+  const urgent = $('#audit_urgent_3days').checked;
+  const box = $('#audit_urgent_hint');
+  urgent ? show(box) : hide(box);
+  auditSetPill();
+}
+function auditUpdateMandateCurrent(){
+  const current = $('#audit_mandate_current').checked;
+  const wrapTo = $('#audit_mandate_to_wrap');
+  const to = $('#audit_mandate_to');
+
+  const resignWrap = $('#audit_resignation_wrap');
+  const krsWrap = $('#audit_krs_updated_wrap');
+
+  if(current){
+    // If still in office, resignation/KRS-change questions are not applicable.
+    to.value='';
+    hide(wrapTo);
+
+    // clear and hide resignation + resignation date
+    $$('input[name="audit_resignation"]', moduleAudit).forEach(i=>i.checked=false);
+    $('#audit_resignation_date').value='';
+    hide($('#audit_resignation_date_wrap'));
+    if(resignWrap) hide(resignWrap);
+
+    // clear and hide KRS updated
+    $$('input[name="audit_krs_updated"]', moduleAudit).forEach(i=>i.checked=false);
+    if(krsWrap) hide(krsWrap);
+  } else {
+    show(wrapTo);
+    if(resignWrap) show(resignWrap);
+    if(krsWrap) show(krsWrap);
+    // restore logic for resignation date visibility
+    auditUpdateResignationDate();
+  }
+}
+function auditUpdateResignationDate(){
+  // If user still holds the function, resignation date is not applicable.
+  const current = $('#audit_mandate_current').checked;
+  const wrap = $('#audit_resignation_date_wrap');
+  if(current){
+    hide(wrap);
+    $('#audit_resignation_date').value='';
+    return;
+  }
+  const r = auditGetRadio('audit_resignation');
+  if(r === 'YES') show(wrap);
+  else { hide(wrap); $('#audit_resignation_date').value=''; }
+}
+function auditUpdateSentenceCount(){
+  const n = countSentences($('#audit_description').value);
+  setText('#audit_sent_count', `${n}/8 zdań`);
+}
+function auditUpdateUI(){
+  auditSteps.forEach(s=>s.classList.remove('active'));
+  const active = $(`.step[data-step="${auditStep}"]`, moduleAudit);
+  if(active) active.classList.add('active');
+
+  auditPrev.disabled = (auditStep === 1);
+  auditNext.textContent = (auditStep === 7) ? 'Wyślij do Audytu 48h' : 'Dalej';
+  setText('#auditProgressLabel', `Krok ${auditStep} z 7`);
+  auditBar.style.width = `${(auditStep/7)*100}%`;
+
+  clearErrors(moduleAudit);
+  if(auditStep === 3){ auditValidateServiceDateLive(); auditUpdateTooShort(); auditApplyDateMaxMin(); }
+  auditSetPill();
+}
+
+function fileOk(file){
+  if(!file) return {ok:false, reason:'missing'};
+  const allowed = ['application/pdf','image/jpeg','image/png'];
+  if(!allowed.includes(file.type)) return {ok:false, reason:'type'};
+  const mb = file.size / (1024*1024);
+  if(mb > MAX_FILE_MB) return {ok:false, reason:'size'};
+  return {ok:true};
+}
+
+function auditValidateStep(step){
+  const msgs = [];
+  let ok = true;
+  clearErrors(moduleAudit);
+
+  const err = (key, msg) => { ok=false; msgs.push(msg); showError(moduleAudit, key); };
+
+  if(step === 1){
+    if(!auditGetRadio('audit_case_type')) err('audit_case_type', 'Wybierz rodzaj sprawy.');
+  }
+  if(step === 2){
+    const stage = auditGetRadio('audit_stage');
+    if(!stage) err('audit_stage', 'Wybierz etap sprawy.');
+    auditUpdateShortGoalVisibility();
+    if(stage === 'DEADLINE_RUNNING' || stage === 'ENFORCEMENT'){
+      if(!auditGetRadio('audit_short_goal')) err('audit_short_goal','Wybierz najbliższy cel.');
+    }
+  }
+  if(step === 3){
+    const sd = $('#audit_service_date').value;
+    const unk = $('#audit_deadline_unknown').checked;
+    const dd = $('#audit_deadline_date').value;
+
+    if(!sd) err('audit_service_date','Podaj datę doręczenia.');
+    else {
+      const d=parseDate(sd), t=parseDate(todayISO());
+      if(d && d>t){ ok=false; msgs.push('Niewłaściwa data — data doręczenia nie może być w przyszłości.'); showError(moduleAudit,'audit_service_future'); $('#audit_service_date').classList.add('invalid'); }
+    }
+
+    if(!unk && !dd) err('audit_deadline_date','Podaj termin albo zaznacz „Nie wiem”.');
+
+    if(sd && dd && !unk){
+      const d1=parseDate(sd), d2=parseDate(dd);
+      if(d1 && d2 && d2 < d1){ ok=false; msgs.push('Sprawdź daty — termin nie może być wcześniejszy niż doręczenie.'); showError(moduleAudit,'audit_dates_logic'); $('#audit_deadline_date').classList.add('invalid'); }
+      const min = addBusinessDays(sd, 3);
+      if(min && d2 && d2 < min){ ok=false; msgs.push('Za krótki termin — Audyt 48h nie jest możliwy przy czasie krótszym niż 3 dni robocze od doręczenia.'); showError(moduleAudit,'audit_deadline_min3'); $('#audit_deadline_date').classList.add('invalid'); }
+    }
+    if($('#audit_urgent_3days').checked){ ok=false; msgs.push('Zaznaczyłeś, że termin jest krótszy niż 3 dni robocze — Audyt 48h nie jest możliwy do przeprowadzenia.'); showError(moduleAudit,'audit_deadline_min3'); $('#audit_deadline_date').classList.add('invalid'); }
+    auditUpdateTooShort();
+  }
+  if(step === 4){
+    if(!$('#audit_role').value) err('audit_role','Wybierz rolę.');
+    const from = $('#audit_mandate_from').value;
+    const current = $('#audit_mandate_current').checked;
+    const to = $('#audit_mandate_to').value;
+
+    if(!from) err('audit_mandate_from','Uzupełnij datę „od”.');
+    if(!current && !to) err('audit_mandate_to','Uzupełnij datę „do”.');
+    if(from && to && !current){
+      const d1=parseDate(from), d2=parseDate(to);
+      if(d1 && d2 && d2 < d1){ ok=false; msgs.push('Sprawdź zakres dat mandatu — wygląda na odwrócony.'); showError(moduleAudit,'audit_mandate_logic'); }
+    }
+
+    // If user still holds the function, resignation questions are skipped.
+    if(!current){
+      const r = auditGetRadio('audit_resignation');
+      if(!r) err('audit_resignation','Wybierz czy była rezygnacja/odwołanie.');
+      if(r==='YES' && !$('#audit_resignation_date').value) err('audit_resignation_date','Podaj datę rezygnacji/odwołania.');
+    }
+  }
+  if(step === 5){
+    if(!$('#audit_amount_bucket').value) err('audit_amount_bucket','Wybierz widełki kwoty albo „Nie wiem”.');
+  }
+  if(step === 6){
+    if(!auditGetRadio('audit_priority')) err('audit_priority','Wybierz priorytet.');
+    const desc = $('#audit_description').value.trim();
+    const sc = countSentences(desc);
+    if(!desc) err('audit_description','Wpisz krótki opis.');
+    else if(sc > 8){ ok=false; msgs.push('Skróć opis do 8 zdań.'); showError(moduleAudit,'audit_description_too_long'); }
+  }
+  if(step === 7){
+    const f1 = $('#audit_file_main').files[0];
+    const f2 = $('#audit_file_service').files[0];
+
+    const r1 = fileOk(f1);
+    if(!r1.ok){
+      ok=false;
+      if(r1.reason==='missing'){ msgs.push('Załącz pismo.'); showError(moduleAudit,'audit_file_main'); }
+      if(r1.reason==='type'){ msgs.push('Format pliku pisma jest nieprawidłowy.'); showError(moduleAudit,'audit_file_main_type'); }
+      if(r1.reason==='size'){ msgs.push('Plik pisma jest za duży.'); showError(moduleAudit,'audit_file_main_size'); }
+    }
+    const r2 = fileOk(f2);
+    if(!r2.ok){
+      ok=false;
+      if(r2.reason==='missing'){ msgs.push('Załącz potwierdzenie doręczenia.'); showError(moduleAudit,'audit_file_service'); }
+      if(r2.reason==='type'){ msgs.push('Format pliku doręczenia jest nieprawidłowy.'); showError(moduleAudit,'audit_file_service_type'); }
+      if(r2.reason==='size'){ msgs.push('Plik doręczenia jest za duży.'); showError(moduleAudit,'audit_file_service_size'); }
+    }
+    const email = $('#audit_email').value.trim();
+    if(!email || !isValidEmail(email)){ ok=false; msgs.push('Podaj poprawny adres e-mail.'); showError(moduleAudit,'audit_email'); $('#audit_email').classList.add('invalid'); }
+    if(!$('#audit_consent').checked){ ok=false; msgs.push('Zaznacz zgodę na kontakt.'); showError(moduleAudit,'audit_consent'); }
+  }
+
+  if(!ok) showSummary(moduleAudit, msgs);
+  return ok;
+}
+
+auditPrev.addEventListener('click', ()=>{
+  if(auditSuccess.style.display==='block') return;
+  auditStep = Math.max(1, auditStep-1);
+  auditUpdateUI();
+});
+auditNext.addEventListener('click', ()=>{
+  if(auditSuccess.style.display==='block') return;
+  if(auditStep < 7){
+    if(!auditValidateStep(auditStep)) return;
+    auditStep += 1;
+    auditUpdateUI();
+  } else {
+    if(!auditValidateStep(7)) return;
+    const urgent = $('#audit_urgent_3days').checked;
+    const email = ($('#audit_email') ? $('#audit_email').value.trim() : '');
+    auditSuccessText.textContent = urgent
+      ? `Analizujemy Twój kwestionariusz. Wrócimy z planem w ramach Audytu 48h. Potwierdzenie wyślemy na: ${email || 'podany adres e-mail'}. Jeśli sprawa jest pilna, odpisz na maila potwierdzającego z tematem: PILNE.`
+      : `Analizujemy Twój kwestionariusz. Wrócimy z planem w ramach Audytu 48h. Potwierdzenie wyślemy na: ${email || 'podany adres e-mail'}.`;
+    show(auditSuccess);
+    auditPrev.disabled = true;
+    auditNext.disabled = true;
+    auditSteps.forEach(s=>hide(s));
+    hide($('#auditErrorSummary'));
+  }
+});
+$('#auditRestart').addEventListener('click', ()=>{
+  auditStep = 1;
+  auditSuccess.style.display='none';
+  auditPrev.disabled = false;
+  auditNext.disabled = false;
+  auditSteps.forEach(s=>{s.style.display=''; s.classList.remove('active');});
+  $$('input[type="radio"]', moduleAudit).forEach(i=>i.checked=false);
+  $$('input[type="checkbox"]', moduleAudit).forEach(i=>i.checked=false);
+  $$('input[type="date"]', moduleAudit).forEach(i=>{i.value=''; i.disabled=false;});
+  $$('input[type="file"]', moduleAudit).forEach(i=>i.value='');
+  $$('select', moduleAudit).forEach(s=>s.value='');
+  $('#audit_description').value='';
+  if($('#audit_email')) $('#audit_email').value='';
+  if($('#audit_phone')) $('#audit_phone').value='';
+  setText('#audit_sent_count','0/8 zdań');
+  setText('#audit_file_main_name','');
+  setText('#audit_file_service_name','');
+  hide($('#audit_short_goal_wrap'));
+  auditUpdateDeadlineUnknown();
+  auditUpdateUrgentHint();
+  auditUpdateMandateCurrent();
+  auditUpdateResignationDate();
+  auditUpdateUI();
+});
+$$('input[name="audit_stage"]', moduleAudit).forEach(i=>i.addEventListener('change', auditUpdateShortGoalVisibility));
+$('#audit_deadline_unknown').addEventListener('change', auditUpdateDeadlineUnknown);
+  $('#audit_deadline_unknown').addEventListener('change', auditUpdateTooShort);
+  if($('#audit_deadline_date')){
+    $('#audit_deadline_date').addEventListener('change', auditUpdateTooShort);
+    $('#audit_deadline_date').addEventListener('blur', auditUpdateTooShort);
+  }
+  $('#audit_urgent_3days').addEventListener('change', auditUpdateTooShort);
+$('#audit_urgent_3days').addEventListener('change', auditUpdateUrgentHint);
+$('#audit_mandate_current').addEventListener('change', auditUpdateMandateCurrent);
+$$('input[name="audit_resignation"]', moduleAudit).forEach(i=>i.addEventListener('change', auditUpdateResignationDate));
+$('#audit_description').addEventListener('input', auditUpdateSentenceCount);
+if($('#audit_service_date')){
+  $('#audit_service_date').addEventListener('change', auditValidateServiceDateLive);
+  $('#audit_service_date').addEventListener('change', auditApplyDateMaxMin);
+  $('#audit_service_date').addEventListener('change', auditUpdateTooShort);
+  $('#audit_service_date').addEventListener('blur', auditValidateServiceDateLive);
+}
+$('#audit_file_main').addEventListener('change', ()=>{
+  const f = $('#audit_file_main').files[0];
+  setText('#audit_file_main_name', f ? `Wybrano: ${f.name}` : '');
+});
+$('#audit_file_service').addEventListener('change', ()=>{
+  const f = $('#audit_file_service').files[0];
+  setText('#audit_file_service_name', f ? `Wybrano: ${f.name}` : '');
+});
+auditApplyDateMaxMin();
+auditUpdateDeadlineUnknown();
+auditUpdateUrgentHint();
+auditUpdateTooShort();
+auditUpdateMandateCurrent();
+auditUpdateShortGoalVisibility();
+auditUpdateResignationDate();
+auditUpdateUI();
+
+/* === KRS_GUARD_EMAIL_PREVIEW_V1 === */
+function textOrDash(x){ x = (x||'').toString().trim(); return x ? x : '—'; }
+function labelFromRadio(name){
+  const checked = document.querySelector(`input[name="${name}"]:checked`);
+  if(!checked) return '—';
+  const lbl = checked.closest('label');
+  if(!lbl) return checked.value || '—';
+  const span = lbl.querySelector('span');
+  return (span ? span.textContent : lbl.textContent).replace(/\s+/g,' ').trim();
+}
+function labelFromSelect(id){
+  const el = document.getElementById(id);
+  if(!el) return '—';
+  const opt = el.options[el.selectedIndex];
+  const txt = (opt ? opt.textContent : '').trim();
+  return txt ? txt : '—';
+}
+function buildAuditConfirmationEmail(){
+  const to = (document.getElementById('audit_email')?.value || '').trim();
+  const phone = (document.getElementById('audit_phone')?.value || '').trim();
+
+  const caseType = labelFromRadio('audit_case_type');
+  const stage = labelFromRadio('audit_stage');
+  const shortGoal = labelFromRadio('audit_short_goal');
+
+  const serviceDate = textOrDash(document.getElementById('audit_service_date')?.value);
+  const deadlineUnknown = document.getElementById('audit_deadline_unknown')?.checked;
+  const deadlineDate = deadlineUnknown ? 'Nie wiem — proszę o weryfikację z dokumentu' : textOrDash(document.getElementById('audit_deadline_date')?.value);
+  const urgent = document.getElementById('audit_urgent_3days')?.checked ? 'TAK' : 'Nie';
+
+  const role = textOrDash(document.getElementById('audit_role')?.value).toUpperCase();
+  const mandateFrom = textOrDash(document.getElementById('audit_mandate_from')?.value);
+  const current = document.getElementById('audit_mandate_current')?.checked;
+  const mandateTo = current ? '(nadal pełnię funkcję)' : textOrDash(document.getElementById('audit_mandate_to')?.value);
+
+  const resignation = labelFromRadio('audit_resignation');
+  const resignationDate = textOrDash(document.getElementById('audit_resignation_date')?.value);
+  const krsUpdated = labelFromRadio('audit_krs_updated');
+
+  const amount = labelFromSelect('audit_amount_bucket');
+
+  const priority = labelFromRadio('audit_priority');
+  const successMetric = labelFromRadio('audit_success_metric');
+  const desc = textOrDash(document.getElementById('audit_description')?.value);
+
+  const fMain = document.getElementById('audit_file_main')?.files?.[0]?.name || '—';
+  const fServ = document.getElementById('audit_file_service')?.files?.[0]?.name || '—';
+
+  const subject = 'KRS Guard – Audyt 48h: potwierdzenie zgłoszenia';
+
+  const lines = [];
+  lines.push('Dzień dobry,');
+  lines.push('');
+  lines.push('Dziękujemy — zgłoszenie do KRS Guard (Audyt 48h) zostało przyjęte.');
+  lines.push('Analizujemy Twój kwestionariusz. Wrócimy z planem w ramach Audytu 48h.');
+  lines.push('');
+  lines.push('Podsumowanie kroków:');
+  lines.push('');
+  lines.push('Krok 1/7 — Rodzaj pisma');
+  lines.push(`• ${caseType}`);
+  lines.push('');
+  lines.push('Krok 2/7 — Etap i cel');
+  lines.push(`• Etap sprawy: ${stage}`);
+  lines.push(`• Cel krótkoterminowy: ${shortGoal}`);
+  lines.push('');
+  lines.push('Krok 3/7 — Terminy');
+  lines.push(`• Data doręczenia: ${serviceDate}`);
+  lines.push(`• Termin na odpowiedź/odwołanie: ${deadlineDate}`);
+  lines.push(`• PILNE (≤ 3 dni robocze): ${urgent}`);
+  lines.push('');
+  lines.push('Krok 4/7 — Mandat i KRS');
+  lines.push(`• Rola: ${role}`);
+  lines.push(`• Okres: ${mandateFrom} → ${mandateTo}`);
+  if(!current){
+    lines.push(`• Rezygnacja/odwołanie: ${resignation}`);
+    if(resignationDate !== '—') lines.push(`• Data rezygnacji/odwołania: ${resignationDate}`);
+    lines.push(`• Czy wpis w KRS jest zaktualizowany: ${krsUpdated}`);
+  }
+  lines.push('');
+  lines.push('Krok 5/7 — Kwota (orientacyjnie)');
+  lines.push(`• ${amount}`);
+  lines.push('');
+  lines.push('Krok 6/7 — Priorytet i opis');
+  lines.push(`• Priorytet: ${priority}`);
+  lines.push(`• Co uznajemy za sukces: ${successMetric}`);
+  lines.push(`• Opis: ${desc}`);
+  lines.push('');
+  lines.push('Krok 7/7 — Załączniki i kontakt');
+  lines.push(`• Pismo: ${fMain}`);
+  lines.push(`• Potwierdzenie doręczenia: ${fServ}`);
+  lines.push(`• E-mail: ${to || '—'}`);
+  lines.push(`• Telefon: ${phone || '—'}`);
+  lines.push('');
+  lines.push('Co dalej:');
+  lines.push('1) Jeżeli sprawa jest pilna — odpowiedz na ten e-mail i wpisz w temacie: PILNE.');
+  lines.push('2) Jeżeli brakuje dokumentów — doślij je w odpowiedzi.');
+  lines.push('');
+  lines.push('Pozdrawiamy,');
+  lines.push('Kancelaria PRS – KRS Guard');
+  lines.push('');
+  lines.push('(Uwaga: to wiadomość testowa w prototypie. W wersji produkcyjnej będzie wysyłana automatycznie po zapisaniu zgłoszenia.)');
+
+  return { to, subject, body: lines.join('\n') };
+}
+function openEmailModal(){
+  const modal = document.getElementById('emailModal');
+  if(!modal) return;
+  const mail = buildAuditConfirmationEmail();
+  document.getElementById('emailPreviewSubject').textContent = mail.subject;
+  document.getElementById('emailPreviewBody').textContent = mail.body;
+  modal.style.display = 'flex';
+}
+function closeEmailModal(){
+  const modal = document.getElementById('emailModal');
+  if(!modal) return;
+  modal.style.display = 'none';
+}
+function sendMailtoFromPreview(){
+  const mail = buildAuditConfirmationEmail();
+  if(!mail.to){
+    alert('Uzupełnij adres e-mail w formularzu — inaczej nie da się przygotować wiadomości testowej.');
+    return;
+  }
+  const href = 'mailto:' + encodeURIComponent(mail.to)
+    + '?subject=' + encodeURIComponent(mail.subject)
+    + '&body=' + encodeURIComponent(mail.body);
+  window.location.href = href;
+}
+
+
+
+</script>
+<!-- Email preview modal (test only) -->
+<div class="modal-overlay" id="emailModal" onclick="if(event.target &amp;&amp; event.target.id==='emailModal'){ closeEmailModal(); }" style="display:none">
+<div aria-label="Podgląd e-maila" aria-modal="true" class="modal" role="dialog">
+<div class="modal-head">
+<div>
+<div class="modal-title">Podgląd e-maila potwierdzającego (tryb testowy)</div>
+<div class="muted small">W wersji produkcyjnej e-mail wysyła serwer po zapisaniu zgłoszenia.</div>
+</div>
+<button class="btn ghost" id="emailModalClose" onclick="closeEmailModal()" type="button">Zamknij</button>
+</div>
+<div class="modal-body">
+<div class="label">Temat</div>
+<div class="box" id="emailPreviewSubject"></div>
+<div class="label" style="margin-top:12px">Treść</div>
+<pre class="box" id="emailPreviewBody" style="white-space:pre-wrap;margin:0"></pre>
+<div class="row" style="margin-top:14px;display:flex;gap:10px;justify-content:flex-end">
+<button class="btn" id="emailSendMailto" onclick="sendMailtoFromPreview()" type="button">Wyślij testowo (mail)</button>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

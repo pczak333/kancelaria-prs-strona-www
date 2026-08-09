@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>KRS Guard – Kalkulator Ryzyka (prototyp)</title>
+<style>
+/* === PRS/KRS Guard header (spójny z resztą testu) === */
+body{background:#f4f1ea !important;}
+header{
+  background:rgba(244,241,234,.95);
+  border-bottom:1px solid rgba(7,39,55,.12);
+  padding:14px 22px 10px;
+}
+.header-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;}
+.brand{display:flex;align-items:flex-start;gap:14px;}
+.brand .logo{display:block; width:170px; height:auto;}
+.nav{display:flex;gap:22px; flex-wrap:wrap; align-items:center; justify-content:center; padding-top:6px;}
+.nav a{color:#072737; text-decoration:none; font-weight:500; font-size:15px; padding:4px 0;}
+.nav a.active,.nav a[aria-current="page"]{border-bottom:2px solid rgba(7,39,55,.22); padding-bottom:6px;}
+.krs-logo{display:flex;align-items:flex-start;justify-content:flex-end;padding-top:2px;padding-right:6px;}
+.krs-logo-img{height:64px;width:auto;display:block;opacity:1;filter:drop-shadow(0 1px 1px rgba(0,0,0,.10));}
+:root{--tagline-left:88px;}
+.tagline{text-align:left;padding:6px 0 12px;padding-left:var(--tagline-left);font-size:14px;font-weight:700;color:#072737;line-height:1.25;}
+@media (max-width:900px){
+  :root{--tagline-left:0px;}
+  .tagline{padding-left:0;}
+  header{padding:12px 16px 8px;}
+  .krs-logo-img{height:52px;}
+}
+
+
+    :root{
+      --tagline-left: 88px;
+      --card:#ffffff;
+      --muted:#64748b;
+      --text:#0f172a;
+      --line:#e5e7eb;
+      --soft:#f8fafc;
+      --warn:#b91c1c;
+      --ok:#166534;
+      --shadow: 0 18px 50px rgba(2,6,23,0.28);
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1000px 650px at 10% 0%, #1f2a44 0%, #0b1220 55%, #070b13 100%);
+      min-height:100vh;
+      padding:20px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+    .wrap{ width:min(980px, 100%); }
+    .topbar{
+      color:#e2e8f0;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:12px;
+      margin: 4px 2px 12px;
+    }
+    .brand{ display:flex;flex-direction:column;gap:2px; }
+    .brand .t1{font-weight:800;font-size:18px;letter-spacing:.2px}
+    .brand .t2{font-size:13px;color:#cbd5e1}
+    .chip{
+      border:1px solid rgba(226,232,240,.25);
+      background: rgba(15,23,42,.25);
+      color:#e2e8f0;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .card{
+      background: var(--card);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+    }
+    .cardHead{
+      padding:16px 18px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+    .progress{ display:flex;flex-direction:column;gap:6px;width:280px;max-width:45%; }
+    .bar{ height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden; }
+    .bar > div{ height:100%; width:0%; background:#0f172a; border-radius:999px; transition:width .25s ease; }
+    .stepMeta{font-size:12px;color:var(--muted)}
+    .stepTitle{font-weight:800}
+    .body{ padding:18px; }
+    .question{font-size:18px;font-weight:800;margin:0 0 6px}
+    .desc{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.35}
+    .options{display:grid;gap:10px;margin:10px 0 10px}
+    .opt{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 12px;
+      background: #fff;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      cursor:pointer;
+      transition: transform .08s ease, border-color .12s ease, box-shadow .12s ease;
+    }
+    .opt:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(2,6,23,.06); }
+    .opt input{ margin-top:2px; }
+    .opt .label{font-weight:700}
+    details.why{margin-top:8px}
+    details.why summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:700;
+      color:#0f172a;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      user-select:none;
+    }
+    details.why summary::-webkit-details-marker{display:none}
+    details.why summary:before{content:"ℹ️";}
+    details.why .box{
+      margin-top:8px;
+      border:1px solid var(--line);
+      background: var(--soft);
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:13px;
+      color:#0f172a;
+      line-height:1.35;
+    }
+    .alert{
+      margin-top:12px;
+      border-radius:14px;
+      padding:10px 12px;
+      font-size:13px;
+      border:1px solid #fecaca;
+      background:#fff1f2;
+      color:#7f1d1d;
+      display:none;
+    }
+    .alert.show{display:block}
+    .highlight{
+      outline: 3px solid rgba(185,28,28,.22);
+      border-color: rgba(185,28,28,.65) !important;
+      box-shadow: 0 0 0 3px rgba(185,28,28,.10);
+    }
+    .actions{
+      padding:14px 18px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      background:#fff;
+    }
+    .btn{
+      border:1px solid #0f172a;
+      background:#0f172a;
+      color:#fff;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:800;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn.secondary{ background:#fff; color:#0f172a; }
+    .btn.ghost{ background:#fff; border:1px solid var(--line); color:#0f172a; font-weight:700; }
+    .btn:disabled{ opacity:.45; cursor:not-allowed; }
+    .small{ font-size:12px; color:var(--muted); }
+    .resultTag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      border:1px solid var(--line);
+      background: var(--soft);
+      color:#0f172a;
+      margin-bottom:10px;
+    }
+    .tagUrg{ border-color:#fecaca; background:#fff1f2; color:#7f1d1d;}
+    .tagHigh{ border-color:#fde68a; background:#fffbeb; color:#92400e;}
+    .tagMed{ border-color:#bfdbfe; background:#eff6ff; color:#1e3a8a;}
+    .tagPlan{ border-color:#bbf7d0; background:#f0fdf4; color:#14532d;}
+    ul.reasons{margin:10px 0 0 18px; padding:0;}
+    ul.reasons li{margin:6px 0; line-height:1.35;}
+    .ctaRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .note{
+      margin-top:12px;
+      border:1px dashed #cbd5e1;
+      background:#f8fafc;
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:12px;
+      color:#334155;
+      line-height:1.35;
+    }
+    .modal-overlay{
+      position:fixed; inset:0;
+      background:rgba(15,23,42,0.45);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
+    }
+    .modal{
+      width:min(860px, 100%);
+      max-height:92vh;
+      background:#fff;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid #e7e7e7;
+      box-shadow: 0 18px 50px rgba(2,6,23,0.35);
+    }
+    .modal-head{
+      padding:14px 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      border-bottom:1px solid #eee;
+      position:sticky;
+      top:0;
+      background:#fff;
+      z-index:2;
+    }
+    .modal-title{font-weight:900}
+    .modal-body{
+      padding:14px 16px;
+      overflow:auto;
+      max-height: calc(92vh - 70px);
+    }
+    .checklist h3{margin:10px 0 6px}
+    .checklist ul{margin:8px 0 0 18px}
+    .checklist li{margin:6px 0; line-height:1.35}
+    .copyOK{ color: var(--ok); font-weight:800; display:none; }
+  
+.tagline{ text-align:left; padding:6px 0 12px; padding-left:var(--tagline-left); font-size:14px; font-weight:700; color:var(--ink); line-height:1.25; }
+
+header{padding:14px 22px 10px;}
+
+    /* Nav active state – no "chip" */
+    .nav a.active, .nav a[aria-current="page"]{
+      background:transparent !important;
+      border-radius:0 !important;
+      box-shadow:none !important;
+      padding-bottom:6px !important;
+      border-bottom:2px solid rgba(7,39,55,.22);
+    }
+    
+.krs-logo-img{height:64px;width:auto;display:block;opacity:1;filter:drop-shadow(0 1px 1px rgba(0,0,0,.10));}
+
+    @media (max-width:900px){
+      :root{--tagline-left:0px;}
+      .tagline{padding-left:0;}
+      header{padding:12px 16px 8px;}
+      .krs-logo-img{height:52px;}
+    }
+    </style>
+</head>
+<body><header class="header">
+<div class="container">
+<div class="header-inner">
+<div class="brand-wrap"><a aria-label="Strona główna prototypu" class="brand" href="index.html">
+<div class="brand-mark">
+<span class="kancelaria">KANCELARIA</span>
+<span class="prs">PRS</span>
+</div>
+</a></div>
+<nav aria-label="Nawigacja" class="nav">
+<a href="index.html">Strona główna</a>
+<a href="uslugi-cennik.html">Usługi/Cennik</a>
+<a href="index.html#formularz" rel="noopener" target="_blank">Formularz zgłoszeniowy</a>
+<a href="#" rel="noopener" target="_blank">Blog</a>
+<a href="#">Narzędzia</a>
+<a href="#kontakt" rel="noopener" target="_blank">Kontakt</a>
+<a href="#faq" rel="noopener" target="_blank">FAQ</a>
+</nav>
+<div aria-label="Logo KRS Guard" class="krs-logo"><img alt="KRS Guard" class="krs-logo-img" src="assets/krs_guard_logo_transparent.png"/></div>
+</div>
+</div>
+</header>
+<div class="wrap" style="margin-top:24px">
+<div class="topbar">
+<div class="brand">
+<div class="t1">KRS Guard – Kalkulator Ryzyka</div>
+<div class="t2">Prototyp testowy (6 kroków). Wynik jest kwalifikacją wstępną na podstawie odpowiedzi.</div>
+</div>
+<div class="chip" id="chipState">Krok 1/6</div>
+</div>
+<div aria-label="Kalkulator ryzyka KRS Guard" class="card" role="application">
+<div class="cardHead">
+<div>
+<div class="stepTitle" id="stepTitle">Krok 1/6</div>
+<div class="stepMeta">Odpowiedz na 6 krótkich pytań. Na końcu zobaczysz wynik.</div>
+</div>
+<div aria-hidden="true" class="progress">
+<div class="bar"><div id="barFill"></div></div>
+<div class="stepMeta" id="barText">Postęp: 0%</div>
+</div>
+</div>
+<div class="body" id="body"></div>
+<div class="actions">
+<button class="btn ghost" id="btnPrev" type="button">← Wstecz</button>
+<div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;">
+<button class="btn secondary" id="btnReset" type="button">Reset</button>
+<button class="btn" id="btnNext" type="button">Dalej →</button>
+</div>
+</div>
+</div>
+<div class="small" style="margin:10px 4px 0; color:#cbd5e1;">
+      Tip: To jest prototyp w HTML. Docelowo CTA podepniemy do Twojej strony (formularz Audytu 48h / pobranie checklisty).
+    </div>
+</div>
+<div class="modal-overlay" id="checklistModal" onclick="if(event.target &amp;&amp; event.target.id==='checklistModal'){ closeChecklist(); }">
+<div aria-label="Checklista dokumentów" aria-modal="true" class="modal" role="dialog">
+<div class="modal-head">
+<div>
+<div class="modal-title">Checklista dokumentów do Audytu 48h (komplet)</div>
+<div class="small">Możesz skopiować checklistę i wkleić na stronę.</div>
+</div>
+<div style="display:flex; gap:10px; align-items:center;">
+<span class="copyOK" id="copyOK">Skopiowano ✓</span>
+<button class="btn ghost" onclick="copyChecklist()" type="button">Kopiuj</button>
+<button class="btn ghost" onclick="closeChecklist()" type="button">Zamknij</button>
+</div>
+</div>
+<div class="modal-body">
+<div class="checklist" id="checklistText">
+<h3>1) Pismo, które uruchamia sprawę</h3>
+<ul>
+<li>✅ Skan/zdjęcie całego pisma (wszystkie strony, także pouczenia)</li>
+<li>✅ Załączniki do pisma (jeśli były dołączone)</li>
+</ul>
+<h3>2) Dowód doręczenia (kluczowe)</h3>
+<ul>
+<li>✅ Koperta z datą / awizo / zwrotka <em>albo</em></li>
+<li>✅ UPP / poświadczenie z ePUAP / e‑Doręczeń <em>albo</em></li>
+<li>✅ Potwierdzenie odbioru od kuriera / protokół doręczenia</li>
+</ul>
+<div class="note">Jeśli nie masz potwierdzenia doręczenia — dołącz to, co masz (koperta, screen z e‑Doręczeń/ePUAP, tracking).</div>
+<h3>3) Dokumenty identyfikujące podmiot i Twoją rolę</h3>
+<ul>
+<li>✅ Odpis KRS / wydruk aktualny (PDF)</li>
+<li>✅ Uchwała/akt powołania do zarządu (jeśli dostępne)</li>
+<li>✅ Jeśli była rezygnacja/odwołanie: oświadczenie/uchwała</li>
+<li>✅ Jeśli zgłaszano zmianę: potwierdzenie z PRS/S24 (jeśli masz)</li>
+</ul>
+<h3>4) Minimum merytoryczne (zależnie od pisma)</h3>
+<ul>
+<li><strong>Sąd:</strong> pozew/nakaz + wszystkie załączniki; jeśli już było — Twoje pisma procesowe</li>
+<li><strong>US/ZUS:</strong> decyzja + uzasadnienie + pouczenie; wcześniejsze pisma w sprawie (jeśli są)</li>
+</ul>
+<h3>5) Dodatkowe (pomagają, ale nie blokują)</h3>
+<ul>
+<li>◻️ Umowy/korespondencja kluczowa</li>
+<li>◻️ Zestawienie kwot/należności (jeśli dotyczy)</li>
+<li>◻️ Dokumenty potwierdzające fakty (protokoły, potwierdzenia wpłat)</li>
+</ul>
+<div class="note">
+<strong>Jak przygotować pliki:</strong> PDF lub JPG/PNG. Nazwy: <code>01_Pismo.pdf</code>, <code>02_Doreczenie.pdf</code>, <code>03_KRS.pdf</code>…
+          </div>
+</div>
+</div>
+</div>
+</div>
+<script>
+const steps = [
+  { id:"k1_type", title:"Krok 1/6",
+    question:"Jakiego rodzaju pismo dotyczy sprawa?",
+    desc:"Wybierz najbliższe. Jeśli nie masz pewności — wybierz „Nie wiem”.",
+    why:"Różne pisma mają różne terminy i „wagę” – to wpływa na pilność i rekomendację kolejnego kroku.",
+    options:[
+      {value:"pozew", label:"Pozew / nakaz (odpowiedź w sądzie)"},
+      {value:"us", label:"Decyzja US (podatki)"},
+      {value:"zus", label:"Decyzja ZUS (składki)"},
+      {value:"inne", label:"Wezwanie / inne pismo (nie wiem)"},
+    ]
+  },
+  { id:"k2_time", title:"Krok 2/6",
+    question:"Ile realnie zostało czasu na reakcję?",
+    desc:"Nie musisz podawać dokładnej daty – chodzi o przybliżenie w dniach.",
+    why:"Najczęściej o wyniku decyduje czas – nawet dobra obrona nie zadziała, jeśli termin ucieknie.",
+    options:[
+      {value:"0_3", label:"0–3 dni robocze"},
+      {value:"4_7", label:"4–7 dni"},
+      {value:"8_14", label:"8–14 dni"},
+      {value:"14_plus", label:"Ponad 14 dni"},
+      {value:"unknown", label:"Nie wiem"},
+    ]
+  },
+  { id:"k3_mode", title:"Krok 3/6",
+    question:"Jakiego wsparcia teraz potrzebujesz?",
+    desc:"To pomaga dopasować wynik: „wstępnie” vs „pełna diagnoza”.",
+    why:"Ocena bez dokumentów może być tylko orientacyjna. Audyt 48h daje pewność, ale wymaga kompletu dokumentów.",
+    options:[
+      {value:"only", label:"Chcę tylko wstępnie ocenić sytuację (bez wysyłki dokumentów)"},
+      {value:"later", label:"Chcę wstępnej oceny teraz, a dokumenty mogę dosłać później"},
+      {value:"ready", label:"Jestem gotowy wysłać dokumenty i wejść w Audyt 48h"},
+    ]
+  },
+  { id:"k4_role", title:"Krok 4/6",
+    question:"Czy pełniłeś/pełnisz funkcję w zarządzie w okresie sprawy?",
+    desc:"Chodzi o okres, którego dotyczy roszczenie/decyzja.",
+    why:"Status i daty pełnienia funkcji wpływają na ryzyka oraz na to, co warto zabezpieczyć dowodowo.",
+    options:[
+      {value:"still", label:"Tak – nadal pełnię funkcję"},
+      {value:"resigned", label:"Nie – była rezygnacja/odwołanie"},
+      {value:"dontknow", label:"Nie wiem / trudno powiedzieć"},
+    ]
+  },
+  { id:"k5_krs", title:"Krok 5/6",
+    question:"Czy zmiana (rezygnacja/odwołanie) jest ujawniona w KRS?",
+    desc:"Jeśli rezygnacja/odwołanie nie dotyczy — wybierz „Nie dotyczy”.",
+    why:"W praktyce wiele sytuacji opiera się o wpis w KRS – brak aktualizacji potrafi zwiększać chaos formalny.",
+    options:[
+      {value:"yes", label:"Tak"},
+      {value:"no", label:"Nie"},
+      {value:"unknown", label:"Nie wiem"},
+      {value:"na", label:"Nie dotyczy"},
+    ]
+  },
+  { id:"k6_intent", title:"Krok 6/6",
+    question:"Co jest dla Ciebie najważniejsze na teraz?",
+    desc:"To nie ocena – pomaga dobrać tempo i styl działania.",
+    why:"Inaczej buduje się strategię „walczymy”, a inaczej „minimalizujemy skutki i ryzyko”.",
+    options:[
+      {value:"defend", label:"Realna obrona (merytorycznie)"},
+      {value:"time", label:"Głównie „kupić czas” / wydłużyć terminy (jeśli się da)"},
+      {value:"plan", label:"Nie wiem – potrzebuję planu i oceny szans"},
+    ]
+  },
+];
+
+const state = { idx:0, answers:{} };
+const elBody = document.getElementById("body");
+const elPrev = document.getElementById("btnPrev");
+const elNext = document.getElementById("btnNext");
+const elReset= document.getElementById("btnReset");
+const elTitle= document.getElementById("stepTitle");
+const elChip = document.getElementById("chipState");
+const elBar  = document.getElementById("barFill");
+const elBarText = document.getElementById("barText");
+
+function esc(s){ return (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function setProgress(){
+  const total = steps.length;
+  const cur = Math.min(state.idx+1, total);
+  const pct = Math.round((cur-1)/total*100);
+  elBar.style.width = pct + "%";
+  elBarText.textContent = "Postęp: " + pct + "%";
+  elChip.textContent = `Krok ${cur}/${total}`;
+  elTitle.textContent = steps[state.idx].title;
+}
+function clearStepError(){
+  const a = document.getElementById("stepAlert");
+  if(a) a.classList.remove("show");
+  document.querySelectorAll(".opt").forEach(x=>x.classList.remove("highlight"));
+}
+function showStepError(){
+  const a = document.getElementById("stepAlert");
+  if(a) a.classList.add("show");
+  document.querySelectorAll(".opt").forEach(x=>x.classList.add("highlight"));
+  setTimeout(()=>document.querySelectorAll(".opt").forEach(x=>x.classList.remove("highlight")), 900);
+}
+function validateCurrent(){
+  const step = steps[state.idx];
+  return !!state.answers[step.id];
+}
+
+function renderStep(){
+  setProgress();
+  elPrev.disabled = state.idx===0;
+  elNext.textContent = (state.idx === steps.length-1) ? "Zobacz wynik →" : "Dalej →";
+
+  const step = steps[state.idx];
+  const currentVal = state.answers[step.id];
+
+  const opts = step.options.map(o=>{
+    const checked = (currentVal===o.value) ? "checked" : "";
+    return `
+      <label class="opt">
+        <input type="radio" name="${esc(step.id)}" value="${esc(o.value)}" ${checked} />
+        <div><div class="label">${esc(o.label)}</div></div>
+      </label>`;
+  }).join("");
+
+  elBody.innerHTML = `
+    <h2 class="question">${esc(step.question)}</h2>
+    <p class="desc">${esc(step.desc)}</p>
+    <div class="alert" id="stepAlert">Wybierz jedną odpowiedź, aby przejść dalej.</div>
+    <div class="options" id="optionsWrap">${opts}</div>
+    <details class="why">
+      <summary>Dlaczego pytamy?</summary>
+      <div class="box">${esc(step.why)}</div>
+    </details>
+  `;
+
+  document.getElementById("optionsWrap").addEventListener("change",(e)=>{
+    if(e.target && e.target.name === step.id){
+      state.answers[step.id] = e.target.value;
+      clearStepError();
+    }
+  });
+}
+
+function next(){
+  if(!validateCurrent()){ showStepError(); return; }
+  if(state.idx === steps.length-1){ renderResult(); return; }
+  state.idx += 1; renderStep();
+}
+function prev(){ if(state.idx>0){ state.idx -= 1; renderStep(); } }
+function resetAll(){ state.idx=0; state.answers={}; elNext.disabled=false; renderStep(); }
+
+elPrev.addEventListener("click", prev);
+elNext.addEventListener("click", next);
+elReset.addEventListener("click", resetAll);
+
+// scoring & helpers
+function scoreFromAnswers(a){
+  let C=0,P=0,H=0;
+  if(a.k1_type==="pozew") C+=3;
+  else if(a.k1_type==="us") C+=2;
+  else if(a.k1_type==="zus") C+=2;
+  else C+=1;
+
+  if(a.k2_time==="0_3") P+=3;
+  else if(a.k2_time==="4_7") P+=2;
+  else if(a.k2_time==="8_14") P+=1;
+  else if(a.k2_time==="unknown"){ P+=1; H+=1; }
+
+  if(a.k3_mode==="only") H+=2;
+  else if(a.k3_mode==="later") H+=1;
+
+  if(a.k4_role==="still" || a.k4_role==="dontknow") H+=1;
+
+  if(a.k5_krs==="no" || a.k5_krs==="unknown") H+=1;
+
+  const S=P+C+H;
+  return {S,P,C,H};
+}
+function classify(a, sc){
+  if(a.k2_time==="0_3") return "urgent";
+  let cls="plan";
+  if(sc.S>=8) cls="urgent";
+  else if(sc.S>=6) cls="high";
+  else if(sc.S>=4) cls="med";
+  else cls="plan";
+  if(a.k1_type==="pozew" && (a.k2_time==="0_3" || a.k2_time==="4_7")){
+    if(cls==="med"||cls==="plan") cls="high";
+  }
+  return cls;
+}
+function timeLine(a){
+  if(a.k2_time==="0_3") return "Zostało 0–3 dni robocze na reakcję.";
+  if(a.k2_time==="4_7") return "Zostało 4–7 dni na reakcję.";
+  if(a.k2_time==="8_14") return "Zostało 8–14 dni na reakcję.";
+  if(a.k2_time==="14_plus") return "Zostało ponad 14 dni.";
+  return "Nie jesteś pewien terminu — to zwiększa ryzyko pomyłki.";
+}
+function typeLine(a){
+  if(a.k1_type==="pozew") return "To wygląda na sprawę sądową (pozew/nakaz).";
+  if(a.k1_type==="us") return "To wygląda na sprawę podatkową (US).";
+  if(a.k1_type==="zus") return "To wygląda na sprawę składkową (ZUS).";
+  return "Nie jest jasne, jakiego typu to pismo.";
+}
+function intentLine(a){
+  if(a.k6_intent==="defend") return "Priorytet: realna obrona (merytorycznie).";
+  if(a.k6_intent==="time") return "Priorytet: „kupić czas” (jeśli to możliwe).";
+  return "Priorytet: potrzebujesz planu i oceny szans.";
+}
+function roleLine(a){
+  if(a.k4_role==="still") return "Dodatkowo: nadal pełnisz funkcję w zarządzie.";
+  if(a.k4_role==="dontknow") return "Dodatkowo: niepewny status pełnienia funkcji.";
+  return "";
+}
+function krsLine(a){
+  if(a.k5_krs==="no") return "Zmiana nie jest ujawniona w KRS — to często zwiększa chaos formalny.";
+  if(a.k5_krs==="unknown") return "Niepewność co do wpisu w KRS — warto to zweryfikować.";
+  return "";
+}
+
+const catOrder = {P:0,C:1,H:2};
+function collectReasons(a){
+  const r=[];
+  if(a.k2_time==="0_3") r.push({cat:"P", pts:3, text:"Zostało ≤ 3 dni robocze na reakcję — najpierw zabezpieczamy termin."});
+  if(a.k2_time==="4_7") r.push({cat:"P", pts:2, text:"Zostało 4–7 dni — warto szybko ustawić plan działań."});
+  if(a.k2_time==="8_14") r.push({cat:"P", pts:1, text:"Zostało 8–14 dni — jest czas na strategię, ale nie odkładaj."});
+  if(a.k2_time==="unknown") r.push({cat:"P", pts:2, text:"Niepewność co do terminu zwiększa ryzyko — weryfikujemy to po analizie dokumentów."}); // 1+1=2
+
+  if(a.k1_type==="pozew") r.push({cat:"C", pts:3, text:"To pozew/nakaz — zwykle wymaga szybkiej analizy i spójnej strategii."});
+  if(a.k1_type==="us") r.push({cat:"C", pts:2, text:"To decyzja US — kluczowe są terminy i właściwy tryb odwołania."});
+  if(a.k1_type==="zus") r.push({cat:"C", pts:2, text:"To decyzja ZUS — kluczowe są terminy i dokumenty do odwołania."});
+  if(a.k1_type==="inne") r.push({cat:"C", pts:1, text:"Nie jest jasne, jakiego typu to pismo — kwalifikujemy to w Audycie 48h."});
+
+  if(a.k3_mode==="only") r.push({cat:"H", pts:2, text:"Chcesz tylko wstępnej oceny bez dokumentów — pewność oceny jest niższa."});
+  if(a.k3_mode==="later") r.push({cat:"H", pts:1, text:"Dokumenty dosłasz później — weryfikację robimy po dosłaniu kompletu."});
+
+  if(a.k4_role==="still") r.push({cat:"H", pts:1, text:"Nadal pełnisz funkcję w zarządzie — warto równolegle porządkować ryzyka formalne."});
+  if(a.k4_role==="dontknow") r.push({cat:"H", pts:1, text:"Niepewny status pełnienia funkcji — daty mogą mieć znaczenie dla ryzyk."});
+  if(a.k5_krs==="no") r.push({cat:"H", pts:1, text:"Zmiana nie jest ujawniona w KRS — to często zwiększa chaos formalny."});
+  if(a.k5_krs==="unknown") r.push({cat:"H", pts:1, text:"Niepewność co do wpisu w KRS — weryfikacja porządkuje sytuację."});
+  return r;
+}
+function top3Reasons(a){
+  const all = collectReasons(a);
+  all.sort((x,y)=>{
+    if(y.pts!==x.pts) return y.pts-x.pts;
+    return (catOrder[x.cat]??9)-(catOrder[y.cat]??9);
+  });
+  return all.slice(0,3);
+}
+
+function buildResult(cls, mode, a, sc){
+  const requireDocs = "Audyt 48h wymaga kompletu dokumentów (pismo + dowód doręczenia).";
+  const tag = {
+    urgent:{label:"SPRAWA PILNA", css:"tagUrg"},
+    high:{label:"WYSOKIE RYZYKO", css:"tagHigh"},
+    med:{label:"ŚREDNIE RYZYKO / BRAKI DANYCH", css:"tagMed"},
+    plan:{label:"PREWENCJA / PLAN", css:"tagPlan"},
+  }[cls];
+
+  const heading = {
+    urgent:"Sprawa pilna — liczy się czas.",
+    high:"Wysokie ryzyko — warto działać z planem.",
+    med:"Umiarkowane ryzyko — ale brakuje danych do pewnej oceny.",
+    plan:"Prewencja / plan — można podejść spokojnie, ale warto uporządkować sytuację."
+  }[cls];
+
+  const extras = [roleLine(a), krsLine(a), intentLine(a)].filter(Boolean).join(" ");
+  let body = `${timeLine(a)} ${typeLine(a)} ${extras}`.trim();
+
+  let ctaPrimary="", ctaSecondary="";
+  if(mode==="only"){
+    body += " Wybrałeś wstępną ocenę bez dokumentów, więc wynik jest orientacyjny.";
+    if(cls==="urgent" || cls==="high") body += " Przy tak krótkim czasie najbezpieczniej jest przygotować komplet i dopiero wtedy uruchomić Audyt 48h.";
+    else body += " Jeśli chcesz większej pewności — przygotuj komplet i uruchom Audyt 48h.";
+    ctaPrimary="Pobierz checklistę";
+    ctaSecondary="Mam komplet → Audyt 48h";
+  } else if(mode==="later"){
+    body += " Chcesz wstępnej oceny teraz i dosłania dokumentów później.";
+    body += " Najpierw ustawimy kierunek i priorytety, a po dosłaniu kompletu potwierdzimy terminy i strategię.";
+    ctaPrimary="Pobierz checklistę";
+    ctaSecondary="Mam komplet → Audyt 48h";
+  } else {
+    body += " Masz gotowość do Audytu 48h — przejdź dalej i wyślij komplet dokumentów.";
+    ctaPrimary="Przejdź do Audytu 48h";
+    ctaSecondary="Pobierz checklistę";
+  }
+
+  return {tag, heading, body, note: requireDocs, ctaPrimary, ctaSecondary, debug:`S=${sc.S} (P=${sc.P}, C=${sc.C}, H=${sc.H})`};
+}
+
+function renderResult(){
+  const a = state.answers;
+  const sc = scoreFromAnswers(a);
+  const cls = classify(a, sc);
+  const mode = a.k3_mode;
+  const reasons = top3Reasons(a);
+  const res = buildResult(cls, mode, a, sc);
+
+  elBody.innerHTML = `
+    <div class="resultTag ${res.tag.css}">${esc(res.tag.label)}</div>
+    <h2 class="question">${esc(res.heading)}</h2>
+    <p class="desc" style="font-size:14px">${esc(res.body)}</p>
+
+    <div style="margin-top:10px;font-weight:800;">Dlaczego taki wynik?</div>
+    <ul class="reasons">${reasons.map(r=>`<li>${esc(r.text)}</li>`).join("")}</ul>
+
+    <div class="ctaRow">
+      <button class="btn" type="button" id="ctaPrimary">${esc(res.ctaPrimary)}</button>
+      <button class="btn secondary" type="button" id="ctaSecondary">${esc(res.ctaSecondary)}</button>
+      <button class="btn ghost" type="button" id="ctaRestart">Wypełnij ponownie</button>
+    </div>
+
+    <div class="note"><strong>Ważne:</strong> ${esc(res.note)}</div>
+    <div class="small" style="margin-top:10px">Tryb testowy: <span style="font-family:ui-monospace,monospace">${esc(res.debug)}</span></div>
+  `;
+
+  elPrev.disabled = true;
+  elNext.disabled = true;
+
+  document.getElementById("ctaRestart").addEventListener("click", resetAll);
+  document.getElementById("ctaPrimary").addEventListener("click", ()=>{
+    if(res.ctaPrimary.includes("checklist")) openChecklist();
+    else alert("Tu podepniemy przejście do formularza Audytu 48h na Twojej stronie (link/anchor). W prototypie to test.");
+  });
+  document.getElementById("ctaSecondary").addEventListener("click", ()=>{
+    if(res.ctaSecondary.includes("checklist")) openChecklist();
+    else alert("Tu podepniemy przejście do formularza Audytu 48h na Twojej stronie (link/anchor). W prototypie to test.");
+  });
+}
+
+// checklist modal helpers
+function openChecklist(){ document.getElementById("checklistModal").style.display="flex"; }
+function closeChecklist(){
+  document.getElementById("checklistModal").style.display="none";
+  document.getElementById("copyOK").style.display="none";
+}
+function copyChecklist(){
+  const text = document.getElementById("checklistText").innerText.trim();
+  navigator.clipboard.writeText(text).then(()=>{
+    const ok=document.getElementById("copyOK");
+    ok.style.display="inline";
+    setTimeout(()=>ok.style.display="none", 1400);
+  }).catch(()=>alert("Nie udało się skopiować. Zaznacz checklistę ręcznie i skopiuj (Ctrl+C)."));
+}
+
+renderStep();
+</script>
+</body>
+</html>

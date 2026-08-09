@@ -4,20 +4,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Co to za projekt
 
-Strona internetowa marki **KRS Guard** — ochrona członków zarządu spółek
+Strona internetowa marki **Zarząd Guard** — ochrona członków zarządu spółek
 (pozew z art. 299 KSH, decyzje US/ZUS, bezpieczne odejście z zarządu). Repo
 GitHub: `pczak333/kancelaria-prs-strona-www` (nazwa repo historyczna, sprzed
-zmiany marki — nie zmieniamy jej).
+zmian marki — nie zmieniamy jej).
+
+> **UWAGA — nazwa marki zmieniała się DWA razy.** „Kancelaria PRS" →
+> „KRS Guard" (22.07.2026) → **„Zarząd Guard" (09.08.2026)**. Obowiązująca
+> nazwa to **Zarząd Guard**; w `www/` nie ma już ani jednego „KRS Guard".
+> Uwaga na mylące ślady starej nazwy, których świadomie NIE zmieniamy:
+> nazwa repo, nazwy plików (`krs_guard_logo_transparent.png`,
+> `krs-guard.html`), skrót na pulpicie „Podglad strony KRS Guard".
+> Skrót „KRS" sam w sobie zostaje wszędzie tam, gdzie znaczy Krajowy
+> Rejestr Sądowy — to nie jest nazwa marki.
 
 **Profil i relacja do „Kancelarii PRS".** To osobna, samodzielna strona o
-profilu KRS Guard. Rejestracją spółek (KRS/PRS/S24) zajmuje się partnerska
+profilu Zarząd Guard. Rejestracją spółek (KRS/PRS/S24) zajmuje się partnerska
 **Kancelaria PRS** — inna strona tej samej rodziny (syna właściciela),
 `https://kancelaria-prs.vercel.app/` (docelowo `kancelariaprs.com`). Nasza
-strona zwiększa zasięg KRS Guard; docelowo zapytania obsługuje Kancelaria
+strona zwiększa zasięg Zarząd Guard; docelowo zapytania obsługuje Kancelaria
 PRS. Usług rejestrowych NIE powielamy — tylko krótko odsyłamy do niej
 (box „handoff" na stronie głównej, w cenniku, kontakcie i FAQ). Usługi
-prawne realizuje Kancelaria PRS (wzmianka w stopce). Zmiana marki
-z „Kancelaria PRS" na „KRS Guard" nastąpiła 22.07.2026.
+prawne realizuje Kancelaria PRS (wzmianka w stopce).
 
 **Stack technologiczny (wybrany 22.07.2026): statyczna strona
 HTML/CSS/JS bez narzędzia budującego (no build).** Powód: najprostsze,
@@ -31,7 +39,7 @@ na dowolny hosting statyczny).
 **Struktura repo:**
 
 - `www/` — właściwa strona (deliverable). Podstrony: `index.html`,
-  `uslugi-cennik.html` (Cennik — lejek + **pakiety** KRS Guard), `krs-guard.html`,
+  `uslugi-cennik.html` (Cennik — lejek + **pakiety** Zarząd Guard), `krs-guard.html`,
   `narzedzia.html` (intro kalkulatora → link do aplikacji Streamlit),
   `audyt-48h.html` + `audyt-48h-form.html` (wieloetapowy formularz,
   na razie makieta bez prawdziwego backendu), `kontakt.html`, `faq.html`,
@@ -43,10 +51,16 @@ na dowolny hosting statyczny).
 - `podglad-strony.bat` — w katalogu głównym repo; dwuklik otwiera stronę
   w Edge (patrz „Podgląd lokalny" niżej).
 - `Dane_wejściowe/` — materiały źródłowe (m.in. stary prototyp
-  `strona testowa_stara/`), tylko do odczytu, NIE część strony.
+  `strona testowa_stara/` i wcześniejsze warianty logotypów), tylko do
+  odczytu, NIE część strony.
+- `logo/` — warianty logo-tarczy poza stroną: `LOGO-poprawione.png`
+  (źródłowy plik wdrożonego znaku, 1680×1782), `PODGLAD-cale-logo.png`
+  i `logo_wersja_alternatywna.png` (odrzucona wersja z Canvy — kremowy
+  napis, kanciasty wierzch; zachowana na wypadek zmiany zdania).
 
-**Marka i nawigacja.** Znak w nagłówku to **KRS Guard** (logo-tarcza
-`assets/krs_guard_logo_transparent.png` + napis „KRS Guard" i podtytuł
+**Marka i nawigacja.** Znak w nagłówku to **Zarząd Guard** (logo-tarcza
+`assets/krs_guard_logo_transparent.png` — nazwa pliku historyczna — z napisem
+„ZARZĄD" na tarczy i „GUARD" na wstędze, obok napis „Zarząd Guard" i podtytuł
 „Ochrona zarządu"). Menu (odchudzone): Strona główna · Jak pomagamy
 (`krs-guard.html`) · Cennik (`uslugi-cennik.html`) · Kalkulator ryzyka
 (`narzedzia.html`) · Audyt 48h (`audyt-48h.html`) · FAQ · Kontakt · Blog.
@@ -106,11 +120,17 @@ jestem techniczny!"). Z tego wynika konkretna zasada pracy:
 - Pracuje na **dwóch komputerach** naprzemiennie — patrz "Ciągłość pracy
   między komputerami" niżej.
 
-## Relacja do kalkulatora ryzyka "KRS Guard"
+## Relacja do kalkulatora ryzyka
 
 Osobny, już działający projekt tej samej kancelarii: repo
 `pczak333/Kalkulator_ryzyka_app` (Streamlit, Python), wdrożony pod
 `https://kalkulatorryzyka.streamlit.app/`.
+
+**Uwaga po zmianie nazwy marki (09.08.2026):** zmiana na „Zarząd Guard"
+objęła WYŁĄCZNIE tę stronę (`www/`). Kalkulator to osobne repo i osobne
+wdrożenie — **nie sprawdzano, jaką nazwą posługuje się on sam**. Jeśli
+pojawi się temat ujednolicenia nazwy między stroną a kalkulatorem, najpierw
+sprawdzić stan faktyczny w tamtym repo, nie zakładać.
 
 **Decyzja (22.07.2026): kalkulator zostaje osobną, samodzielnie wdrożoną
 aplikacją — ta strona ma do niego tylko linkować** (zwykły przycisk/link,
@@ -308,11 +328,32 @@ Sprawdzone w przeglądarce.
     Do potwierdzenia przez właściciela: umowy powierzenia z Microsoftem
     i Anthropic, podstawa przekazania poza EOG.
 
+**Zrobione (07–09.08.2026):**
+14. **Nowe logo-tarcza (Canva) wdrożone.** Stary plik okazał się
+    powiększeniem ~5,2× obrazka 116×134 px — rozmyta była CAŁA tarcza, nie
+    tylko napis. Znak narysowano od nowa w Canvie (projekt `DAHRvQt6Slo`,
+    2000×2000, napisy jako prawdziwy tekst) i wdrożono jako
+    `krs_guard_logo_transparent.png` (754×800), `krs_guard_logo.png`,
+    `krs_guard_logo_tile.png` (512×512). HTML bez zmian — ścieżki te same.
+    Pliki źródłowe w `logo/`. Plan i przebieg:
+    `plany/logo-nowa-tarcza-canva-wersja2.md`,
+    `plany/logo-trzy-poprawki-2026-08-09.md`.
+15. **ZMIANA NAZWY MARKI: „KRS Guard" → „Zarząd Guard".** Objęła całe `www/`
+    (121 wystąpień nowej nazwy, zero starej) — nagłówki, stopki, tytuły
+    stron, teksty. Nazwy plików i repo świadomie bez zmian (patrz ramka na
+    początku tego dokumentu).
+16. **Menu w nagłówku w jednej linii.** Pozycja „Blog" spadała do drugiego
+    rzędu — brakowało 31 px. Odzyskane na odstępach (`gap` 14→10 px,
+    wypełnienie pozycji 6→4 px, odstępy nagłówka 18→14 i 12→8 px), bez
+    zmniejszania logo ani nazwy marki. Próg menu mobilnego podniesiony
+    980→1180 px, żeby na węższych ekranach pojawiał się „hamburger" zamiast
+    łamanego paska. Sprawdzone pomiarem przy 1280, 1181 i 1100 px.
+
 **Rozstrzygnięte decyzje:**
 
 - Stack: statyczny HTML/CSS/JS bez build (patrz sekcja „Co to za projekt").
-- Marka/profil: **KRS Guard**, ochrona członków zarządu; rejestracja →
-  odesłanie do partnerskiej Kancelarii PRS.
+- Marka/profil: **Zarząd Guard** (od 09.08.2026), ochrona członków zarządu;
+  rejestracja → odesłanie do partnerskiej Kancelarii PRS.
 - Cennik: lejek + **3 pakiety** (art. 299 KSH, US/ZUS, Zarząd SAFE);
   Audyt 48h i Kalkulator to NIE pakiety, tylko wcześniejsze kroki lejka.
 - Kalkulator: osobna aplikacja, strona tylko linkuje (patrz sekcja niżej).
@@ -339,9 +380,11 @@ Sprawdzone w przeglądarce.
 - **Adres w handoffie do Kancelarii PRS** — obecnie link do
   `https://kancelaria-prs.vercel.app/` (podgląd Vercel). Podmienić na
   docelowy adres (np. `kancelariaprs.com`), gdy będzie ustalony.
-- **Identyfikacja wizualna** — marka KRS Guard używa gotowego logo-tarczy
-  (`assets/krs_guard_logo_transparent.png`) + napis „KRS Guard". Jeśli
-  pojawi się docelowe, dedykowane logo — osobny temat.
+- **Identyfikacja wizualna** — ZAMKNIĘTE 09.08.2026. Marka Zarząd Guard ma
+  własne logo-tarczę zrobione w Canvie (projekt `DAHRvQt6Slo`), wdrożone jako
+  `assets/krs_guard_logo_transparent.png` (nazwa pliku historyczna). Plik
+  źródłowy i wersja odrzucona leżą w `logo/`. Nie „poprawiać" tego znaku
+  bez wyraźnej prośby właściciela.
 
 Nie zgadywać nierozstrzygniętych decyzji — dopytać użytkownika, gdy nadejdzie
 ich kolej, w prosty, niejargonowy sposób (patrz sekcja o stylu współpracy

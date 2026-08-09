@@ -1,6 +1,6 @@
 ---
 name: stan-pracy-2026-08-09
-description: "Aktualny stan prac (09.08.2026) — nowe logo-tarcza z Canvy wdrożone na stronę. Zawiera opis techniki, która wreszcie zadziałała (kolor kontrolny do maski liter, dwa renderingi do przezroczystości) oraz ostrą lekcję o zgadywaniu i przedwczesnym ogłaszaniu sukcesu"
+description: "Aktualny stan prac (09.08.2026) — nowe logo-tarcza z Canvy wdrożone, ZMIANA NAZWY MARKI na „Zarząd Guard\" w całym www/, menu w nagłówku w jednej linii. Zawiera opis techniki, która wreszcie zadziałała (kolor kontrolny do maski liter, dwa renderingi do przezroczystości) oraz ostrą lekcję o zgadywaniu i przedwczesnym ogłaszaniu sukcesu"
 metadata: 
   node_type: memory
   type: project
@@ -27,6 +27,44 @@ W repo: `www/assets/krs_guard_logo_transparent.png` (754×800, jedyny używany �
 linkowany w 18 plikach HTML), plus odświeżone `krs_guard_logo.png` i
 `krs_guard_logo_tile.png` (512×512). HTML bez zmian. W nagłówku logo jest
 o 18 px szersze niż poprzednio (98 px zamiast 80 przy wysokości 104).
+
+## Zrobione: ZMIANA NAZWY MARKI na „Zarząd Guard"
+
+Druga zmiana nazwy w tym projekcie: „Kancelaria PRS" → „KRS Guard"
+(22.07.2026) → **„Zarząd Guard" (09.08.2026)**. Powód: nowe logo ma na
+tarczy napis „ZARZĄD", a teksty strony mówiły „KRS Guard" — właściciel
+wychwycił niespójność na zrzucie ekranu.
+
+Objęła **całe `www/`**: nagłówki, stopki, tytuły stron (`<title>`), opisy
+meta, teksty. Stan po zmianie: **121 wystąpień „Zarząd Guard", zero
+„KRS Guard"**.
+
+**Świadomie NIE zmienione** (mylące przy następnej sesji — nie „poprawiać"):
+nazwa repo `kancelaria-prs-strona-www`, nazwy plików
+(`krs_guard_logo_transparent.png`, `krs-guard.html`), skrót na pulpicie
+„Podglad strony KRS Guard". Skrót „KRS" zostaje wszędzie tam, gdzie znaczy
+Krajowy Rejestr Sądowy — to nie nazwa marki.
+
+**Kalkulatora to NIE objęło** — osobne repo, osobne wdrożenie; nie
+sprawdzano, jaką nazwą posługuje się on sam. Nie zakładać, że jest spójny.
+
+## Zrobione: menu w nagłówku w jednej linii
+
+Pozycja „Blog" spadała do drugiego rzędu. Pomiar: pasek potrzebował 758 px,
+miał 727 — brakowało 31 px. Odzyskane wyłącznie na odstępach, **bez
+zmniejszania logo ani nazwy marki** (`.nav` gap 14→10 px, `.nav a` padding
+6→4 px, `.header-inner` gap 18→14 px, `.nav` margin-left 12→8 px) — razem
+60 px. Dodatkowo `flex-wrap: nowrap`.
+
+Próg menu mobilnego podniesiony **980 → 1180 px**: poniżej 1180 px nie ma
+miejsca na 8 pozycji, więc menu chowa się pod „hamburgerem" zamiast łamać
+na dwa rzędy. Kluczowa obserwacja: kontener ma `max-width:1180px` +
+`padding:0 18px`, czyli **stałe 1144 px na każdym szerszym ekranie** —
+wystarczy dopasować się raz, działa na wszystkich rozdzielczościach.
+
+Sprawdzone pomiarem (`getBoundingClientRect` przez JS, nie na oko):
+1280 px i 1181 px → jeden rząd, bez wychodzenia poza nagłówek i bez
+poziomego przewijania; 1100 px → hamburger.
 
 ## Techniki, które zadziałały (zapamiętać na przyszłość)
 
@@ -76,8 +114,10 @@ czy jesteś w stanie rozwiązać problem"). Powody były po mojej stronie:
 Właściciel skutecznie zaznacza usterki na zrzutach ekranu (`obraz2_rzeczy_do
 _poprawy.png`) — to najszybszy kanał informacji zwrotnej, warto o niego prosić.
 Grafiki nadal pokazywać przez `C:\Users\User\Desktop\testy\` (w rozmowie mu
-się nie wyświetlają). Właściciel założył też katalog `logo/` w repo (na razie
-nieśledzony przez gita) i wrzuca tam warianty.
+się nie wyświetlają). Właściciel założył też katalog `logo/` w repo i wrzuca
+tam warianty — **od 09.08.2026 jest już śledzony przez gita** (razem
+z `Dane_wejściowe/`, które wcześniej istniało tylko lokalnie i nie trafiłoby
+na drugi komputer).
 
 ## Otwarte punkty
 

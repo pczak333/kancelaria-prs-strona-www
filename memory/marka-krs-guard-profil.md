@@ -1,6 +1,6 @@
 ---
 name: marka-krs-guard-profil
-description: "Marka strony to „KRS Guard\" (ochrona zarządu); rejestracja → odesłanie do partnerskiej Kancelarii PRS"
+description: "Marka strony to „Zarząd Guard\" (od 09.08.2026; wcześniej „KRS Guard\") — ochrona zarządu; rejestracja → odesłanie do partnerskiej Kancelarii PRS"
 metadata: 
   node_type: memory
   type: project
@@ -8,15 +8,23 @@ metadata:
   modified: 2026-07-22T18:05:51.172Z
 ---
 
-Marka i profil strony (decyzja 22.07.2026): strona nazywa się **„KRS Guard"**
+> **AKTUALNA NAZWA MARKI: „Zarząd Guard"** (zmiana 09.08.2026). Nazwa
+> zmieniała się dwa razy: „Kancelaria PRS" → „KRS Guard" (22.07.2026) →
+> **„Zarząd Guard" (09.08.2026)**. W `www/` nie ma już ani jednego
+> „KRS Guard". Nazwa tego pliku pamięci i nazwy plików w repo
+> (`krs-guard.html`, `krs_guard_logo_transparent.png`, nazwa repo) są
+> historyczne i **świadomie nie są zmieniane**. Szczegóły:
+> [[stan-pracy-2026-08-09]].
+
+Marka i profil strony: strona nazywa się **„Zarząd Guard"**
 (podtytuł „Ochrona zarządu"), profil = ochrona członków zarządu spółek
 (pozew z art. 299 KSH, decyzje US/ZUS wg art. 116 O.p., bezpieczne odejście
-z zarządu). Wcześniejsza marka „Kancelaria PRS" została zastąpiona wszędzie.
+z zarządu).
 
 **Why:** „Kancelaria PRS" (Prosta Rejestracja Spółek) to OSOBNA strona syna
 właściciela (`https://kancelaria-prs.vercel.app/`, docelowo
 `kancelariaprs.com`) skupiona na rejestracji spółek — i NIE rusza tematu
-ochrony zarządu. Nasza strona zajmuje tę niszę (KRS Guard), zwiększa zasięg,
+ochrony zarządu. Nasza strona zajmuje tę niszę, zwiększa zasięg,
 a docelowo zapytania obsługuje kancelaria syna.
 
 **How to apply:**
@@ -28,6 +36,8 @@ a docelowo zapytania obsługuje kancelaria syna.
   to NIE pakiety.
 - Nagłówek/stopka identyczne na każdej podstronie — przy zmianach podmieniać
   we wszystkich (skrypt, np. `scratchpad/rebrand.py`).
-- Teksty krótkie i czytelne; opisy KRS Guard trzymać konkretne (klient ma
+- Teksty krótkie i czytelne; opisy Zarząd Guard trzymać konkretne (klient ma
   wiedzieć, co dostaje) — nie tnij ich agresywnie. Patrz
   [[stack-decyzja-statyczny-html]].
+- Skrót „KRS" zostaje wszędzie tam, gdzie znaczy **Krajowy Rejestr Sądowy** —
+  to nie jest nazwa marki i nie podlega zamianie.
