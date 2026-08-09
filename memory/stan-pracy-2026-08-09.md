@@ -1,0 +1,92 @@
+---
+name: stan-pracy-2026-08-09
+description: "Aktualny stan prac (09.08.2026) — nowe logo-tarcza z Canvy wdrożone na stronę. Zawiera opis techniki, która wreszcie zadziałała (kolor kontrolny do maski liter, dwa renderingi do przezroczystości) oraz ostrą lekcję o zgadywaniu i przedwczesnym ogłaszaniu sukcesu"
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: 7b55432a-43e4-49a0-8486-1d8b03e937e1
+  modified: 2026-08-09T08:55:32.336Z
+---
+
+Bieżący punkt zapisu — **09.08.2026**. Zastępuje [[stan-pracy-2026-08-08]].
+
+## Zrobione: nowe logo-tarcza wdrożone na stronę
+
+Projekt Canva: **`DAHRvQt6Slo`** („Classic Heraldic Shield with Silver Border",
+2000×2000) — na koncie właściciela. Powstał z wersji 2 wybranej z czterech
+propozycji. Oba napisy są w nim **edytowalnym tekstem**:
+- `ZARZĄD` — element `PBt7G3jLC0h5y1v4-LBLVDxrs5P1kvtj8`, `#a6a6a6` (szary),
+  `pos: left=506, top=560`, fontSize 226,84
+- `GUARD` — element `PBt7G3jLC0h5y1v4-LBZ5cPc2N5Fqk4jq`, `#00214a`, bold,
+  fontSize 228
+
+Poprawki na życzenie właściciela: napis ZARZĄD przesunięty w górę, GUARD
+pogrubiony i lekko powiększony, usunięta ciemna plama w grafice wstęgi.
+
+W repo: `www/assets/krs_guard_logo_transparent.png` (754×800, jedyny używany —
+linkowany w 18 plikach HTML), plus odświeżone `krs_guard_logo.png` i
+`krs_guard_logo_tile.png` (512×512). HTML bez zmian. W nagłówku logo jest
+o 18 px szersze niż poprzednio (98 px zamiast 80 przy wysokości 104).
+
+## Techniki, które zadziałały (zapamiętać na przyszłość)
+
+Dwa problemy, których nie dało się rozwiązać „na oko", i ich rozwiązania:
+
+1. **Plama na wstędze miała dokładnie ten sam granat co litery** (`#00214a`),
+   więc każda maska kolorystyczna albo zostawiała plamę, albo zamalowywała
+   literę na kluchę. Rozwiązanie: **przemalować napis w Canvie na kolor
+   kontrolny** (`#FF00FF`), wyeksportować, zbudować z tego maskę liter co do
+   piksela, przywrócić kolor. Potem łatać wyłącznie `plama AND NOT litera`.
+   Dodatkowo pomaga eksport z `opacity: 0` na napisie — daje czystą wstęgę
+   bez liter do inpaintingu.
+
+2. **Przezroczystość** — eksport PNG z `transparent_background: true` jest
+   w Canvie **płatny (plan Free tego nie ma)**. Progowanie jasności zawodzi:
+   srebrne końcówki wstęgi robiły się półprzezroczyste, a zalewanie „dziur"
+   dawało białe plamy w prześwitach między wstęgą a tarczą. Rozwiązanie:
+   **dwa renderingi — na białym i na zielonym tle** (wstawić `insert_shape`
+   na całą stronę + `layer_element: back`, potem `delete_element`).
+   Z różnicy kanałów R i B liczy się dokładna alfa:
+   `α = 1 − (C_biały − C_zielony)/255`, kolor: `F = (C_biały − (1−α)·255)/α`.
+   Zero progów, zero zgadywania.
+
+**Pułapka `position_element`:** parametry `left`/`top` w tym MCP działają
+zamienione — podanie `left=X, top=Y` ustawia `top=X, left=Y`. Sprawdzać
+wynik w zwróconym `document`.
+
+Miniaturki i eksporty Canvy pobiera się curlem **tylko z nagłówkiem
+User-Agent przeglądarki**.
+
+## Lekcja (ważniejsza niż samo logo)
+
+Temat ciągnął się dwa dni i mocno zirytował właściciela („powiedz szczerze
+czy jesteś w stanie rozwiązać problem"). Powody były po mojej stronie:
+
+- **Sięgałem po najszybciej wyglądające obejście zamiast po metodę pewną.**
+  Pięć niepewnych podejść zajęło wielokrotnie więcej niż jedno porządne.
+  Przy zadaniu typu „to wygląda źle" opłaca się od razu zbudować pomiar/
+  procedurę dającą jednoznaczny wynik.
+- **Ogłaszałem sukces na podstawie pomniejszonych podglądów.** Dwukrotnie
+  napisałem, że jest zrobione, gdy nie było — właściciel to wychwycił.
+  **Zasada: przed każdym „gotowe" otworzyć finalny plik w pełnej
+  rozdzielczości dokładnie w miejscu, o które pytał użytkownik.**
+- **Diagnozę brałem z notatki zamiast z pliku** (08.08: zakładałem, że
+  rozmyty jest tylko napis — patrz [[stan-pracy-2026-08-08]]).
+
+Właściciel skutecznie zaznacza usterki na zrzutach ekranu (`obraz2_rzeczy_do
+_poprawy.png`) — to najszybszy kanał informacji zwrotnej, warto o niego prosić.
+Grafiki nadal pokazywać przez `C:\Users\User\Desktop\testy\` (w rozmowie mu
+się nie wyświetlają). Właściciel założył też katalog `logo/` w repo (na razie
+nieśledzony przez gita) i wrzuca tam warianty.
+
+## Otwarte punkty
+
+- `www/assets/zarzadguard_logo_marketing.png` (1803×2337) to **stara, rozmyta**
+  wersja — nieużywana w HTML, ale jeśli kiedyś pójdzie do druku/social mediów,
+  wygenerować ją na nowo z projektu `DAHRvQt6Slo`.
+- Ogonek przy „Ą" ma nietypowy kształt (duży zawijas w lewo, jak przy „ç") —
+  to wina kroju użytego przez Canvę, a `format_text` w MCP **nie pozwala
+  zmienić kroju pisma**. Właściciel widział i nie zgłosił zastrzeżeń; zmiana
+  wymagałaby ręcznej edycji w Canvie.
+- Pozostałe, znane wcześniej: prawdziwe dane kontaktowe, dostawca formularzy
+  z RODO/DPA, hosting/domena, usunięcie notek „wersja robocza".
