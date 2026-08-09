@@ -85,11 +85,15 @@ strona jest w pełni statyczna, więc w Edge działa z pliku bez serwera).
   zablokowane** — dwuklik w `.bat` NIC nie robi (najpewniej antywirus/
   ustawienia systemu; potwierdzone testem 31.07.2026 — plik `.bat` nie
   zostawił nawet logu, że się uruchomił). Dlatego na tym komputerze
-  podgląd odpalamy przez **skrót na pulpicie „Podglad strony KRS Guard"**
-  (ikona Edge). Skrót utworzony PowerShellem (`WScript.Shell`), celuje w
-  `msedge.exe` z argumentem `--new-window "file:///…/www/index.html"`. Skrót
-  jest lokalny (ścieżki bezwzględne, poza repo) — na innym komputerze trzeba
-  go utworzyć od nowa (patrz `memory/stan-pracy-2026-07-31.md`).
+  podgląd odpalamy przez skrót **`Podglad strony KRS Guard.lnk`** (ikona
+  Edge) — leży w **katalogu głównym repo** (NIE na pulpicie) i jest
+  zacommitowany, więc jedzie na drugi komputer. Utworzony PowerShellem
+  (`WScript.Shell`), celuje w `msedge.exe` z argumentem
+  `--new-window "file:///C:/Users/User/Desktop/kancelaria-prs-strona-www/www/index.html"`.
+  **Ścieżka w argumencie jest bezwzględna** — zadziała na drugim komputerze
+  tylko wtedy, gdy repo leży dokładnie w `C:\Users\User\Desktop\`. Jeśli nie,
+  poprawić ją (prawy przycisk → Właściwości → pole „Element docelowy") albo
+  utworzyć skrót od nowa (patrz `memory/stan-pracy-2026-07-31.md`).
 - **Drugi komputer:** jeśli tam `.bat` NIE są blokowane, może zadziałać
   `podglad-strony.bat` (w katalogu głównym repo, ścieżki względne
   `%~dp0` — przenośny). Zostawiony właśnie na tę okazję.
