@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Audyt 48h — formularz | KRS Guard</title>
+<title>Audyt 48h — formularz | Zarząd Guard</title>
 <style>
     :root{
       --tagline-left: 88px;
@@ -200,7 +200,7 @@
 <div class="brand">
 <div class="logo">KG</div>
 <div>
-<h1>KRS Guard — ochrona zarządu</h1>
+<h1>Zarząd Guard — ochrona zarządu</h1>
 <p>Audyt 48h (Diagnoza) — formularz kwalifikacyjny</p>
 </div>
 </div>
@@ -1116,12 +1116,12 @@ function buildAuditConfirmationEmail(){
   const fMain = document.getElementById('audit_file_main')?.files?.[0]?.name || '—';
   const fServ = document.getElementById('audit_file_service')?.files?.[0]?.name || '—';
 
-  const subject = 'KRS Guard – Audyt 48h: potwierdzenie zgłoszenia';
+  const subject = 'Zarząd Guard – Audyt 48h: potwierdzenie zgłoszenia';
 
   const lines = [];
   lines.push('Dzień dobry,');
   lines.push('');
-  lines.push('Dziękujemy — zgłoszenie do KRS Guard (Audyt 48h) zostało przyjęte.');
+  lines.push('Dziękujemy — zgłoszenie do Zarząd Guard (Audyt 48h) zostało przyjęte.');
   lines.push('Analizujemy Twój kwestionariusz. Wrócimy z planem w ramach Audytu 48h.');
   lines.push('');
   lines.push('Podsumowanie kroków:');
@@ -1166,7 +1166,7 @@ function buildAuditConfirmationEmail(){
   lines.push('2) Jeżeli brakuje dokumentów — doślij je w odpowiedzi.');
   lines.push('');
   lines.push('Pozdrawiamy,');
-  lines.push('Zespół KRS Guard');
+  lines.push('Zespół Zarząd Guard');
   lines.push('');
   lines.push('(Uwaga: to wiadomość testowa w prototypie. W wersji produkcyjnej będzie wysyłana automatycznie po zapisaniu zgłoszenia.)');
 
