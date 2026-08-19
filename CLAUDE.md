@@ -133,11 +133,15 @@ Osobny, już działający projekt tej samej kancelarii: repo
 `pczak333/Kalkulator_ryzyka_app` (Streamlit, Python), wdrożony pod
 `https://kalkulatorryzyka.streamlit.app/`.
 
-**Uwaga po zmianie nazwy marki (09.08.2026):** zmiana na „Zarząd Guard"
-objęła WYŁĄCZNIE tę stronę (`www/`). Kalkulator to osobne repo i osobne
-wdrożenie — **nie sprawdzano, jaką nazwą posługuje się on sam**. Jeśli
-pojawi się temat ujednolicenia nazwy między stroną a kalkulatorem, najpierw
-sprawdzić stan faktyczny w tamtym repo, nie zakładać.
+**Nazwa marki w kalkulatorze — ZAŁATWIONE 19.08.2026.** Zmiana na „Zarząd
+Guard" (09.08.2026) objęła najpierw wyłącznie tę stronę, przez co kalkulator
+witał klienta napisem „KRS Guard" — w tytule karty, nagłówku, stopce i raporcie
+PDF. Poprawione w jego własnym folderze: wszystkie napisy widoczne dla klienta
+mówią teraz „Zarząd Guard". **Świadomie NIE zmieniono** nazw plików z danymi
+(kod szuka ich po nazwie, np. `01_1_Slownik_pojec_KRS_Guard.csv`) ani kolumn
+z notatkami dla AI w plikach CSV — sprawdzono, że żaden kod ich nie czyta, więc
+klient ich nie widzi. Skrót „KRS" w znaczeniu Krajowego Rejestru Sądowego
+został nietknięty.
 
 **Decyzja (22.07.2026): kalkulator zostaje osobną, samodzielnie wdrożoną
 aplikacją — ta strona ma do niego tylko linkować** (zwykły przycisk/link,
