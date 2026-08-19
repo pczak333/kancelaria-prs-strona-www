@@ -14,7 +14,8 @@ zmian marki — nie zmieniamy jej).
 > nazwa to **Zarząd Guard**; w `www/` nie ma już ani jednego „KRS Guard".
 > Uwaga na mylące ślady starej nazwy, których świadomie NIE zmieniamy:
 > nazwa repo, nazwy plików (`krs_guard_logo_transparent.png`,
-> `krs-guard.html`), skrót na pulpicie „Podglad strony KRS Guard".
+> `krs-guard.html`). Skrót do podglądu **został przemianowany 19.08.2026**
+> na „Podglad Guard-www" — starsze notatki mówią o „Podglad strony KRS Guard".
 > Skrót „KRS" sam w sobie zostaje wszędzie tam, gdzie znaczy Krajowy
 > Rejestr Sądowy — to nie jest nazwa marki.
 
@@ -85,7 +86,7 @@ strona jest w pełni statyczna, więc w Edge działa z pliku bez serwera).
   zablokowane** — dwuklik w `.bat` NIC nie robi (najpewniej antywirus/
   ustawienia systemu; potwierdzone testem 31.07.2026 — plik `.bat` nie
   zostawił nawet logu, że się uruchomił). Dlatego na tym komputerze
-  podgląd odpalamy przez skrót **`Podglad strony KRS Guard.lnk`** (ikona
+  podgląd odpalamy przez skrót **`Podglad Guard-www.lnk`** (ikona
   Edge) — leży w **katalogu głównym repo**, czyli w
   `C:\Users\User\Desktop\kancelaria-prs-strona-www\`. Sam folder repo jest na
   pulpicie, więc do skrótu idzie się przez pulpit → folder (starsze notatki
