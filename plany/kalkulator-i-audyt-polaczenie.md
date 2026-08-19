@@ -2,7 +2,8 @@
 
 > **STAN NA 19.08.2026 — Etap A ZROBIONY.** Formularz Audytu w Guard-www
 > przyjmuje wynik z Kalkulatora, po potwierdzeniu klienta, że to ta sama sprawa.
-> **Etap B (przycisk w Kalkulatorze) — czeka na decyzję właściciela.**
+> **Etap B (przycisk w Kalkulatorze) — TEŻ ZROBIONY 19.08.2026.** Kalkulator ma
+> sekcję „Co dalej?" z przyciskiem prowadzącym do formularza Audytu.
 
 ## Nazewnictwo projektów (ustalone 19.08.2026)
 
@@ -84,7 +85,7 @@ w `CLAUDE.md`).
 **Strona Audytu** (`audyt-48h.html`) odsyła teraz do Kalkulatora — wcześniej
 link działał tylko w jedną stronę.
 
-## Etap B — przycisk w Kalkulatorze (czeka na decyzję)
+## Etap B — przycisk w Kalkulatorze (ZROBIONE)
 
 **Potwierdzony problem** (zrzut `testy/obraz1.png`): kalkulator po wyliczeniu
 pokazuje „Ocena ryzyka", pigułkę poziomu, zwinięty przełącznik „Zobacz pełny

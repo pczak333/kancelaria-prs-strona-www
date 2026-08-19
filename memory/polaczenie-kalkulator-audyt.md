@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: b581ef9c-946a-4d10-bbd1-de3a2c016ba6
-  modified: 2026-08-19T18:46:04.793Z
+  modified: 2026-08-19T18:54:44.285Z
 ---
 
 19.08.2026, projekt **Guard-www**. Plan: `plany/kalkulator-i-audyt-polaczenie.md`.
@@ -55,16 +55,34 @@ kalkulator" i panel techniczny — **żadnego przejścia dalej**. Jego słowa:
 raportu, który jest **domyślnie zwinięty** (`app/app.py:1622`). Poprawka to
 w dużej części **pokazanie tego, co już napisane**.
 
-## Otwarte — i zmiana sytuacji
+## Etap B ZROBIONY — przycisk w Kalkulatorze (19.08.2026)
 
-- **Przycisk w Kalkulatorze.** Właściciel odrzucił go 19.08.2026 („nic nie
-  zmieniaj w kalkulatorze"), ale **decyzja zapadła przy założeniu, że strona
-  nie ma adresu** — bo rozmowa dotyczyła wtedy Portalu. **Guard-www adres MA**:
-  `https://pczak333.github.io/kancelaria-prs-strona-www/`. Przycisk da się więc
-  zrobić od razu; rzeczywista decyzja brzmi: czy kierować klientów z działającego
-  Kalkulatora na tymczasowy podgląd (przykładowe dane kontaktowe, formularz bez
-  prawdziwej wysyłki), czy czekać na docelową domenę. **Do potwierdzenia
-  z właścicielem — nie zakładać, że odmowa nadal obowiązuje.**
+Właściciel najpierw odmówił, ale **przy założeniu, że strona nie ma adresu** —
+rozmowa dotyczyła wtedy Portalu. Gdy okazało się, że **Guard-www adres MA**,
+polecił dodać przycisk („na razie wszystko jeszcze jest w trybie testowym").
+
+W `Kalkulator_ryzyka_app/app/app.py` po wyliczeniu pojawia się sekcja
+**„Co dalej?"** z przyciskiem **„Przejdź do Audytu 48h →"**. Adres siedzi
+w jednej stałej **`AUDYT_48H_URL`** na górze pliku — **to jedyne miejsce do
+zmiany**, gdy dojdzie docelowa domena. Dziś wskazuje na tymczasowy podgląd
+`https://pczak333.github.io/kancelaria-prs-strona-www/`.
+
+**Nie ruszono:** liczenia punktów i poziomu ryzyka, scenariuszy, treści
+raportu, generowania PDF, obsługi wgrywanych dokumentów, nazwy marki.
+
+Sprawdzone: `tools/smoke_test_ui.py` przechodzi; przycisk i budowany adres
+obejrzane w przeglądarce na działającej aplikacji; **pełna droga kalkulator →
+formularz przetestowana na opublikowanej stronie**.
+
+**Pułapka przy testowaniu:** `AppTest` **nie pokazuje przycisków-linków**
+(`st.link_button`) — nie da się tą drogą potwierdzić, że przycisk istnieje.
+Trzeba uruchomić aplikację (`streamlit run app.py --server.port …`) i sprawdzić
+w przeglądarce. Osobno: `tools/regression_test.py` pomija wszystkie 31
+przypadków, bo szuka dokumentów w `Desktop\testy`, a na tym komputerze pulpit
+jest w OneDrive — patrz [[skrot-podgladu-onedrive-pulpit]].
+
+## Otwarte
+
 - Tabela przypisań rodzaju pisma — do potwierdzenia przez radcę.
 - Kalkulator wita nazwą **„KRS Guard"**, strona mówi „Zarząd Guard" — właściciel
   odłożył to do osobnej pracy nad Kalkulatorem. **Nie robić mimochodem.**
