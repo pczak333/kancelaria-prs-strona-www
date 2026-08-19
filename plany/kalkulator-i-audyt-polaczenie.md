@@ -98,22 +98,17 @@ raport", „Pobierz jako PDF", „Wyczyść kalkulator" i panel techniczny —
 **domyślnie zwinięty** (`app/app.py:1622`). Kto go nie rozwinie — nie widzi nic.
 Część poprawki to więc **pokazanie tego, co już napisane**.
 
-**Guard-www MA adres internetowy** — `https://pczak333.github.io/kancelaria-prs-strona-www/`
-(tymczasowy podgląd uruchomiony 11.08.2026). To znaczy, że przycisk
-w Kalkulatorze **da się zrobić od razu** — inaczej niż w Portalu, który adresu
-nie ma. Decyzja należy do właściciela: czy kierować klientów z działającego
-Kalkulatora na ten tymczasowy adres (strona ma jeszcze przykładowe dane
-kontaktowe i formularz bez prawdziwej wysyłki), czy poczekać na docelową domenę.
+**Co zostało zrobione** (`Kalkulator_ryzyka_app/app/app.py`, decyzja właściciela
+19.08.2026: „na razie wszystko jeszcze jest w trybie testowym"):
 
-**Przepis, gdy zapadnie decyzja** — `Kalkulator_ryzyka_app/app/app.py`, okolice
-linii **1606–1640**, obok istniejących przycisków:
-
-1. Stała z adresem formularza Audytu, z komentarzem po polsku — jedyne miejsce
-   do zmiany, gdy dojdzie docelowa domena.
-2. Przycisk „Przejdź do Audytu 48h" ze zdaniem: „Twoje odpowiedzi i poziom
-   ryzyka przeniosą się do formularza — nie będziesz ich wpisywać drugi raz."
-3. Budowanie adresu z kodów już zaznaczonych przez klienta (`k1`, `k4`, `k5`,
-   `k6`, `k7`, `delivery_date`, `deadline_days`) i wyliczonego poziomu ryzyka.
+1. Stała **`AUDYT_48H_URL`** na górze pliku — **jedyne miejsce do zmiany**, gdy
+   dojdzie docelowa domena. Dziś wskazuje na tymczasowy podgląd
+   `https://pczak333.github.io/kancelaria-prs-strona-www/`.
+2. Sekcja **„Co dalej?"** z przyciskiem **„Przejdź do Audytu 48h →"**, tuż pod
+   oceną ryzyka — czyli tam, gdzie klient patrzy, a nie w zwiniętym raporcie.
+3. Adres budowany z kodów już zaznaczonych przez klienta (`k1`, `k4`, `k5`,
+   `k6`, `k7`) i wyliczonego poziomu ryzyka; daty tylko wtedy, gdy klient je
+   podał (inaczej te zmienne w kodzie nie istnieją).
 
 **Czego w Kalkulatorze NIE ruszać:** liczenia punktów i poziomu ryzyka,
 scenariuszy, treści raportu, generowania PDF, obsługi wgrywanych dokumentów,
